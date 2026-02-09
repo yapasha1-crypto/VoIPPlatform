@@ -1,0 +1,77 @@
+2026-01-16 20:02:32 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:02:34 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 137
+2026-01-16 20:03:07 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:03:08 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 137
+2026-01-16 20:03:47 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:03:47 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 137
+2026-01-16 20:05:14 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:05:15 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 137
+2026-01-16 20:06:43 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:06:43 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 137
+2026-01-16 20:14:48 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-16 20:14:52 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-16 20:14:59 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-16 20:14:59 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-16 20:14:59 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-16 20:14:59 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-16 20:14:59 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-16 20:14:59 [INF] No migrations were applied. The database is already up to date.
+2026-01-16 20:14:59 [INF] ✅ Database migrated successfully.
+2026-01-16 20:15:00 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-16 20:15:00 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-16 20:15:00 [INF] Now listening on: http://localhost:5004
+2026-01-16 20:15:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-16 20:15:01 [INF] Hosting environment: Development
+2026-01-16 20:15:01 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API

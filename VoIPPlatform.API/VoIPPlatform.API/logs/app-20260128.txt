@@ -1,0 +1,118 @@
+2026-01-28 21:19:35 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-28 21:19:38 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-28 21:20:05 [INF] Executed DbCommand (149ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:20:05 [INF] Executed DbCommand (211ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:20:05 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:20:05 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:20:07 [INF] Executed DbCommand (1,328ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-28 21:20:07 [INF] No migrations were applied. The database is already up to date.
+2026-01-28 21:20:07 [INF] ✅ Database migrated successfully.
+2026-01-28 21:20:08 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-28 21:20:08 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-28 21:20:09 [INF] Now listening on: http://localhost:5004
+2026-01-28 21:20:09 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-28 21:20:09 [INF] Hosting environment: Development
+2026-01-28 21:20:09 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-28 21:20:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-28 21:20:13 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-28 21:20:14 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 2257.7361ms
+2026-01-28 21:21:31 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-28 21:21:34 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-28 21:21:36 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:21:36 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:21:36 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:21:36 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:21:36 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-28 21:21:36 [INF] No migrations were applied. The database is already up to date.
+2026-01-28 21:21:36 [INF] ✅ Database migrated successfully.
+2026-01-28 21:21:37 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-28 21:21:37 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-28 21:21:38 [INF] Now listening on: http://localhost:5004
+2026-01-28 21:21:38 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-28 21:21:38 [INF] Hosting environment: Development
+2026-01-28 21:21:38 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-28 21:21:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-28 21:22:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-28 21:22:00 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 816.116ms
+2026-01-28 21:23:51 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-28 21:23:52 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-28 21:23:54 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:23:54 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:23:54 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-28 21:23:54 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-28 21:23:54 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-28 21:23:54 [INF] No migrations were applied. The database is already up to date.
+2026-01-28 21:23:54 [INF] ✅ Database migrated successfully.
+2026-01-28 21:23:54 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-28 21:23:54 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-28 21:23:55 [INF] Now listening on: http://localhost:5004
+2026-01-28 21:23:55 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-28 21:23:55 [INF] Hosting environment: Development
+2026-01-28 21:23:55 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-28 21:24:13 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-28 21:24:15 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1850.7041ms

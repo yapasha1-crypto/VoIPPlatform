@@ -1,0 +1,184 @@
+2026-01-25 12:07:15 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-25 12:07:18 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-25 12:07:33 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:07:33 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:07:33 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:07:33 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:07:33 [INF] Executed DbCommand (56ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-25 12:07:33 [INF] No migrations were applied. The database is already up to date.
+2026-01-25 12:07:33 [INF] ✅ Database migrated successfully.
+2026-01-25 12:07:33 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-25 12:07:34 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-25 12:07:35 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-01-25 12:07:35 [INF] Now listening on: https://localhost:7257
+2026-01-25 12:07:35 [INF] Now listening on: http://localhost:5004
+2026-01-25 12:07:35 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-25 12:07:35 [INF] Hosting environment: Development
+2026-01-25 12:07:35 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-25 12:09:07 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-25 12:09:09 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-25 12:09:09 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:09:09 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:09:09 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:09:09 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:09:09 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-25 12:09:10 [INF] No migrations were applied. The database is already up to date.
+2026-01-25 12:09:10 [INF] ✅ Database migrated successfully.
+2026-01-25 12:09:10 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-25 12:09:10 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-25 12:09:10 [INF] Now listening on: http://localhost:5004
+2026-01-25 12:09:10 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-25 12:09:10 [INF] Hosting environment: Development
+2026-01-25 12:09:10 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-25 12:09:11 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger - null null
+2026-01-25 12:09:11 [WRN] Failed to determine the https port for redirect.
+2026-01-25 12:09:12 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger - 404 null null 761.8153ms
+2026-01-25 12:09:12 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/swagger, Response status code: 404
+2026-01-25 12:09:24 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-01-25 12:09:24 [INF] Request finished HTTP/1.1 GET http://localhost:5004/ - 301 null null 14.0446ms
+2026-01-25 12:09:24 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui.css - null null
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui-standalone-preset.js - null null
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 253.2607ms
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui-bundle.js - null null
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - null null
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_vs/browserLink - null null
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 14.9066ms
+2026-01-25 12:09:25 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-01-25 12:09:25 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui-bundle.js - 200 1456926 text/javascript 98.2518ms
+2026-01-25 12:09:25 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui-standalone-preset.js - 200 230280 text/javascript 96.8451ms
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui.css - 200 152034 text/css 107.4648ms
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_vs/browserLink - 200 null text/javascript; charset=UTF-8 367.6642ms
+2026-01-25 12:09:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-25 12:09:25 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-25 12:09:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 109.367ms
+2026-01-25 12:09:37 [INF] Request starting HTTP/1.1 GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-01-25 12:09:37 [INF] Request finished HTTP/1.1 GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 40.2183ms
+2026-01-25 12:09:37 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-01-25 12:10:21 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-25 12:10:21 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-25 12:10:21 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/html; charset=utf-8 117.9425ms
+2026-01-25 12:10:21 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - null null
+2026-01-25 12:10:21 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_vs/browserLink - null null
+2026-01-25 12:10:21 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 7.5983ms
+2026-01-25 12:10:21 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.9519ms
+2026-01-25 12:10:21 [INF] Request starting HTTP/1.1 GET http://localhost:5004/favicon.ico - null null
+2026-01-25 12:10:21 [INF] Request finished HTTP/1.1 GET http://localhost:5004/favicon.ico - 404 0 null 27.6124ms
+2026-01-25 12:10:21 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/favicon.ico, Response status code: 404
+2026-01-25 12:33:18 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-25 12:33:20 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-25 12:33:25 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:33:25 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:33:25 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-25 12:33:25 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-25 12:33:25 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-25 12:33:25 [INF] No migrations were applied. The database is already up to date.
+2026-01-25 12:33:25 [INF] ✅ Database migrated successfully.
+2026-01-25 12:33:25 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-25 12:33:25 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-25 12:33:25 [INF] Now listening on: http://localhost:5004
+2026-01-25 12:33:25 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-25 12:33:25 [INF] Hosting environment: Development
+2026-01-25 12:33:25 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-25 12:33:28 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger - null null
+2026-01-25 12:33:29 [WRN] Failed to determine the https port for redirect.
+2026-01-25 12:33:29 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger - 404 null null 469.4811ms
+2026-01-25 12:33:29 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/swagger, Response status code: 404
+2026-01-25 12:33:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-25 12:33:56 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 156.4882ms
+2026-01-25 12:33:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_vs/browserLink - null null
+2026-01-25 12:33:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - null null
+2026-01-25 12:33:56 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 15.1804ms
+2026-01-25 12:33:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/_vs/browserLink - 200 null text/javascript; charset=UTF-8 357.9889ms
+2026-01-25 12:33:57 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-25 12:33:57 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-25 12:33:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 126.9278ms

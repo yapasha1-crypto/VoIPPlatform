@@ -1,0 +1,405 @@
+2026-01-31 19:56:30 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 19:56:31 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 19:56:32 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 19:56:32 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 19:56:32 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 19:56:32 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 19:56:32 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 19:56:32 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 19:56:32 [INF] ✅ Database migrated successfully.
+2026-01-31 19:56:32 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 19:56:32 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 19:56:32 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-31 19:56:32 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 202
+2026-01-31 20:01:40 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 20:01:41 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 20:01:41 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:01:41 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:01:41 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:01:41 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:01:41 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 20:01:41 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 20:01:41 [INF] ✅ Database migrated successfully.
+2026-01-31 20:01:42 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 20:01:42 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 20:01:42 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-31 20:01:42 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 202
+2026-01-31 20:04:19 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 20:04:20 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 20:04:23 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:04:23 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:04:23 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:04:23 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:04:23 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 20:04:24 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 20:04:24 [INF] ✅ Database migrated successfully.
+2026-01-31 20:04:24 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 20:04:24 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 20:04:24 [INF] Now listening on: http://localhost:5004
+2026-01-31 20:04:24 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-31 20:04:24 [INF] Hosting environment: Development
+2026-01-31 20:04:24 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-31 20:04:49 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-01-31 20:04:49 [INF] The file /index.html was not modified
+2026-01-31 20:04:49 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 304 null text/html 140.3635ms
+2026-01-31 20:04:49 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - null null
+2026-01-31 20:04:49 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:04:49 [INF] The file /assets/index-BRyqCo5w.js was not modified
+2026-01-31 20:04:49 [INF] The file /assets/index-DWcblkvv.css was not modified
+2026-01-31 20:04:49 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - 304 null text/javascript 41.3227ms
+2026-01-31 20:04:49 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 304 null text/css 43.6254ms
+2026-01-31 20:04:51 [INF] Request starting HTTP/1.1 GET http://localhost:5004/features.html - null null
+2026-01-31 20:04:51 [INF] The file /features.html was not modified
+2026-01-31 20:04:51 [INF] Request finished HTTP/1.1 GET http://localhost:5004/features.html - 304 null text/html 9.943ms
+2026-01-31 20:04:51 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:04:51 [WRN] Failed to determine the https port for redirect.
+2026-01-31 20:04:51 [INF] CORS policy execution successful.
+2026-01-31 20:04:51 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 85.0218ms
+2026-01-31 20:04:51 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:04:53 [INF] Request starting HTTP/1.1 GET http://localhost:5004/features.html - null null
+2026-01-31 20:04:53 [INF] The file /features.html was not modified
+2026-01-31 20:04:53 [INF] Request finished HTTP/1.1 GET http://localhost:5004/features.html - 304 null text/html 7.0089ms
+2026-01-31 20:04:53 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:04:53 [INF] CORS policy execution successful.
+2026-01-31 20:04:53 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 8.1695ms
+2026-01-31 20:04:53 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:04:57 [INF] Request starting HTTP/1.1 GET http://localhost:5004/features.html - null null
+2026-01-31 20:04:57 [INF] Sending file. Request path: '/features.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\features.html'
+2026-01-31 20:04:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/features.html - 200 15609 text/html 14.8126ms
+2026-01-31 20:04:57 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:04:57 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:04:57 [INF] CORS policy execution successful.
+2026-01-31 20:04:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 11.0737ms
+2026-01-31 20:04:57 [INF] Sending file. Request path: '/assets/index-DWcblkvv.css'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\assets\index-DWcblkvv.css'
+2026-01-31 20:04:57 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:04:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 200 58908 text/css 21.4146ms
+2026-01-31 20:04:57 [INF] Request starting HTTP/1.1 GET http://localhost:5004/vite.svg - null null
+2026-01-31 20:04:57 [INF] Sending file. Request path: '/vite.svg'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\vite.svg'
+2026-01-31 20:04:57 [INF] Request finished HTTP/1.1 GET http://localhost:5004/vite.svg - 200 1497 image/svg+xml 23.5113ms
+2026-01-31 20:05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5004/support.html - null null
+2026-01-31 20:05:00 [INF] The file /support.html was not modified
+2026-01-31 20:05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5004/support.html - 304 null text/html 9.9418ms
+2026-01-31 20:05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:05:00 [INF] CORS policy execution successful.
+2026-01-31 20:05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 23.9535ms
+2026-01-31 20:05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:05:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/support.html - null null
+2026-01-31 20:05:03 [INF] Sending file. Request path: '/support.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\support.html'
+2026-01-31 20:05:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/support.html - 200 17502 text/html 48.3266ms
+2026-01-31 20:05:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:05:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:05:03 [INF] CORS policy execution successful.
+2026-01-31 20:05:03 [INF] Sending file. Request path: '/assets/index-DWcblkvv.css'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\assets\index-DWcblkvv.css'
+2026-01-31 20:05:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 43.4184ms
+2026-01-31 20:05:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 200 58908 text/css 45.1517ms
+2026-01-31 20:05:03 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:05:04 [INF] Request starting HTTP/1.1 GET http://localhost:5004/vite.svg - null null
+2026-01-31 20:05:04 [INF] Sending file. Request path: '/vite.svg'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\vite.svg'
+2026-01-31 20:05:04 [INF] Request finished HTTP/1.1 GET http://localhost:5004/vite.svg - 200 1497 image/svg+xml 8.6749ms
+2026-01-31 20:05:48 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-01-31 20:05:48 [INF] The file /admin.html was not modified
+2026-01-31 20:05:48 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 304 null text/html 9.0909ms
+2026-01-31 20:05:48 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:05:48 [INF] CORS policy execution successful.
+2026-01-31 20:05:48 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 31.0538ms
+2026-01-31 20:05:48 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:07:33 [INF] Request starting HTTP/1.1 GET http://localhost:5004/pricing.html - null null
+2026-01-31 20:07:33 [INF] The file /pricing.html was not modified
+2026-01-31 20:07:33 [INF] Request finished HTTP/1.1 GET http://localhost:5004/pricing.html - 304 null text/html 18.5332ms
+2026-01-31 20:07:34 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:07:34 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:07:34 [INF] The file /assets/index-DWcblkvv.css was not modified
+2026-01-31 20:07:34 [INF] CORS policy execution successful.
+2026-01-31 20:07:34 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 304 null text/css 19.0423ms
+2026-01-31 20:07:34 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 20.2684ms
+2026-01-31 20:07:34 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:07:41 [INF] Request starting HTTP/1.1 GET http://localhost:5004/features.html - null null
+2026-01-31 20:07:41 [INF] The file /features.html was not modified
+2026-01-31 20:07:41 [INF] Request finished HTTP/1.1 GET http://localhost:5004/features.html - 304 null text/html 10.4699ms
+2026-01-31 20:07:42 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:07:42 [INF] CORS policy execution successful.
+2026-01-31 20:07:42 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 6.7399ms
+2026-01-31 20:07:42 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:08:06 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:08:06 [INF] CORS policy execution successful.
+2026-01-31 20:08:06 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 38.2019ms
+2026-01-31 20:08:06 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:08:29 [INF] Request starting HTTP/1.1 GET http://localhost:5004/support.html - null null
+2026-01-31 20:08:29 [INF] The file /support.html was not modified
+2026-01-31 20:08:29 [INF] Request finished HTTP/1.1 GET http://localhost:5004/support.html - 304 null text/html 11.5071ms
+2026-01-31 20:08:29 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:08:29 [INF] CORS policy execution successful.
+2026-01-31 20:08:29 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 74.9107ms
+2026-01-31 20:08:29 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:08:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-01-31 20:08:59 [INF] The file /admin.html was not modified
+2026-01-31 20:08:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 304 null text/html 22.3487ms
+2026-01-31 20:08:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - null null
+2026-01-31 20:08:59 [INF] CORS policy execution successful.
+2026-01-31 20:08:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-CrVEl-FT.js - 404 0 null 48.6123ms
+2026-01-31 20:08:59 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/assets/index-CrVEl-FT.js, Response status code: 404
+2026-01-31 20:10:32 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:10:32 [INF] The file /assets/index-DWcblkvv.css was not modified
+2026-01-31 20:10:32 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 304 null text/css 13.059ms
+2026-01-31 20:10:32 [INF] Request starting HTTP/1.1 GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-01-31 20:10:32 [INF] Request finished HTTP/1.1 GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 4.3559ms
+2026-01-31 20:10:32 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-01-31 20:11:16 [INF] Application is shutting down...
+2026-01-31 20:20:24 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 20:20:25 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 20:20:30 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:20:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:20:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:20:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:20:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 20:20:30 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 20:20:30 [INF] ✅ Database migrated successfully.
+2026-01-31 20:20:30 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 20:20:30 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 20:20:31 [INF] Now listening on: http://localhost:5004
+2026-01-31 20:20:31 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-31 20:20:31 [INF] Hosting environment: Development
+2026-01-31 20:20:31 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-31 20:21:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-01-31 20:21:03 [INF] Sending file. Request path: '/admin.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\admin.html'
+2026-01-31 20:21:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 200 4754 text/html 109.4276ms
+2026-01-31 20:21:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:21:03 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - null null
+2026-01-31 20:21:03 [INF] The file /assets/index-DWcblkvv.css was not modified
+2026-01-31 20:21:03 [INF] The file /assets/index-BRyqCo5w.js was not modified
+2026-01-31 20:21:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 304 null text/css 9.7884ms
+2026-01-31 20:21:03 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - 304 null text/javascript 15.8958ms
+2026-01-31 20:21:08 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-01-31 20:21:08 [INF] Sending file. Request path: '/admin.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\admin.html'
+2026-01-31 20:21:08 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 200 4754 text/html 59.9463ms
+2026-01-31 20:21:08 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:21:08 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - null null
+2026-01-31 20:21:08 [INF] Sending file. Request path: '/assets/index-DWcblkvv.css'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\assets\index-DWcblkvv.css'
+2026-01-31 20:21:08 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 200 58908 text/css 12.7336ms
+2026-01-31 20:21:08 [INF] Sending file. Request path: '/assets/index-BRyqCo5w.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\assets\index-BRyqCo5w.js'
+2026-01-31 20:21:08 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - 200 48701 text/javascript 22.6319ms
+2026-01-31 20:21:09 [INF] Request starting HTTP/1.1 GET http://localhost:5004/vite.svg - null null
+2026-01-31 20:21:09 [INF] Sending file. Request path: '/vite.svg'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\vite.svg'
+2026-01-31 20:21:09 [INF] Request finished HTTP/1.1 GET http://localhost:5004/vite.svg - 200 1497 image/svg+xml 117.1939ms
+2026-01-31 20:23:41 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 20:23:42 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 20:23:45 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:23:45 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:23:45 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:23:45 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:23:45 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 20:23:45 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 20:23:45 [INF] ✅ Database migrated successfully.
+2026-01-31 20:23:45 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 20:23:45 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 20:23:45 [INF] Now listening on: http://localhost:5004
+2026-01-31 20:23:45 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-31 20:23:45 [INF] Hosting environment: Development
+2026-01-31 20:23:45 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-31 20:24:01 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-01-31 20:24:01 [INF] The file /index.html was not modified
+2026-01-31 20:24:01 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 304 null text/html 197.1898ms
+2026-01-31 20:24:01 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - null null
+2026-01-31 20:24:01 [INF] Request starting HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - null null
+2026-01-31 20:24:01 [INF] The file /assets/index-BRyqCo5w.js was not modified
+2026-01-31 20:24:01 [INF] The file /assets/index-DWcblkvv.css was not modified
+2026-01-31 20:24:01 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-BRyqCo5w.js - 304 null text/javascript 8.0401ms
+2026-01-31 20:24:01 [INF] Request finished HTTP/1.1 GET http://localhost:5004/assets/index-DWcblkvv.css - 304 null text/css 14.3398ms
+2026-01-31 20:24:04 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-01-31 20:24:04 [INF] The file /index.html was not modified
+2026-01-31 20:24:04 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 304 null text/html 48.6989ms
+2026-01-31 20:24:06 [INF] Request starting HTTP/1.1 GET http://localhost:5004/features.html - null null
+2026-01-31 20:24:06 [INF] Sending file. Request path: '/features.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\features.html'
+2026-01-31 20:24:06 [INF] Request finished HTTP/1.1 GET http://localhost:5004/features.html - 200 15609 text/html 84.1554ms
+2026-01-31 20:24:08 [INF] Request starting HTTP/1.1 GET http://localhost:5004/pricing.html - null null
+2026-01-31 20:24:08 [INF] Sending file. Request path: '/pricing.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\pricing.html'
+2026-01-31 20:24:08 [INF] Request finished HTTP/1.1 GET http://localhost:5004/pricing.html - 200 16707 text/html 53.9721ms
+2026-01-31 20:24:09 [INF] Request starting HTTP/1.1 GET http://localhost:5004/support.html - null null
+2026-01-31 20:24:09 [INF] Sending file. Request path: '/support.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\support.html'
+2026-01-31 20:24:09 [INF] Request finished HTTP/1.1 GET http://localhost:5004/support.html - 200 17502 text/html 50.059ms
+2026-01-31 20:24:11 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-31 20:24:11 [INF] The file /index.html was not modified
+2026-01-31 20:24:11 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 304 null text/html 6.6739ms
+2026-01-31 20:24:28 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-01-31 20:24:28 [INF] The file /admin.html was not modified
+2026-01-31 20:24:28 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 304 null text/html 23.5346ms
+2026-01-31 20:24:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-31 20:24:56 [INF] The file /index.html was not modified
+2026-01-31 20:24:56 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 304 null text/html 7.0197ms
+2026-01-31 20:34:01 [INF] Application is shutting down...
+2026-01-31 20:35:47 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-31 20:35:49 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-31 20:35:53 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:35:53 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:35:53 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-31 20:35:53 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-31 20:35:53 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-31 20:35:53 [INF] No migrations were applied. The database is already up to date.
+2026-01-31 20:35:53 [INF] ✅ Database migrated successfully.
+2026-01-31 20:35:54 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-31 20:35:54 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-31 20:35:55 [INF] Now listening on: http://localhost:5004
+2026-01-31 20:35:55 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-31 20:35:55 [INF] Hosting environment: Development
+2026-01-31 20:35:55 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-31 20:40:32 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 52
+2026-01-31 20:40:32 [WRN] Failed to determine the https port for redirect.
+2026-01-31 20:40:32 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-01-31 20:40:33 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-31 20:40:33 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-01-31 20:40:33 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 557.9997ms
+2026-01-31 20:40:33 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-01-31 20:40:33 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 400 null application/problem+json; charset=utf-8 884.7059ms
+2026-01-31 20:50:49 [INF] Application is shutting down...

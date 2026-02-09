@@ -1,0 +1,452 @@
+2026-02-03 22:30:35 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-02-03 22:30:36 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-02-03 22:30:41 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 22:30:41 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 22:30:41 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 22:30:41 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 22:30:41 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-03 22:30:41 [INF] No migrations were applied. The database is already up to date.
+2026-02-03 22:30:41 [INF] ✅ Database migrated successfully.
+2026-02-03 22:30:41 [INF] ✅ التطبيق جاهز للاستقبال
+2026-02-03 22:30:41 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-03 22:30:41 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-02-03 22:30:41 [FTL] ❌ التطبيق توقف بسبب خطأ غير متوقع
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5004: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 213
+2026-02-03 23:13:52 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-02-03 23:13:54 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-02-03 23:13:54 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 23:13:54 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 23:13:54 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 23:13:54 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 23:13:54 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-03 23:13:54 [INF] No migrations were applied. The database is already up to date.
+2026-02-03 23:13:54 [INF] ✅ Database migrated successfully.
+2026-02-03 23:13:55 [INF] ✅ التطبيق جاهز للاستقبال
+2026-02-03 23:13:55 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-03 23:13:55 [INF] Now listening on: http://localhost:5004
+2026-02-03 23:13:55 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-03 23:13:55 [INF] Hosting environment: Development
+2026-02-03 23:13:55 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-02-03 23:14:18 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 54
+2026-02-03 23:14:18 [WRN] Failed to determine the https port for redirect.
+2026-02-03 23:14:18 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:14:18 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:14:18 [INF] Executed DbCommand (67ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:14:18 [WRN] Login failed: User realadmin not found.
+2026-02-03 23:14:18 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:14:18 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 596.9883ms
+2026-02-03 23:14:18 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:14:18 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 775.5846ms
+2026-02-03 23:15:05 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/register - application/json 207
+2026-02-03 23:15:05 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Register (VoIPPlatform.API)'
+2026-02-03 23:15:05 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(RegisterRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:15:05 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:15:05 [INF] Executed DbCommand (42ms) [Parameters=[@p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = DateTime2), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime2), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccountBalance], [CreatedAt], [Email], [FirstName], [IsActive], [IsEmailVerified], [LastLoginAt], [LastName], [PasswordHash], [PhoneNumber], [Role], [UpdatedAt], [Username])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-02-03 23:15:05 [INF] New user registered locally: realadmin
+2026-02-03 23:15:05 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType10`3[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-03 23:15:05 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Register (VoIPPlatform.API) in 488.462ms
+2026-02-03 23:15:05 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Register (VoIPPlatform.API)'
+2026-02-03 23:15:05 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/register - 200 null application/json; charset=utf-8 531.7811ms
+2026-02-03 23:15:05 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 69
+2026-02-03 23:15:05 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:15:05 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:15:05 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:15:05 [INF] Login Debug - User: realadmin
+2026-02-03 23:15:05 [INF] Login Debug - Stored Hash: pF/8nTEU9Nm+Xk38T2wLyMe/ioEVuWxry/eG0pfF9ao=
+2026-02-03 23:15:05 [INF] Login Debug - Input Password Length: 13
+2026-02-03 23:15:05 [INF] Login Debug - Input Hash:  pF/8nTEU9Nm+Xk38T2wLyMe/ioEVuWxry/eG0pfF9ao=
+2026-02-03 23:15:05 [INF] Login Debug - Match: true
+2026-02-03 23:15:05 [INF] Executed DbCommand (8ms) [Parameters=[@p13='?' (DbType = Int32), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = DateTime2), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime2), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccountBalance] = @p0, [CreatedAt] = @p1, [Email] = @p2, [FirstName] = @p3, [IsActive] = @p4, [IsEmailVerified] = @p5, [LastLoginAt] = @p6, [LastName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [Role] = @p10, [UpdatedAt] = @p11, [Username] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2026-02-03 23:15:05 [INF] Successful login: realadmin
+2026-02-03 23:15:05 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType11`5[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType10`3[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-03 23:15:05 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 117.9032ms
+2026-02-03 23:15:05 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:15:05 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 200 null application/json; charset=utf-8 146.8155ms
+2026-02-03 23:16:06 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-02-03 23:16:06 [INF] CORS policy execution successful.
+2026-02-03 23:16:06 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 9.4701ms
+2026-02-03 23:16:06 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - application/json null
+2026-02-03 23:16:07 [INF] CORS policy execution successful.
+2026-02-03 23:16:07 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14120: JWT is not well formed, there is only one dot (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-02-03 23:16:07 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-02-03 23:16:07 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-03 23:16:07 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-03 23:16:07 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 401 0 null 783.7789ms
+2026-02-03 23:20:28 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:20:28 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:20:28 [INF] CORS policy execution successful.
+2026-02-03 23:20:28 [INF] CORS policy execution successful.
+2026-02-03 23:20:28 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 101.2231ms
+2026-02-03 23:20:28 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 96.1933ms
+2026-02-03 23:20:28 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:20:28 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:20:28 [INF] CORS policy execution successful.
+2026-02-03 23:20:28 [INF] CORS policy execution successful.
+2026-02-03 23:20:28 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:28 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:28 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:20:28 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:20:29 [INF] Executed DbCommand (63ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:20:29 [INF] Executed DbCommand (64ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:20:29 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:20:29 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:20:29 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:20:29 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 513.4636ms
+2026-02-03 23:20:29 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:29 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 573.8219ms
+2026-02-03 23:20:29 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:20:29 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 530.9725ms
+2026-02-03 23:20:29 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:29 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 576.5697ms
+2026-02-03 23:20:41 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:20:41 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:20:41 [INF] CORS policy execution successful.
+2026-02-03 23:20:41 [INF] CORS policy execution successful.
+2026-02-03 23:20:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 197.5858ms
+2026-02-03 23:20:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 204.2434ms
+2026-02-03 23:20:41 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:20:41 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:20:41 [INF] CORS policy execution successful.
+2026-02-03 23:20:41 [INF] CORS policy execution successful.
+2026-02-03 23:20:41 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:41 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:41 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:20:41 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:20:41 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:20:41 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:20:41 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:20:41 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 16.2304ms
+2026-02-03 23:20:41 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:41 [INF] Executed DbCommand (11ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:20:41 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 45.2479ms
+2026-02-03 23:20:41 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:20:41 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:20:41 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 59.6564ms
+2026-02-03 23:20:41 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:20:41 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 91.9778ms
+2026-02-03 23:21:03 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:21:03 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:21:03 [INF] CORS policy execution successful.
+2026-02-03 23:21:03 [INF] CORS policy execution successful.
+2026-02-03 23:21:03 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 67.1535ms
+2026-02-03 23:21:03 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 70.6775ms
+2026-02-03 23:21:03 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 59
+2026-02-03 23:21:03 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 59
+2026-02-03 23:21:03 [INF] CORS policy execution successful.
+2026-02-03 23:21:03 [INF] CORS policy execution successful.
+2026-02-03 23:21:03 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:21:03 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:21:03 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:21:03 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:21:03 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:21:03 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:21:03 [WRN] Login failed: User freshadmin@test.com not found.
+2026-02-03 23:21:03 [WRN] Login failed: User freshadmin@test.com not found.
+2026-02-03 23:21:03 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:21:03 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:21:03 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 17.1129ms
+2026-02-03 23:21:03 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 20.267ms
+2026-02-03 23:21:03 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:21:03 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:21:03 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 108.5723ms
+2026-02-03 23:21:03 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 106.3966ms
+2026-02-03 23:22:21 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:22:21 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:22:21 [INF] CORS policy execution successful.
+2026-02-03 23:22:21 [INF] CORS policy execution successful.
+2026-02-03 23:22:21 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 15.8947ms
+2026-02-03 23:22:21 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:22:21 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 8.7589ms
+2026-02-03 23:22:21 [INF] CORS policy execution successful.
+2026-02-03 23:22:21 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 56
+2026-02-03 23:22:21 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:21 [INF] CORS policy execution successful.
+2026-02-03 23:22:21 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:22:21 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:21 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:22:21 [INF] Executed DbCommand (11ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:22:21 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:22:21 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:22:21 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 25.3268ms
+2026-02-03 23:22:21 [INF] Executed DbCommand (13ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:22:21 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:21 [WRN] Login failed: User admin@real.com not found.
+2026-02-03 23:22:21 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 76.3733ms
+2026-02-03 23:22:21 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:22:21 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 286.1373ms
+2026-02-03 23:22:21 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:21 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 349.9975ms
+2026-02-03 23:22:39 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:22:39 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:22:39 [INF] CORS policy execution successful.
+2026-02-03 23:22:39 [INF] CORS policy execution successful.
+2026-02-03 23:22:39 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 80.3828ms
+2026-02-03 23:22:39 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 83.2848ms
+2026-02-03 23:22:39 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 61
+2026-02-03 23:22:39 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 61
+2026-02-03 23:22:39 [INF] CORS policy execution successful.
+2026-02-03 23:22:39 [INF] CORS policy execution successful.
+2026-02-03 23:22:39 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:39 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:39 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:22:39 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:22:39 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:22:39 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:22:39 [WRN] Login failed: User realadmin@admin.com not found.
+2026-02-03 23:22:39 [WRN] Login failed: User realadmin@admin.com not found.
+2026-02-03 23:22:39 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:22:39 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:22:39 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 66.3087ms
+2026-02-03 23:22:39 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 67.6206ms
+2026-02-03 23:22:39 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:39 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:22:39 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 168.2511ms
+2026-02-03 23:22:39 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 169.6331ms
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/admin.html - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/admin.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\admin.html'
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/admin.js - null null
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/js/api-connector.js - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/js/api-connector.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\js\api-connector.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/js/api-connector.js - 200 5161 text/javascript 29.2384ms
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/admin.html - 200 5209 text/html 96.4017ms
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/css/styles.css - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/admin.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\admin.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/admin.js - 200 11652 text/javascript 84.9171ms
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/css/styles.css'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\css\styles.css'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/css/styles.css - 200 49491 text/css 257.2694ms
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/dashboard/sidebar.js - null null
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/dashboard/header.js - null null
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/dashboard/widgets.js - null null
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/globe.js - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/components/dashboard/sidebar.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\dashboard\sidebar.js'
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/components/dashboard/header.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\dashboard\header.js'
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/services/apiService.js - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/components/dashboard/widgets.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\dashboard\widgets.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/dashboard/sidebar.js - 200 8824 text/javascript 65.4012ms
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/dashboard/header.js - 200 6459 text/javascript 66.6882ms
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/components/globe.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\globe.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/dashboard/widgets.js - 200 11060 text/javascript 72.8282ms
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/services/apiService.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\services\apiService.js'
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/toast.js - null null
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/globe.js - 200 7125 text/javascript 81.1242ms
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/services/apiService.js - 200 22797 text/javascript 44.9987ms
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/config/api.config.js - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/components/toast.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\toast.js'
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/services/mockData.js - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/config/api.config.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\config\api.config.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/toast.js - 200 4131 text/javascript 44.2806ms
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/src/services/mockData.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\services\mockData.js'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/config/api.config.js - 200 1230 text/javascript 31.3516ms
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/services/mockData.js - 200 18007 text/javascript 32.9193ms
+2026-02-03 23:24:58 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-02-03 23:24:58 [INF] Sending file. Request path: '/index.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\index.html'
+2026-02-03 23:24:58 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 11980 text/html 68.7292ms
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/main.js - null null
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/main.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\main.js'
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/footer.js - null null
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/initAuth.js - null null
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/networkStatus.js - null null
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/main.js - 200 2441 text/javascript 77.3201ms
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/components/initAuth.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\initAuth.js'
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/components/footer.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\footer.js'
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/components/networkStatus.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\networkStatus.js'
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/header.js - null null
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/initAuth.js - 200 8030 text/javascript 35.4327ms
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/footer.js - 200 9294 text/javascript 39.4211ms
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/networkStatus.js - 200 2124 text/javascript 40.8668ms
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/components/header.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\header.js'
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/header.js - 200 14557 text/javascript 36.9954ms
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/src/components/authModals.js - null null
+2026-02-03 23:24:59 [INF] Sending file. Request path: '/src/components/authModals.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\authModals.js'
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/src/components/authModals.js - 200 4908 text/javascript 56.3256ms
+2026-02-03 23:24:59 [INF] Request starting HTTP/1.1 GET http://localhost:5004/favicon.ico - null null
+2026-02-03 23:24:59 [INF] Request finished HTTP/1.1 GET http://localhost:5004/favicon.ico - 404 0 null 6.7729ms
+2026-02-03 23:24:59 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/favicon.ico, Response status code: 404
+2026-02-03 23:31:27 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:31:27 [INF] CORS policy execution successful.
+2026-02-03 23:31:27 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 8.5502ms
+2026-02-03 23:31:27 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 60
+2026-02-03 23:31:27 [INF] CORS policy execution successful.
+2026-02-03 23:31:27 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 60
+2026-02-03 23:31:27 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:31:27 [INF] CORS policy execution successful.
+2026-02-03 23:31:27 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:31:27 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:31:27 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:31:27 [INF] Executed DbCommand (102ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:31:27 [INF] Executed DbCommand (88ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:31:27 [WRN] Login failed: User realadmin@real.com not found.
+2026-02-03 23:31:27 [WRN] Login failed: User realadmin@real.com not found.
+2026-02-03 23:31:27 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:31:27 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:31:27 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 706.8513ms
+2026-02-03 23:31:27 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 663.8761ms
+2026-02-03 23:31:27 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:31:27 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:31:27 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 734.2491ms
+2026-02-03 23:31:27 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 729.6992ms
+2026-02-03 23:37:03 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:37:03 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-02-03 23:37:03 [INF] CORS policy execution successful.
+2026-02-03 23:37:03 [INF] CORS policy execution successful.
+2026-02-03 23:37:03 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 20.4561ms
+2026-02-03 23:37:03 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 10.9079ms
+2026-02-03 23:37:03 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 55
+2026-02-03 23:37:03 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 55
+2026-02-03 23:37:03 [INF] CORS policy execution successful.
+2026-02-03 23:37:03 [INF] CORS policy execution successful.
+2026-02-03 23:37:03 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:37:03 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:37:03 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:37:03 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-02-03 23:37:03 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:37:03 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-02-03 23:37:03 [WRN] Login failed: User realadmin@a.b not found.
+2026-02-03 23:37:03 [WRN] Login failed: User realadmin@a.b not found.
+2026-02-03 23:37:03 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:37:03 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType9`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-03 23:37:03 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 15.8074ms
+2026-02-03 23:37:03 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 15.7032ms
+2026-02-03 23:37:03 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:37:03 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-02-03 23:37:03 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 46.0938ms
+2026-02-03 23:37:03 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 401 null application/json; charset=utf-8 64.1954ms

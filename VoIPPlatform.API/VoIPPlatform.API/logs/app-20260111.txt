@@ -1,0 +1,268 @@
+2026-01-11 13:26:13 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-11 13:26:16 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-11 13:26:22 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-11 13:26:22 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-11 13:26:22 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-11 13:26:22 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-11 13:26:23 [INF] Executed DbCommand (199ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-11 13:26:23 [INF] Applying migration '20251221025253_AddReportsModule'.
+2026-01-11 13:26:23 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [SMS] DROP CONSTRAINT [FK_SMS_Accounts_AccountId];
+2026-01-11 13:26:24 [INF] Executed DbCommand (745ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_Accounts_VirtualPhoneNumber] ON [Accounts];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'VirtualPhoneNumber');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [VirtualPhoneNumber] nvarchar(20) NOT NULL;
+CREATE UNIQUE INDEX [IX_Accounts_VirtualPhoneNumber] ON [Accounts] ([VirtualPhoneNumber]);
+2026-01-11 13:26:24 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'CountryCode');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [CountryCode] nvarchar(5) NOT NULL;
+2026-01-11 13:26:24 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'AccountType');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [AccountType] nvarchar(50) NOT NULL;
+2026-01-11 13:26:24 [ERR] Failed executing DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Reports] (
+    [Id] int NOT NULL IDENTITY,
+    [AccountId] int NOT NULL,
+    [UserId] int NOT NULL,
+    [ReportType] nvarchar(50) NOT NULL,
+    [StartDate] datetime2 NOT NULL,
+    [EndDate] datetime2 NOT NULL,
+    [TotalCalls] int NOT NULL,
+    [CompletedCalls] int NOT NULL,
+    [FailedCalls] int NOT NULL,
+    [TotalCallDurationSeconds] bigint NOT NULL,
+    [TotalCallCost] decimal(18,2) NOT NULL,
+    [TotalSMS] int NOT NULL,
+    [SentSMS] int NOT NULL,
+    [FailedSMS] int NOT NULL,
+    [TotalSMSCost] decimal(18,2) NOT NULL,
+    [TotalRevenue] decimal(18,2) NOT NULL,
+    [StartingBalance] decimal(18,2) NOT NULL,
+    [EndingBalance] decimal(18,2) NOT NULL,
+    [TotalDeducted] decimal(18,2) NOT NULL,
+    [Notes] nvarchar(500) NOT NULL,
+    [GeneratedAt] datetime2 NOT NULL,
+    [ExportedAt] datetime2 NULL,
+    [ExportFormat] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_Reports] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Reports_Accounts_AccountId] FOREIGN KEY ([AccountId]) REFERENCES [Accounts] ([Id])
+);
+2026-01-11 13:26:24 [ERR] ❌ Failed to migrate database.
+Microsoft.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Reports' in the database.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean isAsync, Int32 timeout, Boolean asyncWrite)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 147
+ClientConnectionId:5e7c35f0-a48e-469a-afb7-1ba4257ba235
+Error Number:2714,State:6,Class:16
+2026-01-11 13:26:24 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-11 13:26:24 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-11 13:26:25 [INF] Now listening on: https://localhost:7257
+2026-01-11 13:26:25 [INF] Now listening on: http://localhost:5004
+2026-01-11 13:26:25 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-11 13:26:25 [INF] Hosting environment: Development
+2026-01-11 13:26:25 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-11 13:26:26 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger - null null
+2026-01-11 13:26:26 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger - 404 null null 322.7138ms
+2026-01-11 13:26:26 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7257/swagger, Response status code: 404
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/ - null null
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/ - 301 null null 6.3759ms
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/index.html - null null
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/index.html - 200 null text/html;charset=utf-8 179.8774ms
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger-ui-standalone-preset.js - null null
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger-ui.css - null null
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger-ui-bundle.js - null null
+2026-01-11 13:26:35 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-01-11 13:26:35 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger-ui-standalone-preset.js - 200 230280 text/javascript 146.2678ms
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger-ui.css - 200 152034 text/css 146.7853ms
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/_framework/aspnetcore-browser-refresh.js - null null
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 9.0889ms
+2026-01-11 13:26:35 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-01-11 13:26:35 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger-ui-bundle.js - 200 1456926 text/javascript 232.5758ms
+2026-01-11 13:26:35 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger/v1/swagger.json - null null
+2026-01-11 13:26:35 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-11 13:26:36 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 82.9818ms
+2026-01-11 13:26:37 [INF] Request starting HTTP/2 GET https://localhost:7257/favicon-32x32.png - null null
+2026-01-11 13:26:37 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-01-11 13:26:37 [INF] Request finished HTTP/2 GET https://localhost:7257/favicon-32x32.png - 200 628 image/png 8.5859ms
+2026-01-11 13:28:07 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-11 13:28:08 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-11 13:28:09 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-11 13:28:09 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-11 13:28:09 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-11 13:28:09 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-11 13:28:09 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-11 13:28:09 [INF] Applying migration '20251221025253_AddReportsModule'.
+2026-01-11 13:28:09 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [SMS] DROP CONSTRAINT [FK_SMS_Accounts_AccountId];
+2026-01-11 13:28:09 [INF] Executed DbCommand (89ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_Accounts_VirtualPhoneNumber] ON [Accounts];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'VirtualPhoneNumber');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [VirtualPhoneNumber] nvarchar(20) NOT NULL;
+CREATE UNIQUE INDEX [IX_Accounts_VirtualPhoneNumber] ON [Accounts] ([VirtualPhoneNumber]);
+2026-01-11 13:28:09 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'CountryCode');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [CountryCode] nvarchar(5) NOT NULL;
+2026-01-11 13:28:09 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Accounts]') AND [c].[name] = N'AccountType');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [Accounts] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [Accounts] ALTER COLUMN [AccountType] nvarchar(50) NOT NULL;
+2026-01-11 13:28:09 [ERR] Failed executing DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Reports] (
+    [Id] int NOT NULL IDENTITY,
+    [AccountId] int NOT NULL,
+    [UserId] int NOT NULL,
+    [ReportType] nvarchar(50) NOT NULL,
+    [StartDate] datetime2 NOT NULL,
+    [EndDate] datetime2 NOT NULL,
+    [TotalCalls] int NOT NULL,
+    [CompletedCalls] int NOT NULL,
+    [FailedCalls] int NOT NULL,
+    [TotalCallDurationSeconds] bigint NOT NULL,
+    [TotalCallCost] decimal(18,2) NOT NULL,
+    [TotalSMS] int NOT NULL,
+    [SentSMS] int NOT NULL,
+    [FailedSMS] int NOT NULL,
+    [TotalSMSCost] decimal(18,2) NOT NULL,
+    [TotalRevenue] decimal(18,2) NOT NULL,
+    [StartingBalance] decimal(18,2) NOT NULL,
+    [EndingBalance] decimal(18,2) NOT NULL,
+    [TotalDeducted] decimal(18,2) NOT NULL,
+    [Notes] nvarchar(500) NOT NULL,
+    [GeneratedAt] datetime2 NOT NULL,
+    [ExportedAt] datetime2 NULL,
+    [ExportFormat] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_Reports] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Reports_Accounts_AccountId] FOREIGN KEY ([AccountId]) REFERENCES [Accounts] ([Id])
+);
+2026-01-11 13:28:09 [ERR] ❌ Failed to migrate database.
+Microsoft.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Reports' in the database.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean isAsync, Int32 timeout, Boolean asyncWrite)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at Program.<Main>$(String[] args) in C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\Program.cs:line 147
+ClientConnectionId:ecf3a762-78b5-4543-bfb4-37c3e96b17ba
+Error Number:2714,State:6,Class:16
+2026-01-11 13:28:09 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-11 13:28:09 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-11 13:28:10 [INF] Now listening on: https://localhost:7257
+2026-01-11 13:28:10 [INF] Now listening on: http://localhost:5004
+2026-01-11 13:28:10 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-11 13:28:10 [INF] Hosting environment: Development
+2026-01-11 13:28:10 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-11 13:28:10 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger - null null
+2026-01-11 13:28:11 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger - 404 null null 180.9758ms
+2026-01-11 13:28:11 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7257/swagger, Response status code: 404
+2026-01-11 13:28:15 [INF] Request starting HTTP/2 GET https://localhost:7257/index.html - null null
+2026-01-11 13:28:16 [INF] Request starting HTTP/2 GET https://localhost:7257/_framework/aspnetcore-browser-refresh.js - null null
+2026-01-11 13:28:16 [INF] Request finished HTTP/2 GET https://localhost:7257/index.html - 200 null text/html;charset=utf-8 165.548ms
+2026-01-11 13:28:16 [INF] Request finished HTTP/2 GET https://localhost:7257/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 11.7624ms
+2026-01-11 13:28:16 [INF] Request starting HTTP/2 GET https://localhost:7257/swagger/v1/swagger.json - null null
+2026-01-11 13:28:16 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-11 13:28:16 [INF] Request finished HTTP/2 GET https://localhost:7257/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 66.903ms

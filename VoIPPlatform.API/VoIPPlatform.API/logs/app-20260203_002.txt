@@ -1,0 +1,158 @@
+2026-02-03 22:12:05 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-02-03 22:12:06 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-02-03 22:12:07 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 22:12:07 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 22:12:07 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-03 22:12:07 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-03 22:12:07 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-03 22:12:07 [INF] No migrations were applied. The database is already up to date.
+2026-02-03 22:12:07 [INF] ✅ Database migrated successfully.
+2026-02-03 22:12:07 [INF] ✅ التطبيق جاهز للاستقبال
+2026-02-03 22:12:07 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-03 22:12:07 [INF] Now listening on: http://localhost:8000
+2026-02-03 22:12:08 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-03 22:12:08 [INF] Hosting environment: Development
+2026-02-03 22:12:08 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-02-03 22:12:46 [INF] Request starting HTTP/1.1 GET http://localhost:8000/user.html - null null
+2026-02-03 22:12:46 [INF] The file /user.html was not modified
+2026-02-03 22:12:46 [INF] Request finished HTTP/1.1 GET http://localhost:8000/user.html - 304 null text/html 98.3854ms
+2026-02-03 22:12:47 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - null null
+2026-02-03 22:12:47 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - null null
+2026-02-03 22:12:47 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - null null
+2026-02-03 22:12:47 [INF] The file /src/components/dashboard/sidebar.js was not modified
+2026-02-03 22:12:47 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - 304 null text/javascript 193.6596ms
+2026-02-03 22:12:47 [INF] The file /src/services/apiService.js was not modified
+2026-02-03 22:12:47 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - 304 null text/javascript 236.7151ms
+2026-02-03 22:12:47 [INF] The file /src/components/dashboard/header.js was not modified
+2026-02-03 22:12:47 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - 304 null text/javascript 449.9268ms
+2026-02-03 22:12:47 [INF] Request starting HTTP/1.1 GET http://localhost:8000/favicon.ico - null null
+2026-02-03 22:12:47 [WRN] Failed to determine the https port for redirect.
+2026-02-03 22:12:48 [INF] Request finished HTTP/1.1 GET http://localhost:8000/favicon.ico - 404 0 null 105.0578ms
+2026-02-03 22:12:48 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8000/favicon.ico, Response status code: 404
+2026-02-03 22:13:16 [INF] Request starting HTTP/1.1 GET http://localhost:8000/index.html - null null
+2026-02-03 22:13:16 [INF] The file /index.html was not modified
+2026-02-03 22:13:16 [INF] Request finished HTTP/1.1 GET http://localhost:8000/index.html - 304 null text/html 30.887ms
+2026-02-03 22:13:16 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/main.js - null null
+2026-02-03 22:13:17 [INF] The file /src/main.js was not modified
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/main.js - 304 null text/javascript 147.0901ms
+2026-02-03 22:13:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/header.js - null null
+2026-02-03 22:13:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/footer.js - null null
+2026-02-03 22:13:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - null null
+2026-02-03 22:13:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/networkStatus.js - null null
+2026-02-03 22:13:17 [INF] The file /src/components/networkStatus.js was not modified
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/networkStatus.js - 304 null text/javascript 37.7531ms
+2026-02-03 22:13:17 [INF] The file /src/components/footer.js was not modified
+2026-02-03 22:13:17 [INF] Sending file. Request path: '/src/components/header.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\header.js'
+2026-02-03 22:13:17 [INF] Sending file. Request path: '/src/components/initAuth.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\components\initAuth.js'
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - 200 8030 text/javascript 155.3318ms
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/header.js - 200 14557 text/javascript 119.6328ms
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/footer.js - 304 null text/javascript 98.6654ms
+2026-02-03 22:13:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/authModals.js - null null
+2026-02-03 22:13:17 [INF] The file /src/components/authModals.js was not modified
+2026-02-03 22:13:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/authModals.js - 304 null text/javascript 40.8939ms
+2026-02-03 22:17:53 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin.js - null null
+2026-02-03 22:17:53 [INF] The file /src/admin.js was not modified
+2026-02-03 22:17:53 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin.js - 304 null text/javascript 227.7928ms
+2026-02-03 22:22:17 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - null null
+2026-02-03 22:22:17 [INF] The file /src/components/dashboard/sidebar.js was not modified
+2026-02-03 22:22:17 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - 304 null text/javascript 28.3797ms
+2026-02-03 22:25:35 [INF] Request starting HTTP/1.1 GET http://localhost:8000/user.html - null null
+2026-02-03 22:25:35 [INF] The file /user.html was not modified
+2026-02-03 22:25:35 [INF] Request finished HTTP/1.1 GET http://localhost:8000/user.html - 304 null text/html 7.458ms
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin.js - null null
+2026-02-03 22:51:12 [INF] The file /src/admin.js was not modified
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin.js - 304 null text/javascript 103.7974ms
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - null null
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - null null
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - null null
+2026-02-03 22:51:12 [INF] The file /src/components/dashboard/sidebar.js was not modified
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - 304 null text/javascript 78.0027ms
+2026-02-03 22:51:12 [INF] The file /src/services/apiService.js was not modified
+2026-02-03 22:51:12 [INF] The file /src/components/dashboard/header.js was not modified
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - 304 null text/javascript 50.7378ms
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - 304 null text/javascript 60.0732ms
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/header.js - null null
+2026-02-03 22:51:12 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - null null
+2026-02-03 22:51:12 [INF] The file /src/components/header.js was not modified
+2026-02-03 22:51:12 [INF] The file /src/components/initAuth.js was not modified
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/header.js - 304 null text/javascript 31.7227ms
+2026-02-03 22:51:12 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - 304 null text/javascript 35.6304ms
+2026-02-03 22:51:13 [INF] Request starting HTTP/1.1 GET http://localhost:8000/favicon.ico - null null
+2026-02-03 22:51:13 [INF] Request finished HTTP/1.1 GET http://localhost:8000/favicon.ico - 404 0 null 214.356ms
+2026-02-03 22:51:13 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8000/favicon.ico, Response status code: 404
+2026-02-03 22:53:11 [INF] Request starting HTTP/1.1 GET http://localhost:8000/admin-reports.html - null null
+2026-02-03 22:53:11 [INF] The file /admin-reports.html was not modified
+2026-02-03 22:53:11 [INF] Request finished HTTP/1.1 GET http://localhost:8000/admin-reports.html - 304 null text/html 25.6907ms
+2026-02-03 22:53:33 [INF] Request starting HTTP/1.1 GET http://localhost:8000/admin-users.html - null null
+2026-02-03 22:53:33 [INF] The file /admin-users.html was not modified
+2026-02-03 22:53:33 [INF] Request finished HTTP/1.1 GET http://localhost:8000/admin-users.html - 304 null text/html 9.8938ms
+2026-02-03 22:53:33 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin-users.js - null null
+2026-02-03 22:53:33 [INF] Sending file. Request path: '/src/admin-users.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\admin-users.js'
+2026-02-03 22:53:33 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin-users.js - 200 10919 text/javascript 45.1489ms
+2026-02-03 22:55:47 [INF] Request starting HTTP/1.1 GET http://localhost:8000/user.html - null null
+2026-02-03 22:55:47 [INF] The file /user.html was not modified
+2026-02-03 22:55:47 [INF] Request finished HTTP/1.1 GET http://localhost:8000/user.html - 304 null text/html 87.3808ms
+2026-02-03 22:57:39 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/config/api.config.js?v=999 - null null
+2026-02-03 22:57:39 [INF] Sending file. Request path: '/src/config/api.config.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\config\api.config.js'
+2026-02-03 22:57:39 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/config/api.config.js?v=999 - 200 1230 text/javascript 198.5012ms
+2026-02-03 23:06:42 [INF] Request starting HTTP/1.1 GET http://localhost:8000/admin.html?v=999 - null null
+2026-02-03 23:06:42 [INF] Sending file. Request path: '/admin.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\admin.html'
+2026-02-03 23:06:43 [INF] Request finished HTTP/1.1 GET http://localhost:8000/admin.html?v=999 - 200 5209 text/html 76.9766ms
+2026-02-03 23:06:43 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - null null
+2026-02-03 23:06:43 [INF] The file /src/components/dashboard/sidebar.js was not modified
+2026-02-03 23:06:43 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - 304 null text/javascript 35.9143ms
+2026-02-03 23:06:44 [INF] Request starting HTTP/1.1 GET http://localhost:8000/favicon.ico - null null
+2026-02-03 23:06:44 [INF] Request finished HTTP/1.1 GET http://localhost:8000/favicon.ico - 404 0 null 251.2995ms
+2026-02-03 23:06:44 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8000/favicon.ico, Response status code: 404
+2026-02-03 23:06:58 [INF] Request starting HTTP/1.1 GET http://localhost:8000/admin.html - null null
+2026-02-03 23:06:58 [INF] Sending file. Request path: '/admin.html'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\admin.html'
+2026-02-03 23:06:58 [INF] Request finished HTTP/1.1 GET http://localhost:8000/admin.html - 200 5209 text/html 33.4605ms
+2026-02-03 23:07:37 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin-users.js - null null
+2026-02-03 23:07:37 [INF] The file /src/admin-users.js was not modified
+2026-02-03 23:07:37 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin-users.js - 304 null text/javascript 58.5673ms
+2026-02-03 23:16:06 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - null null
+2026-02-03 23:16:06 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - null null
+2026-02-03 23:16:06 [INF] The file /src/components/dashboard/header.js was not modified
+2026-02-03 23:16:06 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/header.js - 304 null text/javascript 42.4426ms
+2026-02-03 23:16:06 [INF] The file /src/services/apiService.js was not modified
+2026-02-03 23:16:06 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/services/apiService.js - 304 null text/javascript 40.6347ms
+2026-02-03 23:19:34 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin.js - null null
+2026-02-03 23:19:34 [INF] The file /src/admin.js was not modified
+2026-02-03 23:19:34 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin.js - 304 null text/javascript 66.6868ms
+2026-02-03 23:19:35 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - null null
+2026-02-03 23:19:35 [INF] Sending file. Request path: '/src/config/api.config.js'. Physical path: 'C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API\wwwroot\src\config\api.config.js'
+2026-02-03 23:19:35 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - 200 1230 text/javascript 93.1377ms
+2026-02-03 23:19:35 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/header.js - null null
+2026-02-03 23:19:35 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - null null
+2026-02-03 23:19:35 [INF] The file /src/components/header.js was not modified
+2026-02-03 23:19:35 [INF] The file /src/components/initAuth.js was not modified
+2026-02-03 23:19:35 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/header.js - 304 null text/javascript 51.7989ms
+2026-02-03 23:19:35 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/initAuth.js - 304 null text/javascript 54.0973ms
+2026-02-03 23:19:35 [INF] Request starting HTTP/1.1 GET http://localhost:8000/favicon.ico - null null
+2026-02-03 23:19:35 [INF] Request finished HTTP/1.1 GET http://localhost:8000/favicon.ico - 404 0 null 3.735ms
+2026-02-03 23:19:35 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8000/favicon.ico, Response status code: 404
+2026-02-03 23:21:39 [INF] Request starting HTTP/1.1 GET http://localhost:8000/admin.html - null null
+2026-02-03 23:21:39 [INF] The file /admin.html was not modified
+2026-02-03 23:21:39 [INF] Request finished HTTP/1.1 GET http://localhost:8000/admin.html - 304 null text/html 21.1517ms
+2026-02-03 23:21:40 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - null null
+2026-02-03 23:21:40 [INF] The file /src/components/dashboard/sidebar.js was not modified
+2026-02-03 23:21:40 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/components/dashboard/sidebar.js - 304 null text/javascript 135.2582ms
+2026-02-03 23:25:44 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/admin-users.js - null null
+2026-02-03 23:25:44 [INF] The file /src/admin-users.js was not modified
+2026-02-03 23:25:44 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/admin-users.js - 304 null text/javascript 35.4198ms
+2026-02-03 23:27:25 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - null null
+2026-02-03 23:27:25 [INF] The file /src/config/api.config.js was not modified
+2026-02-03 23:27:25 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - 304 null text/javascript 37.6785ms
+2026-02-03 23:34:51 [INF] Request starting HTTP/1.1 GET http://localhost:8000/reports.html - null null
+2026-02-03 23:34:51 [INF] Request finished HTTP/1.1 GET http://localhost:8000/reports.html - 404 0 null 39.1345ms
+2026-02-03 23:34:51 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8000/reports.html, Response status code: 404
+2026-02-03 23:35:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - null null
+2026-02-03 23:35:00 [INF] The file /src/config/api.config.js was not modified
+2026-02-03 23:35:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/src/config/api.config.js - 304 null text/javascript 44.1743ms

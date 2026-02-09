@@ -1,0 +1,849 @@
+2026-01-17 21:41:58 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-17 21:42:04 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-17 21:42:33 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-17 21:42:33 [INF] Executed DbCommand (162ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-17 21:42:33 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-17 21:42:33 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-17 21:42:34 [INF] Executed DbCommand (333ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-17 21:42:34 [INF] No migrations were applied. The database is already up to date.
+2026-01-17 21:42:34 [INF] ✅ Database migrated successfully.
+2026-01-17 21:42:35 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-17 21:42:35 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-17 21:42:36 [INF] Now listening on: http://localhost:5004
+2026-01-17 21:42:36 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-17 21:42:36 [INF] Hosting environment: Development
+2026-01-17 21:42:36 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:40 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:40 [WRN] Failed to determine the https port for redirect.
+2026-01-17 22:03:40 [INF] CORS policy execution successful.
+2026-01-17 22:03:40 [INF] CORS policy execution successful.
+2026-01-17 22:03:40 [INF] CORS policy execution successful.
+2026-01-17 22:03:40 [INF] CORS policy execution successful.
+2026-01-17 22:03:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 251.8601ms
+2026-01-17 22:03:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 152.2359ms
+2026-01-17 22:03:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 261.6818ms
+2026-01-17 22:03:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 264.8942ms
+2026-01-17 22:03:41 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:41 [INF] CORS policy execution successful.
+2026-01-17 22:03:41 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:41 [INF] CORS policy execution successful.
+2026-01-17 22:03:42 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 1797.3409ms
+2026-01-17 22:03:41 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 186.5647ms
+2026-01-17 22:03:42 [INF] CORS policy execution successful.
+2026-01-17 22:03:41 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:42 [INF] CORS policy execution successful.
+2026-01-17 22:03:42 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:42 [INF] CORS policy execution successful.
+2026-01-17 22:03:42 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 1027.6847ms
+2026-01-17 22:03:42 [INF] CORS policy execution successful.
+2026-01-17 22:03:42 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 1728.2435ms
+2026-01-17 22:03:43 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:42'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-01-17 22:03:43 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:42'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-01-17 22:03:43 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:42'.
+2026-01-17 22:03:43 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:42'.
+2026-01-17 22:03:43 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-01-17 22:03:43 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Customer|Reseller|Admin)
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-01-17 22:03:43 [INF] AuthenticationScheme: Bearer was challenged.
+2026-01-17 22:03:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 401 0 null 661.5048ms
+2026-01-17 22:03:43 [INF] AuthenticationScheme: Bearer was challenged.
+2026-01-17 22:03:43 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:03:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Calls/external - 401 0 null 1979.0162ms
+2026-01-17 22:03:43 [INF] CORS policy execution successful.
+2026-01-17 22:03:43 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:03:43 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:43'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-01-17 22:03:43 [INF] CORS policy execution successful.
+2026-01-17 22:03:43 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:43'.
+2026-01-17 22:03:43 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:43'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-01-17 22:03:43 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/01/2026 18:48:49', Current time (UTC): '17/01/2026 21:03:43'.
+2026-01-17 22:03:43 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Customer|Reseller|Admin)
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-01-17 22:03:43 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-01-17 22:03:43 [INF] AuthenticationScheme: Bearer was challenged.
+2026-01-17 22:03:43 [INF] AuthenticationScheme: Bearer was challenged.
+2026-01-17 22:03:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 401 0 null 150.8936ms
+2026-01-17 22:03:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Calls/external - 401 0 null 153.7408ms
+2026-01-17 22:04:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-01-17 22:04:12 [INF] Request finished HTTP/1.1 GET http://localhost:5004/ - 301 0 null 328.4667ms
+2026-01-17 22:04:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:04:12 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 242.1045ms
+2026-01-17 22:04:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:04:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui-bundle.js - null null
+2026-01-17 22:04:12 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui-standalone-preset.js - null null
+2026-01-17 22:04:13 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger-ui.css - null null
+2026-01-17 22:04:13 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 232.1832ms
+2026-01-17 22:04:13 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-01-17 22:04:13 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui.css - 200 152034 text/css 180.7726ms
+2026-01-17 22:04:13 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-01-17 22:04:13 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-01-17 22:04:13 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui-standalone-preset.js - 200 230280 text/javascript 710.4268ms
+2026-01-17 22:04:13 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger-ui-bundle.js - 200 1456926 text/javascript 729.0329ms
+2026-01-17 22:04:14 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:04:14 [INF] Request starting HTTP/1.1 GET http://localhost:5004/favicon-32x32.png - null null
+2026-01-17 22:04:14 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-01-17 22:04:14 [INF] Request finished HTTP/1.1 GET http://localhost:5004/favicon-32x32.png - 200 628 image/png 118.5642ms
+2026-01-17 22:04:14 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:04:14 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 680.9784ms
+2026-01-17 22:04:14 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:04:14 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:04:14 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 81.7048ms
+2026-01-17 22:05:47 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - null null
+2026-01-17 22:05:47 [INF] CORS policy execution successful.
+2026-01-17 22:05:47 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/login - 204 null null 12.688ms
+2026-01-17 22:05:47 [INF] Request starting HTTP/1.1 POST http://localhost:5004/api/Auth/login - application/json 62
+2026-01-17 22:05:47 [INF] CORS policy execution successful.
+2026-01-17 22:05:47 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-01-17 22:05:47 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoginRequest) on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:05:50 [INF] Executed DbCommand (118ms) [Parameters=[@__request_Username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__request_Username_0
+2026-01-17 22:05:51 [INF] Login Debug - User: admin@voipplatform.com
+2026-01-17 22:05:51 [INF] Login Debug - Stored Hash: byy53Y9LZeJOHD8/pbxXmCNJI38Rq86s1Fu8t01iHCU=
+2026-01-17 22:05:51 [INF] Login Debug - Input Password Length: 11
+2026-01-17 22:05:51 [INF] Login Debug - Input Hash:  byy53Y9LZeJOHD8/pbxXmCNJI38Rq86s1Fu8t01iHCU=
+2026-01-17 22:05:51 [INF] Login Debug - Match: true
+2026-01-17 22:05:51 [INF] Executed DbCommand (42ms) [Parameters=[@p13='?' (DbType = Int32), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = DateTime2), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime2), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccountBalance] = @p0, [CreatedAt] = @p1, [Email] = @p2, [FirstName] = @p3, [IsActive] = @p4, [IsEmailVerified] = @p5, [LastLoginAt] = @p6, [LastName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [Role] = @p10, [UpdatedAt] = @p11, [Username] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2026-01-17 22:05:51 [INF] Successful login: admin@voipplatform.com
+2026-01-17 22:05:51 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:51 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345
+2026-01-17 22:05:51 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345
+2026-01-17 22:05:52 [INF] Received HTTP response headers after 518.4394ms - 200
+2026-01-17 22:05:52 [INF] End processing HTTP request after 541.7524ms - 200
+2026-01-17 22:05:52 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:05:52 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType11`5[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType10`3[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:05:52 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API) in 4902.2834ms
+2026-01-17 22:05:52 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.Login (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 POST http://localhost:5004/api/Auth/login - 200 null application/json; charset=utf-8 5029.9446ms
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 54.4866ms
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 57.9311ms
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 66.618ms
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Calls/external - 204 null null 90.3665ms
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:05:52 [INF] Route matched with {action = "GetCallsExternal", controller = "Calls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCallsExternal(System.String, System.String) on controller VoIPPlatform.API.Controllers.CallsController (VoIPPlatform.API).
+2026-01-17 22:05:52 [INF] Executed DbCommand (6ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:05:52 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:52 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=calloverview&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345&direction=backward&recordcount=50
+2026-01-17 22:05:52 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=calloverview&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345&direction=backward&recordcount=50
+2026-01-17 22:05:52 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:52 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:52 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:52 [INF] Received HTTP response headers after 88.9635ms - 200
+2026-01-17 22:05:52 [INF] End processing HTTP request after 96.338ms - 200
+2026-01-17 22:05:52 [INF] CallOverview Response: <?xml version="1.0"?>
+<!DOCTYPE CallOverview>
+<CallOverview>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</CallOverview>
+2026-01-17 22:05:52 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`4[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Services.ExternalCallRecord, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:05:52 [INF] Executed action VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API) in 178.0137ms
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Calls/external - null null
+2026-01-17 22:05:52 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Calls/external - 200 null application/json; charset=utf-8 274.363ms
+2026-01-17 22:05:52 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Received HTTP response headers after 150.8353ms - 200
+2026-01-17 22:05:52 [INF] Route matched with {action = "GetCallsExternal", controller = "Calls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCallsExternal(System.String, System.String) on controller VoIPPlatform.API.Controllers.CallsController (VoIPPlatform.API).
+2026-01-17 22:05:52 [INF] End processing HTTP request after 167.2932ms - 200
+2026-01-17 22:05:52 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:05:52 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:52 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:05:52 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=calloverview&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345&direction=backward&recordcount=50
+2026-01-17 22:05:52 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 240.9048ms
+2026-01-17 22:05:52 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=calloverview&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com&customerpassword=Admin@12345&direction=backward&recordcount=50
+2026-01-17 22:05:52 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 330.5036ms
+2026-01-17 22:05:52 [INF] CORS policy execution successful.
+2026-01-17 22:05:52 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:05:52 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:05:52 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:52 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:52 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:52 [INF] Received HTTP response headers after 71.0114ms - 200
+2026-01-17 22:05:52 [INF] End processing HTTP request after 89.2853ms - 200
+2026-01-17 22:05:52 [INF] CallOverview Response: <?xml version="1.0"?>
+<!DOCTYPE CallOverview>
+<CallOverview>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</CallOverview>
+2026-01-17 22:05:52 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`4[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Services.ExternalCallRecord, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:05:52 [INF] Executed action VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API) in 111.4246ms
+2026-01-17 22:05:52 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CallsController.GetCallsExternal (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Calls/external - 200 null application/json; charset=utf-8 147.3633ms
+2026-01-17 22:05:52 [INF] Received HTTP response headers after 120.5211ms - 200
+2026-01-17 22:05:52 [INF] End processing HTTP request after 128.2308ms - 200
+2026-01-17 22:05:52 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:05:52 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:05:52 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 165.1176ms
+2026-01-17 22:05:52 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:52 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 199.1829ms
+2026-01-17 22:05:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:56 [INF] CORS policy execution successful.
+2026-01-17 22:05:56 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:56 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:05:56 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:05:56 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:56 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:56 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:56 [INF] Received HTTP response headers after 61.0283ms - 200
+2026-01-17 22:05:56 [INF] End processing HTTP request after 70.2618ms - 200
+2026-01-17 22:05:56 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:05:56 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:05:56 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 88.6989ms
+2026-01-17 22:05:56 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:05:56 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:56 [INF] CORS policy execution successful.
+2026-01-17 22:05:56 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 105.9501ms
+2026-01-17 22:05:56 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:56 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:05:56 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:05:56 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:05:56 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:56 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:05:56 [INF] Received HTTP response headers after 57.2464ms - 200
+2026-01-17 22:05:56 [INF] End processing HTTP request after 65.4596ms - 200
+2026-01-17 22:05:56 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:05:56 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:05:56 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 89.1876ms
+2026-01-17 22:05:56 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:05:56 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 111.1944ms
+2026-01-17 22:06:18 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - null null
+2026-01-17 22:06:18 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - null null
+2026-01-17 22:06:18 [INF] CORS policy execution successful.
+2026-01-17 22:06:18 [INF] CORS policy execution successful.
+2026-01-17 22:06:18 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - 204 null null 10.1776ms
+2026-01-17 22:06:18 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - 204 null null 10.8102ms
+2026-01-17 22:06:18 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Customers - null null
+2026-01-17 22:06:18 [INF] CORS policy execution successful.
+2026-01-17 22:06:18 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:18 [INF] Route matched with {action = "GetAllCustomers", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCustomers() on controller VoIPPlatform.API.Controllers.CustomersController (VoIPPlatform.API).
+2026-01-17 22:06:18 [INF] Fetching all customers
+2026-01-17 22:06:18 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CountryCode], [c].[CreatedAt], [c].[IsActive], [c].[LastLoginAt], [c].[PasswordHash], [c].[PhoneNumber], [c].[Timezone], [c].[UpdatedAt], [c].[Username]
+FROM [Customers] AS [c]
+2026-01-17 22:06:18 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType20`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Models.Customer, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:06:19 [INF] Executed action VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API) in 136.0007ms
+2026-01-17 22:06:19 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Customers - null null
+2026-01-17 22:06:19 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:19 [INF] CORS policy execution successful.
+2026-01-17 22:06:19 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Customers - 200 null application/json; charset=utf-8 195.8007ms
+2026-01-17 22:06:19 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:19 [INF] Route matched with {action = "GetAllCustomers", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCustomers() on controller VoIPPlatform.API.Controllers.CustomersController (VoIPPlatform.API).
+2026-01-17 22:06:19 [INF] Fetching all customers
+2026-01-17 22:06:19 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CountryCode], [c].[CreatedAt], [c].[IsActive], [c].[LastLoginAt], [c].[PasswordHash], [c].[PhoneNumber], [c].[Timezone], [c].[UpdatedAt], [c].[Username]
+FROM [Customers] AS [c]
+2026-01-17 22:06:19 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType20`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Models.Customer, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:06:19 [INF] Executed action VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API) in 16.1412ms
+2026-01-17 22:06:19 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:19 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Customers - 200 null application/json; charset=utf-8 51.1541ms
+2026-01-17 22:06:22 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Customers - null null
+2026-01-17 22:06:22 [INF] CORS policy execution successful.
+2026-01-17 22:06:22 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:22 [INF] Route matched with {action = "GetAllCustomers", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCustomers() on controller VoIPPlatform.API.Controllers.CustomersController (VoIPPlatform.API).
+2026-01-17 22:06:22 [INF] Fetching all customers
+2026-01-17 22:06:22 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CountryCode], [c].[CreatedAt], [c].[IsActive], [c].[LastLoginAt], [c].[PasswordHash], [c].[PhoneNumber], [c].[Timezone], [c].[UpdatedAt], [c].[Username]
+FROM [Customers] AS [c]
+2026-01-17 22:06:22 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType20`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Models.Customer, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:06:22 [INF] Executed action VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API) in 11.3219ms
+2026-01-17 22:06:22 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:06:22 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Customers - 200 null application/json; charset=utf-8 26.9994ms
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Invoices - null null
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Invoices - null null
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Invoices - 204 null null 21.1833ms
+2026-01-17 22:07:10 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Invoices - 204 null null 17.8559ms
+2026-01-17 22:07:10 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 17.8496ms
+2026-01-17 22:07:10 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 17.3085ms
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Invoices - null null
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:10 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API)'
+2026-01-17 22:07:10 [INF] Route matched with {action = "GetInvoices", controller = "Invoices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VoIPPlatform.API.Models.Invoice]]] GetInvoices() on controller VoIPPlatform.API.Controllers.InvoicesController (VoIPPlatform.API).
+2026-01-17 22:07:10 [INF] Executed DbCommand (33ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:10 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:10 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:10 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:10 [INF] Received HTTP response headers after 199.9419ms - 200
+2026-01-17 22:07:10 [INF] End processing HTTP request after 333.1644ms - 200
+2026-01-17 22:07:10 [ERR] Failed executing DbCommand (179ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[AccountId], [i].[Amount], [i].[DueDate], [i].[IssueDate], [i].[Notes], [i].[PaidDate], [i].[PaymentMethod], [i].[Status], [a].[Id], [a].[AccountType], [a].[Balance], [a].[CountryCode], [a].[CreatedAt], [a].[DeactivatedAt], [a].[IsActive], [a].[MonthlyUsage], [a].[RenewsAt], [a].[UserId], [a].[VirtualPhoneNumber], [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Invoices] AS [i]
+INNER JOIN [Accounts] AS [a] ON [i].[AccountId] = [a].[Id]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[Id]
+ORDER BY [i].[IssueDate] DESC
+2026-01-17 22:07:10 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:10 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:10 [ERR] An exception occurred while iterating over the results of a query for context type 'VoIPPlatform.API.Models.VoIPDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Invoices'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:06d2f5ae-0b91-46a3-a8b1-c54a43335358
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Invoices'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:06d2f5ae-0b91-46a3-a8b1-c54a43335358
+Error Number:208,State:1,Class:16
+2026-01-17 22:07:10 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 602.0982ms
+2026-01-17 22:07:10 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:10 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:10 [INF] CORS policy execution successful.
+2026-01-17 22:07:10 [INF] Executed action VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API) in 660.6977ms
+2026-01-17 22:07:10 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 710.0999ms
+2026-01-17 22:07:10 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:10 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API)'
+2026-01-17 22:07:11 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:11 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Invoices - 500 null application/json; charset=utf-8 753.596ms
+2026-01-17 22:07:11 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Invoices - null null
+2026-01-17 22:07:11 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:11 [INF] CORS policy execution successful.
+2026-01-17 22:07:11 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API)'
+2026-01-17 22:07:11 [INF] Route matched with {action = "GetInvoices", controller = "Invoices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VoIPPlatform.API.Models.Invoice]]] GetInvoices() on controller VoIPPlatform.API.Controllers.InvoicesController (VoIPPlatform.API).
+2026-01-17 22:07:11 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:11 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:11 [ERR] Failed executing DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[AccountId], [i].[Amount], [i].[DueDate], [i].[IssueDate], [i].[Notes], [i].[PaidDate], [i].[PaymentMethod], [i].[Status], [a].[Id], [a].[AccountType], [a].[Balance], [a].[CountryCode], [a].[CreatedAt], [a].[DeactivatedAt], [a].[IsActive], [a].[MonthlyUsage], [a].[RenewsAt], [a].[UserId], [a].[VirtualPhoneNumber], [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Invoices] AS [i]
+INNER JOIN [Accounts] AS [a] ON [i].[AccountId] = [a].[Id]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[Id]
+ORDER BY [i].[IssueDate] DESC
+2026-01-17 22:07:11 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:11 [ERR] An exception occurred while iterating over the results of a query for context type 'VoIPPlatform.API.Models.VoIPDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Invoices'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:021a751a-6730-4505-af70-9e5d04023f31
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Invoices'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:021a751a-6730-4505-af70-9e5d04023f31
+Error Number:208,State:1,Class:16
+2026-01-17 22:07:11 [INF] Executed action VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API) in 110.2139ms
+2026-01-17 22:07:11 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.InvoicesController.GetInvoices (VoIPPlatform.API)'
+2026-01-17 22:07:11 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Invoices - 500 null application/json; charset=utf-8 265.9873ms
+2026-01-17 22:07:11 [INF] Received HTTP response headers after 77.0429ms - 200
+2026-01-17 22:07:11 [INF] End processing HTTP request after 190.4669ms - 200
+2026-01-17 22:07:11 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:11 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:11 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 330.2051ms
+2026-01-17 22:07:11 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:11 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 660.785ms
+2026-01-17 22:07:24 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:24 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:24 [INF] CORS policy execution successful.
+2026-01-17 22:07:24 [INF] CORS policy execution successful.
+2026-01-17 22:07:24 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 15.9789ms
+2026-01-17 22:07:24 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 24.0802ms
+2026-01-17 22:07:24 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:24 [INF] CORS policy execution successful.
+2026-01-17 22:07:24 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:24 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:24 [INF] Executed DbCommand (26ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:24 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:24 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:24 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:24 [INF] Received HTTP response headers after 68.8249ms - 200
+2026-01-17 22:07:24 [INF] End processing HTTP request after 77.3481ms - 200
+2026-01-17 22:07:25 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:25 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:25 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 165.0682ms
+2026-01-17 22:07:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:25 [INF] CORS policy execution successful.
+2026-01-17 22:07:25 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 332.7658ms
+2026-01-17 22:07:25 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:25 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:25 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:25 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:25 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:25 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:25 [INF] Received HTTP response headers after 79.9554ms - 200
+2026-01-17 22:07:25 [INF] End processing HTTP request after 405.4459ms - 200
+2026-01-17 22:07:25 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:25 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:25 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 427.4488ms
+2026-01-17 22:07:25 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 957.1511ms
+2026-01-17 22:07:43 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:43 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:43 [INF] CORS policy execution successful.
+2026-01-17 22:07:43 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 9.5208ms
+2026-01-17 22:07:43 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:43 [INF] CORS policy execution successful.
+2026-01-17 22:07:43 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Auth/me - 204 null null 16.6596ms
+2026-01-17 22:07:43 [INF] CORS policy execution successful.
+2026-01-17 22:07:43 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:43 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:43 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:43 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:43 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:43 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:43 [INF] Received HTTP response headers after 62.2691ms - 200
+2026-01-17 22:07:43 [INF] End processing HTTP request after 70.4681ms - 200
+2026-01-17 22:07:43 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:43 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:43 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 90.9522ms
+2026-01-17 22:07:43 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Auth/me - null null
+2026-01-17 22:07:43 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:43 [INF] CORS policy execution successful.
+2026-01-17 22:07:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 109.2886ms
+2026-01-17 22:07:43 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:43 [INF] Route matched with {action = "GetMe", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMe() on controller VoIPPlatform.API.Controllers.AuthController (VoIPPlatform.API).
+2026-01-17 22:07:43 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccountBalance], [u].[CreatedAt], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[IsEmailVerified], [u].[LastLoginAt], [u].[LastName], [u].[PasswordHash], [u].[PhoneNumber], [u].[Role], [u].[UpdatedAt], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-01-17 22:07:43 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Group], [s].[SettingKey], [s].[SettingValue]
+FROM [SystemSettings] AS [s]
+WHERE [s].[Group] = N'VoIPProvider'
+2026-01-17 22:07:43 [INF] Start processing HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:43 [INF] Sending HTTP request GET https://www.voipinfocenter.com/API/Request.ashx?command=getuserinfo&username=prov*sy&password=Prov@123456&customer=admin@voipplatform.com
+2026-01-17 22:07:43 [INF] Received HTTP response headers after 65.7243ms - 200
+2026-01-17 22:07:43 [INF] End processing HTTP request after 72.505ms - 200
+2026-01-17 22:07:43 [INF] GetUserInfo Response: <?xml version="1.0"?>
+<!DOCTYPE GetUserInfo>
+<GetUserInfo>
+  <Customer>admin@voipplatform.com*prov</Customer>
+  <Result>Failed</Result>
+  <Reason>Unable to get user info</Reason>
+</GetUserInfo>
+2026-01-17 22:07:43 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType13`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-17 22:07:43 [INF] Executed action VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API) in 92.115ms
+2026-01-17 22:07:43 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.AuthController.GetMe (VoIPPlatform.API)'
+2026-01-17 22:07:43 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Auth/me - 200 null application/json; charset=utf-8 111.1084ms
+2026-01-17 22:08:02 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - null null
+2026-01-17 22:08:02 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - null null
+2026-01-17 22:08:02 [INF] CORS policy execution successful.
+2026-01-17 22:08:02 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - 204 null null 46.045ms
+2026-01-17 22:08:02 [INF] CORS policy execution successful.
+2026-01-17 22:08:02 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5004/api/Customers - 204 null null 50.9019ms
+2026-01-17 22:08:02 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Customers - null null
+2026-01-17 22:08:02 [INF] CORS policy execution successful.
+2026-01-17 22:08:02 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:08:02 [INF] Route matched with {action = "GetAllCustomers", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCustomers() on controller VoIPPlatform.API.Controllers.CustomersController (VoIPPlatform.API).
+2026-01-17 22:08:02 [INF] Fetching all customers
+2026-01-17 22:08:02 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CountryCode], [c].[CreatedAt], [c].[IsActive], [c].[LastLoginAt], [c].[PasswordHash], [c].[PhoneNumber], [c].[Timezone], [c].[UpdatedAt], [c].[Username]
+FROM [Customers] AS [c]
+2026-01-17 22:08:02 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType20`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Models.Customer, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:08:02 [INF] Executed action VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API) in 48.8484ms
+2026-01-17 22:08:02 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:08:02 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Customers - 200 null application/json; charset=utf-8 91.1353ms
+2026-01-17 22:08:02 [INF] Request starting HTTP/1.1 GET http://localhost:5004/api/Customers - null null
+2026-01-17 22:08:02 [INF] CORS policy execution successful.
+2026-01-17 22:08:02 [INF] Executing endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:08:02 [INF] Route matched with {action = "GetAllCustomers", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCustomers() on controller VoIPPlatform.API.Controllers.CustomersController (VoIPPlatform.API).
+2026-01-17 22:08:02 [INF] Fetching all customers
+2026-01-17 22:08:02 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CountryCode], [c].[CreatedAt], [c].[IsActive], [c].[LastLoginAt], [c].[PasswordHash], [c].[PhoneNumber], [c].[Timezone], [c].[UpdatedAt], [c].[Username]
+FROM [Customers] AS [c]
+2026-01-17 22:08:02 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType20`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[VoIPPlatform.API.Models.Customer, VoIPPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-17 22:08:02 [INF] Executed action VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API) in 24.4449ms
+2026-01-17 22:08:02 [INF] Executed endpoint 'VoIPPlatform.API.Controllers.CustomersController.GetAllCustomers (VoIPPlatform.API)'
+2026-01-17 22:08:02 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Customers - 200 null application/json; charset=utf-8 94.3336ms
+2026-01-17 22:31:48 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-01-17 22:31:50 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-01-17 22:31:54 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-17 22:31:54 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-17 22:31:54 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-01-17 22:31:54 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-01-17 22:31:54 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-01-17 22:31:54 [INF] No migrations were applied. The database is already up to date.
+2026-01-17 22:31:54 [INF] ✅ Database migrated successfully.
+2026-01-17 22:31:55 [INF] ✅ التطبيق جاهز للاستقبال
+2026-01-17 22:31:55 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-01-17 22:31:55 [INF] Now listening on: http://localhost:5004
+2026-01-17 22:31:55 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-17 22:31:55 [INF] Hosting environment: Development
+2026-01-17 22:31:55 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-01-17 22:33:34 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:33:34 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 613.0469ms
+2026-01-17 22:33:34 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:33:34 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 46.6073ms
+2026-01-17 22:33:36 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:33:37 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:33:37 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 829.9332ms
+2026-01-17 22:36:28 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:36:28 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 4.9659ms
+2026-01-17 22:36:28 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:36:29 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:36:29 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 340.5263ms
+2026-01-17 22:40:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:40:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 272.1518ms
+2026-01-17 22:40:25 [INF] Request starting HTTP/1.1 GET http://localhost:5004/index.html - null null
+2026-01-17 22:40:25 [INF] Request finished HTTP/1.1 GET http://localhost:5004/index.html - 200 null text/html;charset=utf-8 79.7776ms
+2026-01-17 22:40:26 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:40:26 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:40:26 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 363.6639ms
+2026-01-17 22:40:27 [INF] Request starting HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - null null
+2026-01-17 22:40:27 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate Operation for action - VoIPPlatform.API.Controllers.TestController.ResetPassword (VoIPPlatform.API). See inner exception
+ ---> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Failed to generate schema for type - VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest. See inner exception
+ ---> System.InvalidOperationException: Can't use schemaId "$ResetPasswordRequest" for type "$VoIPPlatform.API.Controllers.TestController+ResetPasswordRequest". The same schemaId is already used for type "$VoIPPlatform.API.Controllers.ResetPasswordRequest"
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaRepository.RegisterType(Type type, String schemaId)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateReferencedSchema(DataContract dataContract, SchemaRepository schemaRepository, Func`1 definitionFactory)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateConcreteSchema(DataContract dataContract, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchemaForParameter(Type modelType, SchemaRepository schemaRepository, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SchemaGenerator.GenerateSchema(Type modelType, SchemaRepository schemaRepository, MemberInfo memberInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateSchema(Type type, SchemaRepository schemaRepository, PropertyInfo propertyInfo, ParameterInfo parameterInfo, ApiParameterRouteInfo routeInfo)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBodyFromBodyParameter(ApiDescription apiDescription, SchemaRepository schemaRepository, ApiParameterDescription bodyParameter)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateRequestBody(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   --- End of inner exception stack trace ---
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-17 22:40:27 [INF] Request finished HTTP/1.1 GET http://localhost:5004/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 66.7215ms

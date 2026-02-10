@@ -49,6 +49,9 @@ export const authAPI = {
 export const dashboardAPI = {
   getStats: () => api.get('/Dashboard/user-stats'), // User personal stats
   getAdminStats: () => api.get('/Dashboard/stats'), // Admin system stats
+  // Phase 5: Multi-Tenant Hierarchy
+  getResellerStats: () => api.get('/Dashboard/reseller-stats'), // Reseller aggregated stats
+  getCompanyStats: () => api.get('/Dashboard/company-stats'), // Company channel usage
 };
 
 // Users API calls
@@ -64,6 +67,17 @@ export const usersAPI = {
 export const callRecordsAPI = {
   getMyCalls: () => api.get('/CallRecords/my-calls'),
   seedCallRecords: () => api.post('/Auth/seed-call-records'),
+  // Phase 5: Channel Management
+  startCall: (callData) => api.post('/CallRecords/start-call', callData),
+  endCall: (callData) => api.post('/CallRecords/end-call', callData),
+  getChannelInfo: () => api.get('/CallRecords/channel-info'),
+};
+
+// SMS API calls
+export const smsAPI = {
+  sendSMS: (data) => api.post('/SMS', data),
+  getMyMessages: () => api.get('/SMS/my-messages'),
+  getSMSStats: () => api.get('/SMS/stats/summary'),
 };
 
 export default api;

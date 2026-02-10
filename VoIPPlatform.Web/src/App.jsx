@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
 import CallHistory from './pages/CallHistory';
+import SmsPortal from './pages/SmsPortal';
 import LandingPage from './pages/LandingPage';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             />
             <Route path="profile" element={<Profile />} />
             <Route path="call-history" element={<CallHistory />} />
+            <Route path="sms" element={<SmsPortal />} />
           </Route>
 
           {/* Catch all - redirect to home */}

@@ -84,7 +84,10 @@ const Login = () => {
           {/* Footer */}
           <div className="mt-6 text-center space-y-3">
             <p className="text-sm text-slate-400">
-              Demo credentials: <span className="text-violet-400 font-medium">MasterAdmin</span> / <span className="text-violet-400 font-medium">MasterPass123!</span>
+              Test users: <span className="text-violet-400 font-medium">reseller</span> | <span className="text-violet-400 font-medium">company</span> | <span className="text-violet-400 font-medium">agent</span> | <span className="text-violet-400 font-medium">user</span>
+            </p>
+            <p className="text-xs text-slate-500">
+              Password for all: <span className="text-violet-400 font-medium">Password123!</span>
             </p>
             <p className="text-sm text-slate-400">
               Don't have an account?{' '}

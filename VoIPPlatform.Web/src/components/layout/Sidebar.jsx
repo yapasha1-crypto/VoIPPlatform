@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -10,21 +11,85 @@ import {
   Settings,
   LogOut,
   History,
+  Building2,
+  UsersIcon,
+  Activity,
+  HelpCircle,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import HowToCallModal from '../common/HowToCallModal';
 
 const Sidebar = () => {
   const { logout, user } = useAuth();
+  const [showHowToCallModal, setShowHowToCallModal] = useState(false);
 
+  // Phase 5: Role-based navigation
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-    { name: 'Users', href: '/users', icon: Users, adminOnly: true },
-    { name: 'Profile', href: '/profile', icon: UserCircle },
-    { name: 'Call History', href: '/dashboard/call-history', icon: History },
+    {
+      name: 'Dashboard',
+      href: '/dashboard',
+      icon: LayoutDashboard,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer']
+    },
+
+    // Reseller-specific
+    {
+      name: 'Company Management',
+      href: '/dashboard/companies',
+      icon: Building2,
+      roles: ['Reseller'],
+      badge: 'Reseller'
+    },
+
+    // Company-specific
+    {
+      name: 'User Management',
+      href: '/dashboard/manage-users',
+      icon: UsersIcon,
+      roles: ['Company'],
+      badge: 'Company'
+    },
+    {
+      name: 'Channel Monitor',
+      href: '/dashboard/channels',
+      icon: Activity,
+      roles: ['Company'],
+      badge: 'Live'
+    },
+
+    // Admin-specific
+    {
+      name: 'All Users',
+      href: '/dashboard/users',
+      icon: Users,
+      roles: ['Admin'],
+      badge: 'Admin'
+    },
+
+    // Common for all roles
+    {
+      name: 'Profile',
+      href: '/dashboard/profile',
+      icon: UserCircle,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer']
+    },
+    {
+      name: 'Call History',
+      href: '/dashboard/call-history',
+      icon: History,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer']
+    },
+    {
+      name: 'SMS Portal',
+      href: '/dashboard/sms',
+      icon: MessageSquare,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer']
+    },
   ];
 
-  const filteredNav = navigation.filter(
-    (item) => !item.adminOnly || user?.role === 'Admin'
+  // Filter navigation based on user role
+  const filteredNav = navigation.filter((item) =>
+    item.roles.includes(user?.role || 'Customer')
   );
 
   return (
@@ -54,7 +119,12 @@ const Sidebar = () => {
             }
           >
             <item.icon className="w-5 h-5" />
-            <span className="font-medium">{item.name}</span>
+            <span className="font-medium flex-1">{item.name}</span>
+            {item.badge && (
+              <span className="text-xs px-2 py-0.5 bg-violet-500/20 text-violet-300 rounded-full">
+                {item.badge}
+              </span>
+            )}
           </NavLink>
         ))}
       </nav>
@@ -75,6 +145,15 @@ const Sidebar = () => {
           </div>
         </div>
 
+        {/* How to Call Button */}
+        <button
+          onClick={() => setShowHowToCallModal(true)}
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-violet-900/20 hover:text-violet-400 transition-all mb-2"
+        >
+          <HelpCircle className="w-5 h-5" />
+          <span className="font-medium">How to Call</span>
+        </button>
+
         <button
           onClick={logout}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-red-900/20 hover:text-red-400 transition-all"
@@ -83,6 +162,12 @@ const Sidebar = () => {
           <span className="font-medium">Logout</span>
         </button>
       </div>
+
+      {/* How to Call Modal */}
+      <HowToCallModal
+        isOpen={showHowToCallModal}
+        onClose={() => setShowHowToCallModal(false)}
+      />
     </div>
   );
 };

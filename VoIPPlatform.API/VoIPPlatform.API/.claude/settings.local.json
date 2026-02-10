@@ -14,7 +14,10 @@
       "Bash(ls:*)",
       "Bash(dotnet ef migrations:*)",
       "Bash(dotnet ef database update:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(dotnet run:*)",
+      "Bash(taskkill:*)"
     ]
   }
 }

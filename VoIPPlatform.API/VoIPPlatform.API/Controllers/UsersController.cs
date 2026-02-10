@@ -50,7 +50,14 @@ namespace VoIPPlatform.API.Controllers
                         u.IsActive,
                         u.CreatedAt,
                         AccountBalance = u.Accounts.Sum(a => a.Balance),
-                        Role = u.Role ?? "Customer"
+                        Role = u.Role ?? "Customer",
+                        // Phase 5: Hierarchy & Channel Management
+                        u.ParentUserId,
+                        u.ResellerId,
+                        u.MaxConcurrentCalls,
+                        u.ActiveCalls,
+                        u.BillingType,
+                        u.ChannelRate
                     })
                     .ToListAsync();
 

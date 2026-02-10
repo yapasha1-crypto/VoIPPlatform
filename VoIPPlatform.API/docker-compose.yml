@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  voipplatform-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: voipplatform-api
+    ports:
+      - "5005:8080"  # قمت بتغييره لـ 5005 لتجنب تعارض بورت 5000 المشهور
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development # تم التغيير لـ Development لتفعيل Swagger
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=VoIPPlatformDb;User Id=sa;Password=VoIP@2026#Secure;TrustServerCertificate=True;
+      - Jwt__Secret=YourSuperSecretKeyForJwtTokensMustBeVeryLong!
+    depends_on:
+      - sqlserver
+    networks:
+      - voip-network
+    restart: always
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: voipplatform-db
+    user: root
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=VoIP@2026#Secure
+    ports:
+      - "1444:1433" # سيبقى 1444 لتجنب التعارض مع SQL المحلي
+    volumes:
+     - sql-data:/var/opt/mssql/data
+    networks:
+      - voip-network
+    restart: always
+
+networks:
+  voip-network:
+    driver: bridge
+
+volumes:
+  sql-data:

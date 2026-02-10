@@ -30,6 +30,20 @@ namespace VoIPPlatform.API.Models
 
             // ==================== User Relations ====================
 
+            // User -> Parent User (Self-Referencing Hierarchy) - Phase 5
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.ParentUser)
+                .WithMany(u => u.ChildUsers)
+                .HasForeignKey(u => u.ParentUserId)
+                .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading deletes
+
+            // User -> Reseller (Denormalized Reference for Performance) - Phase 5
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Reseller)
+                .WithMany()
+                .HasForeignKey(u => u.ResellerId)
+                .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading deletes
+
             // User -> Accounts (One to Many)
             modelBuilder.Entity<Account>()
                 .HasOne(a => a.User)
@@ -116,15 +130,38 @@ namespace VoIPPlatform.API.Models
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
             modelBuilder.Entity<Account>()
                 .HasIndex(a => a.VirtualPhoneNumber)
                 .IsUnique();
+
+            // Performance Indexes for Hierarchy (Phase 5)
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.ParentUserId);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.ResellerId);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Role);
+
+            // Composite Index for Hierarchy Queries (Phase 5)
+            modelBuilder.Entity<User>()
+                .HasIndex(u => new { u.ParentUserId, u.Role });
 
             // ==================== Decimal Precision ====================
 
             // User Decimal Fields
             modelBuilder.Entity<User>()
                 .Property(u => u.AccountBalance)
+                .HasPrecision(18, 2);
+
+            // User Channel Rate (Phase 5)
+            modelBuilder.Entity<User>()
+                .Property(u => u.ChannelRate)
                 .HasPrecision(18, 2);
 
             // Account Decimal Fields

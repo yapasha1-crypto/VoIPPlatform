@@ -459,6 +459,61 @@ namespace VoIPPlatform.API.Controllers
         }
 
         /// <summary>
+        /// جلب رسائل المستخدم الحالي
+        /// Get current user's SMS messages
+        /// </summary>
+        [HttpGet("my-messages")]
+        [Authorize(Roles = "User,Customer,Reseller,Admin")]
+        public async Task<IActionResult> GetMyMessages()
+        {
+            // Get current user from JWT token
+            var username = User.Identity?.Name;
+            if (string.IsNullOrEmpty(username))
+            {
+                _logger.LogWarning("Unable to identify current user from token");
+                return Unauthorized(new { success = false, message = "User not authenticated" });
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            if (user == null)
+            {
+                _logger.LogError("User {Username} not found in database", username);
+                return NotFound(new { success = false, message = "User not found" });
+            }
+
+            _logger.LogInformation("Fetching SMS messages for user: {UserId}", user.Id);
+
+            var smsList = await _context.SMS
+                .Include(s => s.Account)
+                .Where(s => s.UserId == user.Id)
+                .OrderByDescending(s => s.CreatedAt)
+                .Select(s => new
+                {
+                    s.Id,
+                    s.AccountId,
+                    s.UserId,
+                    s.SenderNumber,
+                    s.RecipientNumber,
+                    s.MessageContent,
+                    s.MessageLength,
+                    s.Cost,
+                    s.Status,
+                    s.CreatedAt,
+                    s.SentAt,
+                    s.ErrorMessage
+                })
+                .ToListAsync();
+
+            return Ok(new
+            {
+                success = true,
+                message = "تم جلب الرسائل بنجاح",
+                data = smsList,
+                count = smsList.Count
+            });
+        }
+
+        /// <summary>
         /// جلب إحصائيات الرسائل
         /// </summary>
         [HttpGet("stats/summary")]

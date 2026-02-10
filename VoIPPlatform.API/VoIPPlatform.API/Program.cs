@@ -53,6 +53,10 @@ try
     builder.Services.AddScoped<IVoIPInfoCenterService, SipVoIPService>();
     builder.Services.AddScoped<IEmailService, EmailService>();
 
+    // ✅ Phase 5: Hierarchy & Channel Management Services
+    builder.Services.AddScoped<IChannelManager, ChannelManager>();
+    builder.Services.AddScoped<IHierarchyService, HierarchyService>();
+
     builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {

@@ -685,6 +685,17 @@ namespace VoIPPlatform.API.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ActiveCalls")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BillingType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ChannelRate")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -709,6 +720,12 @@ namespace VoIPPlatform.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MaxConcurrentCalls")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -716,21 +733,35 @@ namespace VoIPPlatform.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ResellerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("ParentUserId");
+
+                    b.HasIndex("ResellerId");
+
+                    b.HasIndex("Role");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
+
+                    b.HasIndex("ParentUserId", "Role");
 
                     b.ToTable("Users");
                 });
@@ -916,6 +947,23 @@ namespace VoIPPlatform.API.Migrations
                     b.Navigation("Account");
                 });
 
+            modelBuilder.Entity("VoIPPlatform.API.Models.User", b =>
+                {
+                    b.HasOne("VoIPPlatform.API.Models.User", "ParentUser")
+                        .WithMany("ChildUsers")
+                        .HasForeignKey("ParentUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VoIPPlatform.API.Models.User", "Reseller")
+                        .WithMany()
+                        .HasForeignKey("ResellerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentUser");
+
+                    b.Navigation("Reseller");
+                });
+
             modelBuilder.Entity("VoIPPlatform.API.Models.Account", b =>
                 {
                     b.Navigation("Calls");
@@ -939,6 +987,8 @@ namespace VoIPPlatform.API.Migrations
                     b.Navigation("Accounts");
 
                     b.Navigation("Calls");
+
+                    b.Navigation("ChildUsers");
 
                     b.Navigation("ContactNumbers");
 

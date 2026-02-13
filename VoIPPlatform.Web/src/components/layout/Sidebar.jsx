@@ -15,6 +15,8 @@ import {
   UsersIcon,
   Activity,
   HelpCircle,
+  Calculator,
+  CreditCard,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import HowToCallModal from '../common/HowToCallModal';
@@ -64,6 +66,30 @@ const Sidebar = () => {
       icon: Users,
       roles: ['Admin'],
       badge: 'Admin'
+    },
+
+    // Phase 6: Rates Management
+    {
+      name: 'Rate Configuration',
+      href: '/dashboard/rates/configure',
+      icon: Calculator,
+      roles: ['Admin', 'Reseller'],
+      badge: 'Phase 6'
+    },
+    {
+      name: 'My Rates',
+      href: '/dashboard/rates/my-rates',
+      icon: DollarSign,
+      roles: ['User', 'Company', 'Customer'],
+    },
+
+    // Phase 7: Billing & Payments
+    {
+      name: 'Billing',
+      href: '/dashboard/billing',
+      icon: CreditCard,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer'],
+      badge: 'Phase 7'
     },
 
     // Common for all roles

@@ -57,6 +57,14 @@ try
     builder.Services.AddScoped<IChannelManager, ChannelManager>();
     builder.Services.AddScoped<IHierarchyService, HierarchyService>();
 
+    // ✅ Phase 6: Dynamic Rates Engine
+    builder.Services.AddScoped<IRateCalculatorService, RateCalculatorService>();
+
+    // ✅ Phase 7: Tax Calculation Engine, Wallet System & Invoice PDFs
+    builder.Services.AddScoped<ITaxCalculatorService, TaxCalculatorService>();
+    builder.Services.AddScoped<IWalletService, WalletService>();
+    builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+
     builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {

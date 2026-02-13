@@ -69,6 +69,31 @@
         // Example: $10.00 per channel/month for Companies
         public decimal ChannelRate { get; set; } = 10.00m;
 
+        // ==================== Tariff & Pricing (Phase 6) ====================
+
+        // Assigned Tariff Plan (Defines pricing rules for this user)
+        // NULL means no custom pricing (uses default system rates)
+        public int? TariffPlanId { get; set; }
+
+        // ==================== Billing & Tax Information (Phase 7) ====================
+
+        // Country for Tax Calculation (ISO Alpha-2: SE, DE, LB, AU, etc.)
+        // Used to determine VAT/Tax rules:
+        // - "SE" (Sweden): 25% VAT
+        // - EU countries (with Tax ID): 0% (Reverse Charge)
+        // - Other countries: 0% (Export)
+        public string? Country { get; set; }
+
+        // Tax Registration Number (VAT ID, TIN, etc.)
+        // Required for EU B2B transactions (Reverse Charge)
+        // Format examples: SE123456789001 (Sweden), DE123456789 (Germany)
+        public string? TaxRegistrationNumber { get; set; }
+
+        // Billing Address Fields
+        public string? Address { get; set; }
+        public string? City { get; set; }
+        public string? PostalCode { get; set; }
+
         // ==================== العلاقات (Navigation Properties) ====================
 
         // Parent User (for Hierarchy)
@@ -79,6 +104,15 @@
 
         // Child Users (Companies under Reseller, Users under Company)
         public virtual ICollection<User> ChildUsers { get; set; } = new List<User>();
+
+        // Tariff Plan (Pricing Configuration) - Phase 6
+        public virtual TariffPlan? TariffPlan { get; set; }
+
+        // Wallet (One-to-One) - Phase 7
+        public virtual Wallet? Wallet { get; set; }
+
+        // Payments (One-to-Many) - Phase 7
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
         // حسابات المستخدم
         public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();

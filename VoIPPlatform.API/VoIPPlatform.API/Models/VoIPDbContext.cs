@@ -24,6 +24,14 @@ namespace VoIPPlatform.API.Models
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<CallRecord> CallRecords { get; set; }
 
+        // ==================== Phase 6: Dynamic Rates Engine ====================
+        public DbSet<BaseRate> BaseRates { get; set; }
+        public DbSet<TariffPlan> TariffPlans { get; set; }
+
+        // ==================== Phase 7: Billing, Wallets & Payments ====================
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -85,6 +93,27 @@ namespace VoIPPlatform.API.Models
                 .WithMany()
                 .HasForeignKey(cr => cr.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            // User -> TariffPlan (Many to One) - Phase 6
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.TariffPlan)
+                .WithMany(tp => tp.Users)
+                .HasForeignKey(u => u.TariffPlanId)
+                .OnDelete(DeleteBehavior.SetNull);  // If plan deleted, set user's TariffPlanId to NULL
+
+            // User -> Wallet (One to One) - Phase 7
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Wallet)
+                .WithOne(w => w.User)
+                .HasForeignKey<Wallet>(w => w.UserId)
+                .OnDelete(DeleteBehavior.Cascade);  // If user deleted, delete wallet
+
+            // User -> Payments (One to Many) - Phase 7
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Payments)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);  // If user deleted, delete payments
 
             // ==================== Account Relations ====================
 
@@ -228,6 +257,88 @@ namespace VoIPPlatform.API.Models
                 .WithOne(r => r.Tariff)
                 .HasForeignKey(r => r.TariffId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // ==================== Phase 6: BaseRate & TariffPlan Configuration ====================
+
+            // BaseRate Decimal Precision
+            modelBuilder.Entity<BaseRate>()
+                .Property(br => br.BuyPrice)
+                .HasPrecision(18, 5);
+
+            // BaseRate Indexes for Performance
+            modelBuilder.Entity<BaseRate>()
+                .HasIndex(br => br.Code);
+
+            modelBuilder.Entity<BaseRate>()
+                .HasIndex(br => br.DestinationName);
+
+            // TariffPlan Decimal Precision
+            modelBuilder.Entity<TariffPlan>()
+                .Property(tp => tp.ProfitPercent)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<TariffPlan>()
+                .Property(tp => tp.FixedProfit)
+                .HasPrecision(18, 5);
+
+            modelBuilder.Entity<TariffPlan>()
+                .Property(tp => tp.MinProfit)
+                .HasPrecision(18, 5);
+
+            modelBuilder.Entity<TariffPlan>()
+                .Property(tp => tp.MaxProfit)
+                .HasPrecision(18, 5);
+
+            // TariffPlan Index
+            modelBuilder.Entity<TariffPlan>()
+                .HasIndex(tp => tp.Name);
+
+            // User TariffPlanId Index (Phase 6)
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.TariffPlanId);
+
+            // ==================== Phase 7: Wallet & Payment Configuration ====================
+
+            // Wallet - Unique UserId (One-to-One Relationship)
+            modelBuilder.Entity<Wallet>()
+                .HasIndex(w => w.UserId)
+                .IsUnique();
+
+            // Wallet Balance Precision
+            modelBuilder.Entity<Wallet>()
+                .Property(w => w.Balance)
+                .HasPrecision(18, 2);
+
+            // Payment Decimal Precision
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Amount)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.TaxAmount)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.TotalPaid)
+                .HasPrecision(18, 2);
+
+            // Payment Indexes for Performance
+            modelBuilder.Entity<Payment>()
+                .HasIndex(p => p.UserId);
+
+            modelBuilder.Entity<Payment>()
+                .HasIndex(p => p.InvoiceNumber)
+                .IsUnique();
+
+            modelBuilder.Entity<Payment>()
+                .HasIndex(p => p.Status);
+
+            modelBuilder.Entity<Payment>()
+                .HasIndex(p => p.TransactionDate);
+
+            // User Country Index for Tax Calculations (Phase 7)
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Country);
         }
     }
 

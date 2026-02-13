@@ -1,14 +1,507 @@
 # PROJECT STATUS - VoIPPlatform
 ## Multi-Tenant Hierarchy & RBAC System
 
-**Date:** February 10, 2026
-**Phase:** Phase 5 - Hierarchy, RBAC & Channel Management
-**Status:** ✅ PHASE 5.1-5.3 COMPLETE - Ready for End-to-End Testing
+**Date:** February 13, 2026
+**Phase:** Phase 7 - Billing, Global Taxation & Wallets
+**Status:** ✅✅✅ PHASE 7 [COMPLETED] - Pre-paid Wallets + Tax Engine + PDF Invoices
+**Next Phase:** Phase 8 - Stripe/PayPal Integration (Live Payments)
 **Developer:** Claude Sonnet 4.5 (Senior VoIP Architect & Full-Stack Developer)
 
 ---
 
-## 📝 LATEST UPDATE: Phase 5.6 - User Onboarding Enhancement (Feb 10, 2026 - Evening)
+## 📝 LATEST UPDATE: Phase 7 - Billing, Global Taxation & Wallets (Feb 13, 2026)
+
+### 🎉 MAJOR MILESTONE: Complete Pre-paid Billing System with International Tax Compliance
+
+**Phase 7 implements enterprise-grade billing infrastructure:**
+- **Pre-paid Wallets:** User balance management with automatic wallet creation
+- **Global Tax Engine:** Sweden 25% VAT, EU Reverse Charge (0%), International Export (0%)
+- **PDF Invoices:** Professional QuestPDF invoices with tax breakdown (auto-generated)
+- **Payment History:** Complete transaction tracking with invoice download
+- **Billing Dashboard:** Luxurious React UI with balance cards, forms, and tables
+
+**Backend Implementation (Steps 1-4):** ✅ VERIFIED
+1. **Database Schema** (Migration: `20260213171351_AddBillingAndWalletSystem`)
+   - ✅ `Wallets` table: UserId (unique), Balance (decimal 18,2), Currency
+   - ✅ `Payments` table: Amount, TaxAmount, TotalPaid, InvoiceNumber (unique), InvoicePdfPath
+   - ✅ `Users` table updated: Country, TaxRegistrationNumber, Address, City, PostalCode
+   - ✅ Indexes: Country, InvoiceNumber (unique), Status, TransactionDate
+
+2. **Tax Calculation Service** (27 EU countries + VAT rates)
+   - ✅ `TaxCalculatorService`: Implements Sweden 25%, Germany 19%, France 20%, etc.
+   - ✅ Reverse Charge detection: EU B2B with Tax ID → 0% VAT
+   - ✅ Export rules: Non-EU countries → 0% VAT
+   - ✅ Tax breakdown DTO: Amount, TaxRate, TaxAmount, TotalAmount, TaxType
+
+3. **Wallet & Payment Service**
+   - ✅ `WalletService`: GetBalance, TopUp (with tax calc), Deduct, Transaction history
+   - ✅ Invoice number generation: Format `INV-YYYY-NNNNNN` (e.g., INV-2026-000042)
+   - ✅ Automatic wallet creation on first access (1:1 User-Wallet relationship)
+   - ✅ `PaymentsController`: 8 new endpoints (balance, topup, history, billing info, tax preview, download PDF)
+
+4. **Invoice PDF Generation** (QuestPDF 2026.2.0)
+   - ✅ `InvoiceService`: Professional A4 invoices with company header, customer details, tax table
+   - ✅ Auto-generation after payment completion (integrated in WalletService.TopUpAsync)
+   - ✅ Storage: `/wwwroot/invoices/{userId}/{invoiceNumber}.pdf`
+   - ✅ Download endpoint: `GET /api/payments/{id}/invoice.pdf` (blob response)
+   - ✅ Tax notices: Displays "Reverse Charge" banner for EU B2B transactions
+
+**Frontend Implementation:** ✅ VERIFIED
+5. **Billing Dashboard** (`src/pages/Billing.jsx` - 450+ lines)
+   - ✅ Balance Card: Gradient hero section with current balance, currency, last updated
+   - ✅ Billing Profile Form: Country, Tax ID, Address (saves to `/api/payments/billing-info`)
+   - ✅ Transaction History Table: Date, Invoice#, Amount, Tax, Total, Status badges, PDF download
+   - ✅ PDF Download: Blob download via axios (responseType: 'blob')
+   - ✅ Error/Success notifications: Green/red banners with auto-dismiss
+   - ✅ Responsive design: Desktop (3-col grid), mobile (stacked)
+
+6. **Navigation Updates**
+   - ✅ Sidebar: Added "Billing" link with CreditCard icon (all roles, "Phase 7" badge)
+   - ✅ Routing: `/dashboard/billing` → `<Billing />` in App.jsx
+
+**API Endpoints Created (8):**
+- `GET /api/payments/wallet/balance` - Current wallet balance
+- `POST /api/payments/topup` - Process payment with tax calculation + PDF generation
+- `GET /api/payments/history` - All user payments
+- `GET /api/payments/{id}` - Specific payment details
+- `GET /api/payments/{id}/invoice.pdf` - Download PDF invoice
+- `POST /api/payments/calculate-tax` - Tax preview before payment
+- `PUT /api/payments/billing-info` - Update Country/Tax ID/Address
+- `GET /api/payments/billing-info` - Get user billing info
+
+**Build Verification:**
+```bash
+# Backend
+cd VoIPPlatform.API
+dotnet build --no-restore
+# ✅ Build succeeded (0 errors, 14 pre-existing warnings)
+# ✅ QuestPDF 2026.2.0 installed
+# ✅ Migration applied: AddBillingAndWalletSystem
+
+# Frontend
+cd VoIPPlatform.Web
+npm run dev
+# ✅ Billing.jsx loads without errors
+# ✅ PDF download works (blob URL creation)
+# ✅ All API calls successful (parallel data fetch)
+```
+
+**Tax Calculation Examples (Tested):**
+- Swedish customer (no Tax ID): $100 → Tax $25 (25%) → Total $125
+- Swedish company (Tax ID SE123...): $100 → Tax $0 (Reverse Charge) → Total $100
+- Lebanese customer: $100 → Tax $0 (Export) → Total $100
+
+**Files Created/Modified (24 total):**
+- Backend: 12 new files (Models, Services, Controllers, Migration)
+- Frontend: 3 files (Billing.jsx, Sidebar.jsx, App.jsx)
+- Documentation: 4 guides (Tax Tests, API Docs, PDF Sample, Frontend Implementation)
+
+**Known Issues / Next Steps:**
+- Top-up button is placeholder (shows alert) → **Next: Stripe/PayPal integration**
+- Email notifications not implemented → **Next: Send invoice PDF via email**
+- WebSocket for live balance updates → **Next: Real-time balance refresh**
+- Admin can't view all payments yet → **Next: Admin dashboard for all transactions**
+
+---
+
+## 📝 PREVIOUS UPDATE: Phase 6 - Dynamic Rates & Tariffs Management (Feb 11, 2026)
+
+### 🎉 MAJOR MILESTONE: Dynamic Pricing Engine Implemented + Production CSV Parser
+
+**Phase 6 revolutionizes rate management with on-the-fly calculations:**
+- **No Rate Duplication:** Single BaseRate table, infinite tariff variations
+- **Dynamic Calculation:** Sell rates calculated in real-time based on profit rules
+- **Flexible Pricing:** Percentage, Fixed, or Free pricing types
+- **Admin Control:** Configure tariff plans with min/max profit constraints
+- **User Assignment:** Each user gets assigned a tariff plan
+- **CSV Integration:** Bulk upload base rates from providers
+
+**🔧 REFINEMENT (Feb 11, 2026 - Phase 6.4): Production-Ready CSV Parser** ✅ VERIFIED
+- **Issue Fixed:** Manual CSV uploads were failing with 400 Bad Request on real provider files
+- **Root Cause:** Rigid parser expected exact headers ("Destination,Code,BuyPrice") and clean data
+- **Solution Implemented:** Intelligent, flexible CSV parsing that handles real-world data
+  - ✅ Flexible header mapping: "Buy rate"/"Buy Rate"/"BuyRate" → BuyPrice field
+  - ✅ Case-insensitive header detection: "Destination" = "destination" = "DESTINATION"
+  - ✅ Currency symbol stripping: "€ 0.03600" → 0.036 (supports €, $, £, spaces)
+  - ✅ Optional Code column: Extracts numeric prefixes or uses destination as unique identifier
+  - ✅ Tested & Verified: "VOIP RateList.csv" (30+ destinations with dirty data) ✅ SUCCESS
+- **Impact:** System now production-ready for importing provider rate sheets without pre-processing
+- **Port Consistency:** All services running on `http://localhost:5004` (no HTTPS/port 7296 conflicts)
+
+---
+
+## 🚀 PHASE 6: DETAILED IMPLEMENTATION
+
+### Phase 6.1: Database Schema - ✅ COMPLETE
+
+**Date:** February 11, 2026
+**Status:** Production Ready
+**Migration:** `20260211165550_AddDynamicRatesEngine`
+
+**New Tables Created:**
+
+**BaseRates Table:**
+```sql
+Id (int, PK)
+DestinationName (varchar)    -- e.g., "Afghanistan", "Sweden Mobile"
+Code (varchar)                -- e.g., "93", "467"
+BuyPrice (decimal 18,5)       -- Wholesale cost per minute
+CreatedAt (datetime2)
+UpdatedAt (datetime2?)
+```
+
+**TariffPlans Table:**
+```sql
+Id (int, PK)
+Name (varchar)                -- e.g., "Gold 10%", "Silver 5%"
+Type (int)                    -- 0=Percentage, 1=Fixed, 2=Free
+ProfitPercent (decimal 18,2)  -- Percentage markup (e.g., 10.0)
+FixedProfit (decimal 18,5)    -- Fixed profit per minute
+MinProfit (decimal 18,5)      -- Floor constraint
+MaxProfit (decimal 18,5)      -- Ceiling constraint
+Precision (int)               -- Decimal rounding (default: 5)
+ChargingIntervalSeconds (int) -- Billing interval (default: 60)
+IsPredefined (bit)            -- System plans (0%, 10%, Free)
+IsActive (bit)
+CreatedAt (datetime2)
+UpdatedAt (datetime2?)
+```
+
+**Users Table Updated:**
+```sql
+TariffPlanId (int?, nullable, FK to TariffPlans)
+-- NULL = no custom pricing, uses default
+```
+
+**Indexes Created:**
+- `IX_BaseRates_Code` - Fast destination lookups
+- `IX_BaseRates_DestinationName` - Search by country
+- `IX_TariffPlans_Name` - Quick plan retrieval
+- `IX_Users_TariffPlanId` - User-plan joins
+
+**Seed Data:**
+- 3 Predefined Tariff Plans: `[Predefined] 0% List`, `[Predefined] 10% Profit`, `[Predefined] Free List`
+
+**Files Created:**
+- `Models/BaseRate.cs` - Wholesale rate model
+- `Models/TariffPlan.cs` - Pricing rules model with PricingType enum
+- `Migrations/20260211165550_AddDynamicRatesEngine.cs`
+
+**Files Modified:**
+- `Models/User.cs` - Added TariffPlanId FK and navigation property
+- `Models/VoIPDbContext.cs` - Configured relationships, indexes, and precision
+
+---
+
+### Phase 6.2: Backend Logic - ✅ COMPLETE
+
+**Date:** February 11, 2026
+**Status:** Production Ready
+
+#### **1. RateCalculatorService** ✅
+**Files Created:**
+- `Services/IRateCalculatorService.cs` - Interface with ConfiguredRateDto (85 lines)
+- `Services/RateCalculatorService.cs` - Core calculation engine (200+ lines)
+
+**Key Features:**
+- ✅ **Dynamic Calculation:** `CalculateSellPrice()` applies profit formulas
+- ✅ **Formula:** `SellPrice = BuyPrice + (BuyPrice × ProfitPercent / 100)`
+- ✅ **Constraints:** Enforces MinProfit and MaxProfit limits
+- ✅ **Precision:** Rounds to specified decimal places
+- ✅ **Plan Management:** Create, retrieve, and assign tariff plans
+
+**Methods Implemented:**
+```csharp
+decimal CalculateSellPrice(BaseRate, TariffPlan)           // Core formula
+Task<List<ConfiguredRateDto>> GetConfiguredRatesAsync(int) // Simulate rates
+Task<List<ConfiguredRateDto>> GetUserRatesAsync(int)       // User's rates
+Task<List<TariffPlan>> GetPredefinedPlansAsync()           // System plans
+Task<List<TariffPlan>> GetAllActivePlansAsync()            // All plans
+Task<TariffPlan> CreateTariffPlanAsync(TariffPlan)         // Custom plans
+```
+
+**Calculation Logic:**
+```
+IF Type = Free:
+    SellPrice = 0
+ELSE IF Type = Percentage:
+    Profit = BuyPrice × (ProfitPercent / 100)
+ELSE IF Type = Fixed:
+    Profit = FixedProfit
+
+// Apply constraints
+IF Profit < MinProfit: Profit = MinProfit
+IF Profit > MaxProfit: Profit = MaxProfit
+
+SellPrice = BuyPrice + Profit
+SellPrice = ROUND(SellPrice, Precision)
+```
+
+#### **2. RatesController Enhanced** ✅
+**8 New Endpoints Added:**
+
+**Admin/Reseller Endpoints:**
+- `GET /api/rates/configure?planId=X` - Simulate rates with tariff plan
+- `GET /api/rates/tariff-plans` - List all plans (predefined + custom)
+- `POST /api/rates/tariff-plans` - Create custom tariff plan
+- `POST /api/rates/upload-base-rates` - CSV upload for base rates
+- `GET /api/rates/base-rates` - View all base rates (Admin only)
+- `POST /api/rates/assign-plan` - Assign tariff plan to user
+
+**User Endpoints:**
+- `GET /api/rates/my-rates` - User's assigned rates (read-only)
+
+**CSV Upload Features (Production-Ready, Feb 11 2026):**
+- ✅ **Flexible Header Mapping:** Supports "Buy rate", "Buy Rate", "Price", "Rate", "BuyPrice", "Cost"
+- ✅ **Optional Code Column:** If Code/Prefix missing, extracts from Destination or uses destination as code
+- ✅ **Robust Price Cleaning:** Strips currency symbols (€, $, £), spaces, and non-numeric characters
+- ✅ **Multi-Format Support:** Handles "€ 0.03600", "$0.036", "0.036", "0,036" formats
+- ✅ **Duplicate Detection:** Updates existing rates instead of creating duplicates
+- ✅ **Error Reporting:** Detailed line-by-line validation with error messages
+- ✅ **Production Tested:** Successfully imports real provider CSV files (tested with "VOIP RateList.csv")
+
+**Files Modified:**
+- `Controllers/RatesController.cs` - Added 8 endpoints (+300 lines)
+- `Program.cs` - Registered RateCalculatorService
+
+#### **3. SeedController Enhanced** ✅
+**New Endpoints:**
+- `POST /api/seed/rates` - Seeds 20 realistic destinations
+- `POST /api/seed/rates?clear=true` - Replace existing rates
+- `POST /api/seed/clear-rates` - Remove all base rates
+
+**Sample Data Created (20 Destinations):**
+- Low-cost: USA ($0.005), Canada ($0.006), Sweden ($0.010)
+- Medium-cost: UAE ($0.042), India ($0.028), Pakistan ($0.055)
+- High-cost: Afghanistan ($0.085), Somalia ($0.120), Satellite ($0.950)
+
+**Safety Features:**
+- ✅ Duplicate detection: Prevents re-seeding without `?clear=true`
+- ✅ Statistics reporting: Shows average, min, max rates
+- ✅ AllowAnonymous: Easy testing without authentication
+
+---
+
+### Phase 6.3: Frontend - ✅ COMPLETE
+
+**Date:** February 11, 2026
+**Status:** Production Ready
+
+#### **1. RatesConfigure Component** ✅
+**File:** `src/pages/RatesConfigure.jsx` (600+ lines)
+
+**Features:**
+- ✅ **Tariff Plan Dropdown:** Select from predefined/custom plans
+- ✅ **Live Simulation Table:**
+  - Columns: Destination | Code | Buy Rate | Sell Rate | Profit | Margin %
+  - Real-time calculations when plan changes
+  - Search/filter by destination or code
+  - Shows 50 destinations with scroll
+- ✅ **"Add New Rate List" Modal:**
+  - Pricing Type selector (Percentage/Fixed/Free)
+  - Profit %, Min/Max constraints
+  - Precision and billing interval settings
+  - Form validation and error handling
+- ✅ **Summary Statistics:**
+  - Total Destinations count
+  - Average Profit per minute
+  - Average Margin percentage
+- ✅ **Export to CSV:** Download configured rates
+- ✅ **Upload Base Rates:** CSV file upload with progress
+- ✅ **Glassmorphism Design:** Matches existing dashboard theme
+- ✅ **Plan Information Panel:** Shows selected plan's settings
+
+**Access Control:**
+- Available to: Admin, Reseller
+- Route: `/dashboard/rates/configure`
+
+#### **2. MyRates Component** ✅
+**File:** `src/pages/MyRates.jsx` (400+ lines)
+
+**Features:**
+- ✅ **Statistics Cards:**
+  - Total Destinations
+  - Average Rate
+  - Lowest Rate
+  - Highest Rate
+- ✅ **Rate Table (Read-only):**
+  - Columns: Destination | Code | Rate (/min)
+  - Search functionality
+  - Sortable columns (click headers)
+  - Clean, minimal design
+- ✅ **Export Rates:** Download personal rates as CSV
+- ✅ **Info Banner:** Explains billing and dialing instructions
+- ✅ **Responsive Design:** Mobile-friendly layout
+
+**Access Control:**
+- Available to: User, Company, Customer
+- Route: `/dashboard/rates/my-rates`
+
+#### **3. Navigation & Routing** ✅
+
+**Sidebar Updated:**
+- Added "Rate Configuration" link (Admin/Reseller) with Calculator icon
+- Added "My Rates" link (User/Company/Customer) with DollarSign icon
+- Phase 6 badge on Rate Configuration
+
+**Files Modified:**
+- `src/components/layout/Sidebar.jsx` - Added rates menu items
+- `src/App.jsx` - Registered routes with role protection
+- `src/components/guards/ProtectedRoute.jsx` - Enhanced to support array of roles
+
+**Routes Added:**
+```javascript
+/dashboard/rates/configure  // Admin/Reseller only
+/dashboard/rates/my-rates   // All roles
+```
+
+---
+
+### Phase 6.4: Testing & Verification - ✅ COMPLETE
+
+**Date:** February 11, 2026
+**Status:** Verified
+
+**Backend Testing:**
+- ✅ Server starts on http://localhost:5004
+- ✅ `POST /api/seed/rates` creates 20 destinations
+- ✅ Duplicate protection works (returns error on re-seed)
+- ✅ Authorization enforced (401 for protected endpoints)
+- ✅ Database migrations applied successfully
+
+**Seed Results:**
+```json
+{
+  "totalSeeded": 20,
+  "statistics": {
+    "averageBuyPrice": 0.08645,
+    "lowestBuyPrice": 0.005,
+    "highestBuyPrice": 0.95
+  }
+}
+```
+
+**Calculation Verification:**
+- ✅ 10% Plan: USA ($0.005 → $0.0055), Sweden ($0.01 → $0.011)
+- ✅ 0% Plan: Buy = Sell (no markup)
+- ✅ Free Plan: All rates = $0.00000
+- ✅ Custom plans with Min/Max constraints work correctly
+
+**Files Created:**
+- `PHASE6_TESTING_GUIDE.md` - Complete testing documentation
+
+---
+
+## 📊 PHASE 6 SUMMARY
+
+### Architecture Overview
+```
+┌──────────────┐
+│  BaseRates   │  ← Wholesale prices (Admin uploads CSV)
+│  (Buy Rates) │     20 destinations seeded
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ TariffPlan   │  ← Pricing rules (0%, 10%, Custom)
+│ (Formulas)   │     3 predefined + unlimited custom
+└──────┬───────┘
+       │
+       ▼
+┌──────────────────────┐
+│ RateCalculatorService│  ← Dynamic calculation engine
+│  On-the-fly pricing  │     No rate duplication!
+└──────────────────────┘
+       │
+       ▼
+┌──────────────┐
+│ User.TariffPlanId │  ← Each user assigned a plan
+└──────────────┘
+```
+
+### Key Benefits
+- **Storage Efficiency:** 20 base rates × 100 plans = 2,000 virtual rates (only 20 stored!)
+- **Instant Updates:** Change tariff plan → All rates recalculated instantly
+- **Flexibility:** Unlimited custom pricing rules without database bloat
+- **Scalability:** Supports millions of rate calculations with minimal storage
+
+### Files Created (Phase 6)
+**Backend:**
+- `Models/BaseRate.cs`
+- `Models/TariffPlan.cs`
+- `Services/IRateCalculatorService.cs`
+- `Services/RateCalculatorService.cs`
+- `Migrations/20260211165550_AddDynamicRatesEngine.cs`
+- `PHASE6_TESTING_GUIDE.md`
+
+**Frontend:**
+- `src/pages/RatesConfigure.jsx`
+- `src/pages/MyRates.jsx`
+
+**Files Modified:**
+- `Models/User.cs`
+- `Models/VoIPDbContext.cs`
+- `Controllers/RatesController.cs`
+- `Controllers/SeedController.cs`
+- `Program.cs`
+- `src/components/layout/Sidebar.jsx`
+- `src/App.jsx`
+- `src/components/guards/ProtectedRoute.jsx`
+
+### Total Implementation
+- **Backend:** 8 new API endpoints, 1 service, 2 models
+- **Frontend:** 2 pages, 1000+ lines of React components
+- **Database:** 2 tables, 3 indexes, 3 seed records
+- **Documentation:** Comprehensive testing guide
+
+### Key Achievements
+- ✅ **Robust CSV Parser:** Handles flexible headers, currency symbols (€, $), and extracts prefixes from destination names
+- ✅ **Dynamic Pricing Engine:** Real-time rate calculation without database duplication
+- ✅ **Multi-Format Support:** Accepts various CSV formats from different providers
+- ✅ **Production Tested:** Successfully imports real-world provider rate sheets
+- ✅ **Port Consistency:** All services aligned on `http://localhost:5004`
+
+---
+
+## 🎯 NEXT STEPS: PHASE 7 - BILLING & INVOICES
+
+**Status:** Ready to Begin
+**Priority:** High
+**Dependencies:** Phase 6 (Rates Engine) ✅ Complete
+
+### Planned Features:
+1. **Invoice Generation:**
+   - Generate PDF/HTML invoices based on usage and rates
+   - Include call detail records (CDR) summary
+   - Apply tariff plan pricing calculations
+   - Support multiple billing periods (monthly, weekly, custom)
+
+2. **Billing Logic:**
+   - Calculate charges based on call duration and destination rates
+   - Apply charging intervals (per-second, per-minute)
+   - Support different billing types (PerUsage, PerChannel)
+   - Generate invoices for Users, Companies, and Resellers
+
+3. **Invoice Management:**
+   - View invoice history
+   - Download invoices as PDF
+   - Email invoices to customers
+   - Track payment status
+
+4. **Admin Features:**
+   - Bulk invoice generation
+   - Invoice templates customization
+   - Revenue reports and analytics
+
+**Technical Stack:**
+- PDF Generation: QuestPDF or DinkToPdf
+- Email: SMTP integration
+- Storage: Azure Blob or local file system
+- Scheduling: Background jobs for automated billing
+
+---
+
+## 📝 PREVIOUS UPDATE: Phase 5.6 - User Onboarding Enhancement (Feb 10, 2026 - Evening)
 
 ### ✅ NEW FEATURE: "How to Call" Global Modal
 

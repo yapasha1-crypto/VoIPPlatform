@@ -14,6 +14,9 @@ import Profile from './pages/Profile';
 import CallHistory from './pages/CallHistory';
 import SmsPortal from './pages/SmsPortal';
 import LandingPage from './pages/LandingPage';
+import RatesConfigure from './pages/RatesConfigure';
+import MyRates from './pages/MyRates';
+import Billing from './pages/Billing';
 
 function App() {
   return (
@@ -50,6 +53,20 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="call-history" element={<CallHistory />} />
             <Route path="sms" element={<SmsPortal />} />
+
+            {/* Phase 6: Rates Management Routes */}
+            <Route
+              path="rates/configure"
+              element={
+                <ProtectedRoute requiredRole={['Admin', 'Reseller']}>
+                  <RatesConfigure />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="rates/my-rates" element={<MyRates />} />
+
+            {/* Phase 7: Billing & Payments Route */}
+            <Route path="billing" element={<Billing />} />
           </Route>
 
           {/* Catch all - redirect to home */}

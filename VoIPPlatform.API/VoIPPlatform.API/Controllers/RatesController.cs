@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoIPPlatform.API.Models;
+using VoIPPlatform.API.Services;
+using System.Security.Claims;
 
 namespace VoIPPlatform.API.Controllers
 {
@@ -11,10 +13,12 @@ namespace VoIPPlatform.API.Controllers
     public class RatesController : ControllerBase
     {
         private readonly VoIPDbContext _context;
+        private readonly IRateCalculatorService _rateCalculator;
 
-        public RatesController(VoIPDbContext context)
+        public RatesController(VoIPDbContext context, IRateCalculatorService rateCalculator)
         {
             _context = context;
+            _rateCalculator = rateCalculator;
         }
 
         // ==================== Tariffs ====================
@@ -360,6 +364,349 @@ namespace VoIPPlatform.API.Controllers
 
             return Ok(new { count = ratesToAdd.Count, message = $"Imported {ratesToAdd.Count} rates from local file." });
         }
+
+        // ==================== PHASE 6: DYNAMIC RATES ENGINE ====================
+
+        /// <summary>
+        /// Get all configured rates (BaseRates with calculated SellPrice) based on tariff plan
+        /// Admin/Reseller endpoint for rate configuration simulation
+        /// </summary>
+        [HttpGet("configure")]
+        [Authorize(Roles = "Admin,Reseller")]
+        public async Task<ActionResult> GetConfiguredRates([FromQuery] int planId)
+        {
+            try
+            {
+                var configuredRates = await _rateCalculator.GetConfiguredRatesAsync(planId);
+                return Ok(configuredRates);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Get rates for the currently logged-in user based on their assigned tariff plan
+        /// User endpoint - read-only view of their pricing
+        /// </summary>
+        [HttpGet("my-rates")]
+        [Authorize(Roles = "User,Company,Reseller,Admin")]
+        public async Task<ActionResult> GetMyRates()
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+                {
+                    return Unauthorized(new { error = "Invalid user token" });
+                }
+
+                var configuredRates = await _rateCalculator.GetUserRatesAsync(userId);
+                return Ok(configuredRates);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Upload CSV file of BaseRates (Buy Rates)
+        /// Format: DestinationName, Code, BuyPrice
+        /// </summary>
+        [HttpPost("upload-base-rates")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UploadBaseRates(IFormFile file)
+        {
+            try
+            {
+                if (file == null || file.Length == 0)
+                    return BadRequest(new { error = "File is empty" });
+
+                if (!file.FileName.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
+                    return BadRequest(new { error = "Only CSV files are supported" });
+
+                var baseRatesToAdd = new List<BaseRate>();
+                var errors = new List<string>();
+
+                using (var reader = new StreamReader(file.OpenReadStream()))
+                {
+                    // Read header
+                    var header = await reader.ReadLineAsync();
+                    if (header == null)
+                        return BadRequest(new { error = "File is empty" });
+
+                    // Parse header to find column indices (flexible mapping - case insensitive)
+                    var headers = header.Split(',').Select(h => h.Trim().ToLower()).ToArray();
+
+                    int destCol = Array.FindIndex(headers, h =>
+                        h == "destination" || h == "destinationname" || h == "dest" || h == "name" || h == "country");
+
+                    int codeCol = Array.FindIndex(headers, h =>
+                        h == "code" || h == "prefix" || h == "dialcode");
+
+                    int priceCol = Array.FindIndex(headers, h =>
+                        h == "buyprice" || h == "buy price" || h == "buy rate" || h == "buyrate" ||
+                        h == "price" || h == "rate" || h == "cost" || h == "buy");
+
+                    // Fallback: If Code column is missing, we'll use Destination as fallback or generate default
+                    bool usingDestAsCode = false;
+                    if (codeCol == -1 && destCol != -1)
+                    {
+                        // We'll handle code extraction in the data loop
+                        usingDestAsCode = true;
+                        Console.WriteLine("[Upload Info] Code column missing. Will attempt extraction from Destination or use default.");
+                    }
+
+                    if (destCol == -1 || priceCol == -1)
+                    {
+                        return BadRequest(new
+                        {
+                            error = "Missing required columns",
+                            required = "Destination (or Dest/Name/Country) and Price (or BuyPrice/Rate/'Buy Rate'/Cost). Code column is optional.",
+                            found = string.Join(", ", headers),
+                            note = "Header matching is case-insensitive. Found headers are shown in lowercase."
+                        });
+                    }
+
+                    // Read data rows
+                    int lineNumber = 1;
+                    while (!reader.EndOfStream)
+                    {
+                        lineNumber++;
+                        var line = await reader.ReadLineAsync();
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+
+                        var values = line.Split(',').Select(v => v.Trim()).ToArray();
+
+                        try
+                        {
+                            // Determine max column index needed
+                            int maxColNeeded = usingDestAsCode ? Math.Max(destCol, priceCol) : Math.Max(destCol, Math.Max(codeCol, priceCol));
+
+                            if (values.Length <= maxColNeeded)
+                            {
+                                errors.Add($"Line {lineNumber}: Not enough columns");
+                                continue;
+                            }
+
+                            var destination = values[destCol];
+                            var priceStr = values[priceCol];
+
+                            if (string.IsNullOrWhiteSpace(destination) || string.IsNullOrWhiteSpace(priceStr))
+                            {
+                                errors.Add($"Line {lineNumber}: Missing destination or price");
+                                continue;
+                            }
+
+                            // Handle Code column logic
+                            string code;
+                            if (usingDestAsCode)
+                            {
+                                // Try to extract a prefix from destination name or use a normalized version
+                                // Example: "Afghanistan [FIX]" -> could use "AFG-FIX" or just "Afghanistan-FIX"
+                                // For simplicity, we'll use the destination as a unique code
+                                code = destination.Trim();
+
+                                // Optional: Try to extract numeric prefix if destination starts with numbers
+                                // e.g., "93 Afghanistan" -> "93"
+                                var numericMatch = System.Text.RegularExpressions.Regex.Match(destination, @"^\d+");
+                                if (numericMatch.Success && numericMatch.Value.Length > 0)
+                                {
+                                    code = numericMatch.Value;
+                                }
+                            }
+                            else
+                            {
+                                code = values[codeCol];
+                                if (string.IsNullOrWhiteSpace(code))
+                                {
+                                    errors.Add($"Line {lineNumber}: Missing code");
+                                    continue;
+                                }
+                            }
+
+                            // Clean price string (remove currency symbols like €, $, spaces, etc.)
+                            priceStr = System.Text.RegularExpressions.Regex.Replace(priceStr, @"[^\d.\-]", "");
+
+                            if (!decimal.TryParse(priceStr, System.Globalization.NumberStyles.Any,
+                                System.Globalization.CultureInfo.InvariantCulture, out decimal buyPrice))
+                            {
+                                errors.Add($"Line {lineNumber}: Invalid price format '{values[priceCol]}'");
+                                continue;
+                            }
+
+                            // Validate price is non-negative
+                            if (buyPrice < 0)
+                            {
+                                errors.Add($"Line {lineNumber}: Price cannot be negative");
+                                continue;
+                            }
+
+                            // Check if base rate already exists (update instead of duplicate)
+                            var existingRate = await _context.BaseRates
+                                .FirstOrDefaultAsync(br => br.Code == code && br.DestinationName == destination);
+
+                            if (existingRate != null)
+                            {
+                                existingRate.BuyPrice = buyPrice;
+                                existingRate.UpdatedAt = DateTime.UtcNow;
+                            }
+                            else
+                            {
+                                baseRatesToAdd.Add(new BaseRate
+                                {
+                                    DestinationName = destination,
+                                    Code = code,
+                                    BuyPrice = buyPrice,
+                                    CreatedAt = DateTime.UtcNow
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            errors.Add($"Line {lineNumber}: {ex.Message}");
+                        }
+                    }
+                }
+
+                if (baseRatesToAdd.Count > 0)
+                {
+                    await _context.BaseRates.AddRangeAsync(baseRatesToAdd);
+                }
+
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    imported = baseRatesToAdd.Count,
+                    updated = errors.Count(e => e.Contains("updated")),
+                    errors = errors,
+                    message = $"Successfully processed {baseRatesToAdd.Count} base rates"
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Get all tariff plans (predefined + custom)
+        /// </summary>
+        [HttpGet("tariff-plans")]
+        [Authorize(Roles = "Admin,Reseller")]
+        public async Task<ActionResult> GetTariffPlans()
+        {
+            try
+            {
+                var plans = await _rateCalculator.GetAllActivePlansAsync();
+                return Ok(plans);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Create a custom tariff plan
+        /// </summary>
+        [HttpPost("tariff-plans")]
+        [Authorize(Roles = "Admin,Reseller")]
+        public async Task<ActionResult> CreateTariffPlan([FromBody] TariffPlan plan)
+        {
+            try
+            {
+                var createdPlan = await _rateCalculator.CreateTariffPlanAsync(plan);
+                return CreatedAtAction(nameof(GetTariffPlans), new { id = createdPlan.Id }, createdPlan);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Get all base rates (Admin only)
+        /// </summary>
+        [HttpGet("base-rates")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> GetBaseRates([FromQuery] int? limit = null)
+        {
+            try
+            {
+                var query = _context.BaseRates.OrderBy(br => br.DestinationName);
+
+                if (limit.HasValue)
+                {
+                    var rates = await query.Take(limit.Value).ToListAsync();
+                    return Ok(rates);
+                }
+
+                var allRates = await query.ToListAsync();
+                return Ok(allRates);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Assign a tariff plan to a user
+        /// </summary>
+        [HttpPost("assign-plan")]
+        [Authorize(Roles = "Admin,Reseller")]
+        public async Task<IActionResult> AssignTariffPlan([FromBody] AssignTariffRequest request)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(request.UserId);
+                if (user == null)
+                    return NotFound(new { error = "User not found" });
+
+                var plan = await _context.TariffPlans.FindAsync(request.TariffPlanId);
+                if (plan == null)
+                    return NotFound(new { error = "Tariff plan not found" });
+
+                user.TariffPlanId = request.TariffPlanId;
+                await _context.SaveChangesAsync();
+
+                return Ok(new { success = true, message = $"Tariff plan '{plan.Name}' assigned to user '{user.Username}'" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+    }
+
+    /// <summary>
+    /// Request DTO for assigning tariff plan to user
+    /// </summary>
+    public class AssignTariffRequest
+    {
+        public int UserId { get; set; }
+        public int TariffPlanId { get; set; }
     }
 }
 

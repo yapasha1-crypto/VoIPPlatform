@@ -65,6 +65,9 @@ try
     builder.Services.AddScoped<IWalletService, WalletService>();
     builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
+    // ✅ Phase 8: Stripe Payment Integration
+    builder.Services.AddScoped<IStripePaymentService, StripePaymentService>();
+
     builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {

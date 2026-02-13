@@ -319,6 +319,119 @@ namespace VoIPPlatform.API.Controllers
         }
 
         /// <summary>
+        /// Seeds the database with realistic base rates for testing Phase 6
+        /// Phase 6: Creates 20 sample destinations with varied pricing
+        /// </summary>
+        [HttpPost("rates")]
+        [AllowAnonymous] // Allow without auth for easy testing
+        public async Task<IActionResult> SeedRates([FromQuery] bool clear = false)
+        {
+            try
+            {
+                _logger.LogInformation("Starting rates seed process...");
+
+                // Check if base rates already exist
+                var existingRatesCount = await _context.BaseRates.CountAsync();
+
+                if (existingRatesCount > 0 && !clear)
+                {
+                    return Ok(new
+                    {
+                        success = false,
+                        message = $"Base rates already exist ({existingRatesCount} rates). Use ?clear=true to replace them.",
+                        existingCount = existingRatesCount
+                    });
+                }
+
+                // Clear existing rates if requested
+                if (clear && existingRatesCount > 0)
+                {
+                    _logger.LogWarning($"Clearing {existingRatesCount} existing base rates...");
+                    var existingRates = await _context.BaseRates.ToListAsync();
+                    _context.BaseRates.RemoveRange(existingRates);
+                    await _context.SaveChangesAsync();
+                    _logger.LogInformation("Existing rates cleared");
+                }
+
+                // ==================== CREATE SAMPLE BASE RATES ====================
+                var sampleRates = new List<BaseRate>
+                {
+                    // Low-cost destinations
+                    new BaseRate { DestinationName = "USA", Code = "1", BuyPrice = 0.00500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Canada", Code = "1", BuyPrice = 0.00600m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "UK - Fixed", Code = "44", BuyPrice = 0.01200m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "UK - Mobile", Code = "447", BuyPrice = 0.02500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Germany", Code = "49", BuyPrice = 0.01500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "France", Code = "33", BuyPrice = 0.01800m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Spain", Code = "34", BuyPrice = 0.01400m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Sweden", Code = "46", BuyPrice = 0.01000m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Sweden - Mobile", Code = "467", BuyPrice = 0.02200m, CreatedAt = DateTime.UtcNow },
+
+                    // Medium-cost destinations
+                    new BaseRate { DestinationName = "Australia", Code = "61", BuyPrice = 0.03500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "UAE", Code = "971", BuyPrice = 0.04200m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Saudi Arabia", Code = "966", BuyPrice = 0.04500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "India - Fixed", Code = "91", BuyPrice = 0.02800m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "India - Mobile", Code = "917", BuyPrice = 0.03200m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Pakistan", Code = "92", BuyPrice = 0.05500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Egypt", Code = "20", BuyPrice = 0.06000m, CreatedAt = DateTime.UtcNow },
+
+                    // Higher-cost destinations
+                    new BaseRate { DestinationName = "Afghanistan", Code = "93", BuyPrice = 0.08500m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Somalia", Code = "252", BuyPrice = 0.12000m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "South Sudan", Code = "211", BuyPrice = 0.15000m, CreatedAt = DateTime.UtcNow },
+                    new BaseRate { DestinationName = "Satellite", Code = "881", BuyPrice = 0.95000m, CreatedAt = DateTime.UtcNow }
+                };
+
+                await _context.BaseRates.AddRangeAsync(sampleRates);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation($"Successfully seeded {sampleRates.Count} base rates");
+
+                // Calculate statistics
+                var avgRate = sampleRates.Average(r => r.BuyPrice);
+                var minRate = sampleRates.Min(r => r.BuyPrice);
+                var maxRate = sampleRates.Max(r => r.BuyPrice);
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Base rates seeded successfully",
+                    seeded = sampleRates.Select(r => new
+                    {
+                        destination = r.DestinationName,
+                        code = r.Code,
+                        buyPrice = r.BuyPrice
+                    }).ToList(),
+                    totalSeeded = sampleRates.Count,
+                    statistics = new
+                    {
+                        averageBuyPrice = Math.Round(avgRate, 5),
+                        lowestBuyPrice = minRate,
+                        highestBuyPrice = maxRate
+                    },
+                    instructions = new
+                    {
+                        testNow = "Go to /dashboard/rates/configure and select a tariff plan to see calculated sell rates",
+                        createCustomPlan = "Click 'Add New Rate List' to create custom pricing rules",
+                        assignToUser = "Use POST /api/rates/assign-plan to assign a tariff plan to a user"
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error seeding base rates");
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "Error seeding base rates",
+                    error = ex.Message,
+                    stackTrace = ex.StackTrace
+                });
+            }
+        }
+
+        /// <summary>
         /// Clears all users except Admin (WARNING: Destructive operation)
         /// </summary>
         [HttpPost("clear-hierarchy")]
@@ -351,6 +464,41 @@ namespace VoIPPlatform.API.Controllers
                 {
                     success = false,
                     message = "Error clearing hierarchy",
+                    error = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Clears all base rates (WARNING: Destructive operation)
+        /// Phase 6: Removes all base rates for clean testing
+        /// </summary>
+        [HttpPost("clear-rates")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ClearRates()
+        {
+            try
+            {
+                _logger.LogWarning("Clearing all base rates...");
+
+                var ratesToDelete = await _context.BaseRates.ToListAsync();
+                _context.BaseRates.RemoveRange(ratesToDelete);
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "All base rates cleared",
+                    deletedCount = ratesToDelete.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error clearing base rates");
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "Error clearing base rates",
                     error = ex.Message
                 });
             }

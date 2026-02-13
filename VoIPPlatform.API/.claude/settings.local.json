@@ -1,7 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(dotnet run)",
+      "Bash(/tasks)",
+      "Bash(dotnet ef migrations add:*)",
+      "Bash(dotnet ef database update:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(dotnet add package:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Implement Phase 7 - Complete Billing System with Global Tax Engine and PDF Invoices\n\nBackend \\(4 steps\\):\n- Database: Wallets, Payments tables + User billing fields \\(Migration: AddBillingAndWalletSystem\\)\n- Tax Engine: 27 EU countries with VAT rates \\(Sweden 25%, Reverse Charge, Export rules\\)\n- Wallet Service: Balance management, top-up with automatic tax calculation\n- Invoice PDFs: QuestPDF integration with professional A4 invoices \\(auto-generated\\)\n\nFrontend:\n- Billing Dashboard \\(Billing.jsx\\): Balance card, billing profile form, transaction history\n- PDF Download: Blob-based invoice download functionality\n- Navigation: Added Billing link to Sidebar with CreditCard icon\n\nAPI Endpoints \\(8 new\\):\n- GET /api/payments/wallet/balance\n- POST /api/payments/topup\n- GET /api/payments/history\n- GET /api/payments/{id}/invoice.pdf\n- POST /api/payments/calculate-tax\n- PUT /api/payments/billing-info\n- GET /api/payments/billing-info\n- GET /api/payments/{id}\n\nFeatures:\n- Pre-paid wallet system with automatic wallet creation\n- Global tax compliance \\(Sweden 25% VAT, EU Reverse Charge, International Export\\)\n- Invoice number generation \\(INV-YYYY-NNNNNN format\\)\n- Professional PDF invoices with tax breakdown\n- Responsive billing dashboard with gradient hero card\n- Status badges \\(Completed/Pending/Failed\\) with color coding\n\nFiles: 24 created/modified \\(12 backend, 3 frontend, 4 documentation, 5 migration/config\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

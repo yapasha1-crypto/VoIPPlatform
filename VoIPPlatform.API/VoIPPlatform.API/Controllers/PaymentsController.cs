@@ -14,6 +14,7 @@ namespace VoIPPlatform.API.Controllers
         private readonly IWalletService _walletService;
         private readonly ITaxCalculatorService _taxCalculator;
         private readonly IInvoiceService _invoiceService;
+        private readonly IStripePaymentService _stripeService;
         private readonly VoIPDbContext _context;
         private readonly ILogger<PaymentsController> _logger;
 
@@ -21,12 +22,14 @@ namespace VoIPPlatform.API.Controllers
             IWalletService walletService,
             ITaxCalculatorService taxCalculator,
             IInvoiceService invoiceService,
+            IStripePaymentService stripeService,
             VoIPDbContext context,
             ILogger<PaymentsController> logger)
         {
             _walletService = walletService;
             _taxCalculator = taxCalculator;
             _invoiceService = invoiceService;
+            _stripeService = stripeService;
             _context = context;
             _logger = logger;
         }
@@ -240,6 +243,100 @@ namespace VoIPPlatform.API.Controllers
             });
         }
 
+        // ==================== Phase 8: Stripe Payment Integration ====================
+
+        /// <summary>
+        /// Create Stripe PaymentIntent with tax calculation
+        /// Returns client_secret for frontend Stripe Elements
+        /// </summary>
+        [HttpPost("stripe/create-intent")]
+        public async Task<ActionResult<StripePaymentIntentDto>> CreateStripePaymentIntent(
+            [FromBody] StripePaymentRequestDto request)
+        {
+            var userId = GetCurrentUserId();
+
+            if (request.Amount <= 0)
+            {
+                return BadRequest(new { error = "Amount must be greater than zero" });
+            }
+
+            try
+            {
+                // Get user for tax preview
+                var user = await _context.Users.FindAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(new { error = "User not found" });
+                }
+
+                // Calculate tax preview
+                var taxResult = _taxCalculator.CalculateTax(user, request.Amount);
+
+                // Create Stripe PaymentIntent (includes tax calculation)
+                var paymentIntent = await _stripeService.CreatePaymentIntentAsync(
+                    userId,
+                    request.Amount,
+                    request.Currency ?? "USD");
+
+                _logger.LogInformation(
+                    "Stripe PaymentIntent created for user {UserId}: {PaymentIntentId}",
+                    userId, paymentIntent.Id);
+
+                return Ok(new StripePaymentIntentDto
+                {
+                    ClientSecret = paymentIntent.ClientSecret,
+                    PaymentIntentId = paymentIntent.Id,
+                    Amount = taxResult.Amount,
+                    TaxAmount = taxResult.TaxAmount,
+                    TotalAmount = taxResult.TotalAmount,
+                    Currency = request.Currency ?? "USD",
+                    TaxType = taxResult.TaxType
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating Stripe PaymentIntent for user {UserId}", userId);
+                return StatusCode(500, new { error = "Failed to create payment intent", details = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Stripe Webhook Endpoint (receives payment confirmations)
+        /// This endpoint should be registered in Stripe Dashboard
+        /// </summary>
+        [HttpPost("stripe/webhook")]
+        [AllowAnonymous] // Webhooks come from Stripe, not authenticated users
+        public async Task<IActionResult> StripeWebhook()
+        {
+            try
+            {
+                var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
+                var stripeSignature = Request.Headers["Stripe-Signature"].ToString();
+
+                if (string.IsNullOrEmpty(stripeSignature))
+                {
+                    _logger.LogWarning("Stripe webhook received without signature header");
+                    return BadRequest(new { error = "Missing Stripe-Signature header" });
+                }
+
+                var success = await _stripeService.HandleWebhookAsync(json, stripeSignature);
+
+                if (success)
+                {
+                    return Ok(new { received = true });
+                }
+                else
+                {
+                    return BadRequest(new { error = "Webhook processing failed" });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error processing Stripe webhook");
+                return StatusCode(500, new { error = "Internal server error" });
+            }
+        }
+
         // ==================== Helper Methods ====================
 
         private int GetCurrentUserId()
@@ -320,5 +417,24 @@ namespace VoIPPlatform.API.Controllers
         public string? Address { get; set; }
         public string? City { get; set; }
         public string? PostalCode { get; set; }
+    }
+
+    // ==================== Phase 8: Stripe DTOs ====================
+
+    public class StripePaymentRequestDto
+    {
+        public decimal Amount { get; set; }
+        public string? Currency { get; set; } = "USD";
+    }
+
+    public class StripePaymentIntentDto
+    {
+        public string ClientSecret { get; set; } = string.Empty;
+        public string PaymentIntentId { get; set; } = string.Empty;
+        public decimal Amount { get; set; }
+        public decimal TaxAmount { get; set; }
+        public decimal TotalAmount { get; set; }
+        public string Currency { get; set; } = "USD";
+        public string TaxType { get; set; } = string.Empty;
     }
 }

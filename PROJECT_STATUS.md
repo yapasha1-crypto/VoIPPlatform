@@ -2,15 +2,106 @@
 ## Multi-Tenant Hierarchy & RBAC System
 
 **Date:** February 14, 2026
-**Phase:** ✅ Phase 0 & Phase 1 [COMPLETED] - Security Patches + UI/UX Polish
-**Status:** All critical vulnerabilities fixed, 100% interactive UI, zero dead links/buttons
-**Latest Activity:** Phase 0 Security Patches + Phase 1 UI/UX Fixes (Part A & B)
+**Phase:** ✅ Phase 0.5 [COMPLETED] - RBAC Fixes + Modal Implementation
+**Status:** 403 lockouts resolved, Add Company/User modals functional, navigation traps fixed
+**Latest Activity:** Phase 0.5 RBAC Security Corrections + Modal CRUD Implementation
 **Next Phase:** Phase 9 - Email Notifications
 **Developer:** Claude Sonnet 4.5 (Senior VoIP Architect & Full-Stack Developer)
 
 ---
 
-## ✅ LATEST UPDATE: Phase 0 & Phase 1 Complete (Feb 14, 2026)
+## ✅ LATEST UPDATE: Phase 0.5 - RBAC Corrections & Modal Implementation (Feb 14, 2026 - Evening)
+
+### Phase 0.5 - Part A: Backend RBAC Granular Authorization [COMPLETED]
+**Issue Identified:** Phase 0 security patches applied `[Authorize(Roles = "Admin")]` at controller level, causing 403 Forbidden for legitimate users (Resellers, Companies, Users) trying to access read-only data.
+
+**Files Modified (2):**
+- `Controllers/UsersController.cs` (Lines 15, 147, 225, 283) - Moved authorization to endpoint level
+- `Controllers/RatesController.cs` (Lines 12, 26-269, 606) - Moved authorization to endpoint level
+
+**Authorization Changes:**
+- **Controller-level:** Changed from `[Authorize(Roles = "Admin")]` → `[Authorize]` (all authenticated users)
+- **GET endpoints:** No role restrictions (all authenticated users can read data)
+  - `GET /api/Users` - Resellers need to view companies, Companies need to view sub-users
+  - `GET /api/rates/tariffs` - All users need to view rate plans for dropdowns
+  - `GET /api/rates/tariff-plans` - All users need for Rate Configuration page
+  - `GET /api/rates/tariffs/{id}/rates` - All users need to view rates
+- **POST endpoints:** `[Authorize(Roles = "Admin,Reseller")]` - Allow creation by appropriate roles
+- **PUT endpoints:** `[Authorize(Roles = "Admin,Reseller,Company")]` - Allow updates by hierarchical roles
+- **DELETE endpoints:** `[Authorize(Roles = "Admin")]` - Admin-only (destructive operations)
+- **File Upload endpoints:** `[Authorize(Roles = "Admin")]` - Admin-only (high-risk operations)
+
+**Log Analysis:**
+```
+2026-02-14 18:42:47 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-02-14 18:42:47 [INF] Request finished HTTP/1.1 GET http://localhost:5004/api/Users - 403
+```
+
+**Verification:**
+```bash
+cd VoIPPlatform.API/VoIPPlatform.API
+dotnet build  # Build succeeded, 0 errors, 14 warnings (pre-existing)
+```
+
+---
+
+### Phase 0.5 - Part B: Frontend Modals & UX Fixes [COMPLETED]
+
+**Files Created (2):**
+- `components/modals/AddCompanyModal.jsx` (370 lines) - Full company creation form with glassmorphism design
+  - Fields: First/Last Name, Email, Password, Phone, Address, City, Country, Max Concurrent Calls, Channel Rate
+  - Auto-sets Role to "Company", BillingType to "Monthly"
+  - API: `POST /api/Users` with full company payload
+- `components/modals/AddUserModal.jsx` (315 lines) - User creation with password generator
+  - Fields: First/Last Name, Email, Phone, Password (manual or auto-generated), Role (User/Agent), Max Concurrent Calls
+  - Password generator: 12-char secure password with clipboard copy
+  - Auto-sets `parentUserId` to current company ID
+  - API: `POST /api/Users` with user payload
+
+**Files Modified (4):**
+- `pages/CompanyManagement.jsx` (Lines 3, 11, 33-40, 81-84, 268-273) - Wired "Add Company" button to modal, added 204 handling
+- `pages/UserManagement.jsx` (Lines 4, 14, 33-48, 85-88, 279-284) - Wired "Add User" button to modal, added 204 handling
+- `pages/Login.jsx` (Lines 4, 30-36) - Added "← Back to Home" navigation link with ArrowLeft icon
+- `pages/Register.jsx` (Lines 3, 123-132) - Added "← Back to Home" navigation link with ArrowLeft icon
+
+**UX Fixes Applied:**
+- ✅ Fixed 204 No Content handling (no red toasts on empty tables)
+  - Added check: `if (response.status === 204 || !response.data) { return [] }`
+- ✅ "Add Company" button now opens functional modal (not dead button)
+- ✅ "Add User" button now opens functional modal (not dead button)
+- ✅ Login/Register pages have escape route (no navigation trap)
+- ✅ Modal forms use existing API endpoints (no new backend code required)
+
+**Verification:**
+```bash
+cd VoIPPlatform.Web
+npm run build  # Build succeeded in 9.27s, 0 errors
+```
+
+---
+
+### Phase 0.5 - Combined Impact
+**RBAC:** Fixed 403 lockouts - all authenticated users can now view data ✅
+**Modals:** 2 dead buttons → 2 functional CRUD modals (Company, User) ✅
+**UX:** 2 navigation traps fixed (Login, Register now have "Back to Home") ✅
+**Empty State:** 204 No Content handled gracefully (no false error toasts) ✅
+
+**Commit:** `03e67b1` - "fix: Resolve RBAC 403 lockouts, handle 204 empty states, and implement AddCompany/AddUser modals"
+
+**Known Issues (Fixed in this phase):**
+- ~~Reseller cannot view companies (403 Forbidden)~~ ✅ FIXED
+- ~~All users cannot view rates (403 Forbidden)~~ ✅ FIXED
+- ~~Empty tables show red error toasts~~ ✅ FIXED
+- ~~"Add Company" button does nothing~~ ✅ FIXED
+- ~~"Add User" button does nothing~~ ✅ FIXED
+- ~~Login/Register pages have no back button~~ ✅ FIXED
+
+**Next Phase:** Phase 9 - Email Notifications (EmailService, SMTP, welcome emails, invoice PDFs)
+
+---
+
+## ✅ Phase 0 & Phase 1 Complete (Feb 14, 2026 - Morning)
 
 ### Phase 0: Security Patches [COMPLETED]
 **Files Modified (5):**

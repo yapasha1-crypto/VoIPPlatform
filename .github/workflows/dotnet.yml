@@ -1,0 +1,29 @@
+name: .NET Core Build & Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore "./VoIPPlatform.API/VoIPPlatform.API.csproj"
+
+    - name: Build
+      run: dotnet build "./VoIPPlatform.API/VoIPPlatform.API.csproj" --no-restore
+
+    - name: Test
+      run: dotnet test "./VoIPPlatform.API/VoIPPlatform.Tests/VoIPPlatform.Tests.csproj" --no-build --verbosity normal

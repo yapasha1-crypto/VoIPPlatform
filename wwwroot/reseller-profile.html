@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reseller Profile - Beroea</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            violet: '#8b5cf6',
+                            cyan: '#06b6d4'
+                        },
+                        gray: {
+                            900: '#030712'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <div id="sidebar-container"></div>
+        <div class="flex-1">
+            <div id="header-container"></div>
+            <main class="p-6 lg:p-8">
+                <div class="mb-6">
+                    <h1 class="text-3xl font-heading font-bold text-gradient mb-2">My Profile</h1>
+                    <p class="text-white/60">Manage your account information</p>
+                </div>
+                <div id="page-content">
+                    <!-- Content injected by profile.js -->
+                </div>
+            </main>
+        </div>
+    </div>
+    <script type="module" src="/src/profile.js"></script>
+</body>
+
+</html>

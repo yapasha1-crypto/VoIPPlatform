@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Beroea Resources - Documentation, API Reference, System Status, and Developer Tools" />
+    <title>Resources - Beroea VoIP Platform</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header will be injected here -->
+        <div id="header-container"></div>
+
+        <!-- Page Header -->
+        <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden pt-20">
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/10 via-deep-night to-neon-violet/10"></div>
+            <div class="section-container relative z-10 text-center">
+                <h1 class="text-5xl lg:text-6xl font-heading font-bold mb-6">
+                    Developer <span class="text-gradient">Resources</span>
+                </h1>
+                <p class="text-xl text-white/70 max-w-3xl mx-auto">
+                    Everything you need to integrate and build with Beroea
+                </p>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section id="documentation" class="section-container scroll-mt-20">
+            <div class="glass-card p-12 rounded-3xl">
+                <h2 class="text-4xl font-heading font-bold text-gradient mb-8">Documentation</h2>
+
+                <p class="text-white/70 leading-relaxed text-lg mb-8">
+                    Comprehensive guides and tutorials to help you get started and make the most of our platform.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="#" class="glass-card-hover p-6 bg-white/5 block group">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-violet rounded-xl flex items-center justify-center mb-4 shadow-neon-cyan group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-xl font-heading font-semibold mb-2 text-white group-hover:text-neon-cyan transition-colors">
+                            Quick Start</h3>
+                        <p class="text-white/60 text-sm">Get up and running in 5 minutes</p>
+                    </a>
+
+                    <a href="#" class="glass-card-hover p-6 bg-white/5 block group">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-neon-violet to-neon-cyan rounded-xl flex items-center justify-center mb-4 shadow-neon-violet group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-xl font-heading font-semibold mb-2 text-white group-hover:text-neon-violet transition-colors">
+                            Guides</h3>
+                        <p class="text-white/60 text-sm">Step-by-step integration tutorials</p>
+                    </a>
+
+                    <a href="#" class="glass-card-hover p-6 bg-white/5 block group">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-success to-neon-cyan rounded-xl flex items-center justify-center mb-4 shadow-neon-cyan group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-xl font-heading font-semibold mb-2 text-white group-hover:text-success transition-colors">
+                            Best Practices</h3>
+                        <p class="text-white/60 text-sm">Optimize your implementation</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Reference Section -->
+        <section id="api" class="section-container scroll-mt-20">
+            <div class="glass-card p-12 rounded-3xl">
+                <h2 class="text-4xl font-heading font-bold text-gradient mb-8">API Reference</h2>
+
+                <p class="text-white/70 leading-relaxed text-lg mb-8">
+                    RESTful API with comprehensive endpoints for VoIP, SMS, and account management.
+                    All requests are authenticated via API keys and return JSON responses.
+                </p>
+
+                <!-- API Example -->
+                <div class="glass-card p-6 bg-black/40 rounded-xl mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-heading font-semibold text-neon-cyan">Example: Send SMS</h3>
+                        <span class="text-xs text-white/40 font-mono">POST /api/v1/sms/send</span>
+                    </div>
+
+                    <pre class="text-sm text-white/80 font-mono overflow-x-auto"><code>{
+  "to": "+14155551234",
+  "from": "+14155559999",
+  "message": "Hello from Beroea!",
+  "callback_url": "https://your-app.com/webhook"
+}</code></pre>
+
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <h4 class="text-sm font-semibold text-white/80 mb-2">Response (200 OK)</h4>
+                        <pre class="text-sm text-success/80 font-mono overflow-x-auto"><code>{
+  "message_id": "msg_abc123",
+  "status": "queued",
+  "to": "+14155551234",
+  "segments": 1,
+  "cost": 0.0075
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- API Features -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 bg-white/5">
+                        <h3 class="text-xl font-heading font-semibold mb-4 text-neon-cyan">Core Endpoints</h3>
+                        <ul class="space-y-2 text-white/60 font-mono text-sm">
+                            <li class="flex items-center gap-2">
+                                <span class="text-success">POST</span>
+                                <span>/api/v1/calls/initiate</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-success">POST</span>
+                                <span>/api/v1/sms/send</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-warning">GET</span>
+                                <span>/api/v1/numbers/available</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-warning">GET</span>
+                                <span>/api/v1/rates/lookup</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-danger">DELETE</span>
+                                <span>/api/v1/numbers/{id}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5">
+                        <h3 class="text-xl font-heading font-semibold mb-4 text-neon-violet">Features</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-white/70">RESTful JSON API</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-white/70">OAuth 2.0 & API Keys</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-white/70">Webhooks for Events</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-white/70">Rate Limiting: 1000 req/min</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Status Section -->
+        <section id="status" class="section-container scroll-mt-20">
+            <div class="glass-card p-12 rounded-3xl">
+                <h2 class="text-4xl font-heading font-bold text-gradient mb-8">System Status</h2>
+
+                <div
+                    class="flex items-center gap-4 mb-8 p-6 glass-card bg-success/10 border border-success/20 rounded-xl">
+                    <div class="w-4 h-4 bg-success rounded-full animate-pulse"></div>
+                    <div>
+                        <h3 class="text-xl font-heading font-semibold text-success">All Systems Operational</h3>
+                        <p class="text-white/60 text-sm">Last updated: 2 minutes ago</p>
+                    </div>
+                </div>
+
+                <!-- Service Status -->
+                <div class="space-y-4">
+                    <div class="glass-card p-6 bg-white/5">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-3 h-3 bg-success rounded-full"></div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-white">VoIP Platform</h4>
+                                    <p class="text-sm text-white/60">Voice calls and SIP trunking</p>
+                                </div>
+                            </div>
+                            <span class="text-success font-semibold">Operational</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-3 h-3 bg-success rounded-full"></div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-white">SMS Platform</h4>
+                                    <p class="text-sm text-white/60">Message sending and delivery</p>
+                                </div>
+                            </div>
+                            <span class="text-success font-semibold">Operational</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-3 h-3 bg-success rounded-full"></div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-white">API Services</h4>
+                                    <p class="text-sm text-white/60">REST API and webhooks</p>
+                                </div>
+                            </div>
+                            <span class="text-success font-semibold">Operational</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-3 h-3 bg-success rounded-full"></div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-white">Portal & Dashboard</h4>
+                                    <p class="text-sm text-white/60">Web interface and management</p>
+                                </div>
+                            </div>
+                            <span class="text-success font-semibold">Operational</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uptime Stats -->
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-success mb-2">99.99%</div>
+                        <div class="text-white/60 text-sm">30-Day Uptime</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-neon-cyan mb-2">24ms</div>
+                        <div class="text-white/60 text-sm">Avg API Response</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-neon-violet mb-2">0</div>
+                        <div class="text-white/60 text-sm">Incidents (30d)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDKs & Tools Section -->
+        <section class="section-container">
+            <div class="glass-card p-12 rounded-3xl">
+                <h2 class="text-4xl font-heading font-bold text-gradient mb-8">SDKs & Tools</h2>
+
+                <p class="text-white/70 leading-relaxed text-lg mb-8">
+                    Official SDKs and libraries to accelerate your development.
+                </p>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="glass-card p-6 bg-white/5 text-center">
+                        <div class="text-4xl mb-3">🐍</div>
+                        <h3 class="font-heading font-semibold text-white mb-2">Python</h3>
+                        <p class="text-white/60 text-sm">pip install beroea</p>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5 text-center">
+                        <div class="text-4xl mb-3">📦</div>
+                        <h3 class="font-heading font-semibold text-white mb-2">Node.js</h3>
+                        <p class="text-white/60 text-sm">npm install beroea</p>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5 text-center">
+                        <div class="text-4xl mb-3">☕</div>
+                        <h3 class="font-heading font-semibold text-white mb-2">PHP</h3>
+                        <p class="text-white/60 text-sm">composer require beroea</p>
+                    </div>
+
+                    <div class="glass-card p-6 bg-white/5 text-center">
+                        <div class="text-4xl mb-3">💎</div>
+                        <h3 class="font-heading font-semibold text-white mb-2">Ruby</h3>
+                        <p class="text-white/60 text-sm">gem install beroea</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer will be injected here -->
+        <div id="footer-container"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

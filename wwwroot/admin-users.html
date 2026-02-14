@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management - Beroea Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: { violet: '#8b5cf6', cyan: '#06b6d4' },
+                        gray: { 900: '#030712' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white flex h-screen overflow-hidden">
+    <!-- Sidebar Container (Injected by JS) -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content Area (Injected by JS or pre-defined) -->
+    <main class="main-content flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-900 relative">
+        <!-- Header Container (Injected by JS) -->
+        <div id="header-container"></div>
+
+        <!-- Page Specific Content -->
+        <div class="p-6 lg:p-8">
+            <div class="mb-6">
+                <h1 class="text-3xl font-heading font-bold text-gradient mb-2">User & Reseller Management</h1>
+                <p class="text-white/60">Manage all user accounts and reseller partners</p>
+            </div>
+
+            <!-- Content Container used by admin-users.js -->
+            <div id="page-content">
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="flex items-center justify-center py-12">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-neon-cyan"></div>
+                        <span class="ml-4 text-white/70">Loading users...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/src/admin-users.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Beroea Reseller Dashboard - Manage Your VoIP Business" />
+    <title>Reseller Dashboard - Beroea</title>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Header -->
+            <div id="header-container"></div>
+
+            <!-- Dashboard Content -->
+            <main class="p-6 lg:p-8">
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div id="stat-subusers"></div>
+                    <div id="stat-sales"></div>
+                    <div id="stat-credits"></div>
+                    <div id="stat-profit"></div>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Profit Margin Chart -->
+                    <div class="lg:col-span-2 glass-card p-6 rounded-2xl">
+                        <h2 class="text-xl font-heading font-bold mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-neon-cyan" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
+                                </path>
+                            </svg>
+                            Profit Margin Trend
+                        </h2>
+                        <div class="chart-container">
+                            <canvas id="profit-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Credit Inventory -->
+                    <div id="gauge-credits"></div>
+                </div>
+
+                <!-- Reseller Pricing Strategy -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-heading font-bold mb-4">💰 Your Pricing Strategy</h2>
+                    <div id="reseller-pricing-widget"></div>
+                </div>
+
+                <!-- Child Account Management -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-heading font-bold">Sub-User Accounts</h2>
+                        <button id="create-account-btn" class="btn-neon">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Create Account
+                        </button>
+                    </div>
+                    <div id="subusers-table"></div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div>
+                    <h2 class="text-2xl font-heading font-bold mb-4">Recent Credit Transactions</h2>
+                    <div id="transactions-table"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Create Account Modal -->
+    <div id="create-account-modal"></div>
+
+    <!-- Credit Transfer Modal -->
+    <div id="credit-transfer-modal"></div>
+
+    <script type="module" src="/src/reseller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+http://localhost:5173/
+
+http://localhost:5173/index.html
+
+http://localhost:5173/admin.html
+
+http://localhost:5173/reseller.html
+
+http://localhost:5173/user.html
+

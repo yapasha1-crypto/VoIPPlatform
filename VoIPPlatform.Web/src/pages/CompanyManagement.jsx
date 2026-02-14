@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { usersAPI } from '../services/api';
 import { Building2, Users, Activity, DollarSign, Gauge, TrendingUp, Search, Plus } from 'lucide-react';
 import Card from '../components/ui/Card';
+import AddCompanyModal from '../components/modals/AddCompanyModal';
 import toast from 'react-hot-toast';
 
 const CompanyManagement = () => {
@@ -9,6 +10,7 @@ const CompanyManagement = () => {
   const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     fetchCompanies();
@@ -31,6 +33,13 @@ const CompanyManagement = () => {
   const fetchCompanies = async () => {
     try {
       const response = await usersAPI.getAll();
+      // Handle 204 No Content (empty response)
+      if (response.status === 204 || !response.data) {
+        setCompanies([]);
+        setFilteredCompanies([]);
+        setLoading(false);
+        return;
+      }
       if (response.data.success) {
         // Filter only Company role users
         const companyUsers = response.data.data.filter((user) => user.role === 'Company');
@@ -78,7 +87,10 @@ const CompanyManagement = () => {
             Managing {companies.length} {companies.length === 1 ? 'company' : 'companies'}
           </p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white rounded-lg hover:from-violet-700 hover:to-purple-800 transition-all shadow-lg shadow-violet-900/50">
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white rounded-lg hover:from-violet-700 hover:to-purple-800 transition-all shadow-lg shadow-violet-900/50"
+        >
           <Plus className="w-5 h-5" />
           <span>Add Company</span>
         </button>
@@ -267,6 +279,13 @@ const CompanyManagement = () => {
           </table>
         </div>
       </Card>
+
+      {/* Add Company Modal */}
+      <AddCompanyModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSuccess={fetchCompanies}
+      />
     </div>
   );
 };

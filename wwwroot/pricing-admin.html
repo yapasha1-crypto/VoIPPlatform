@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#38bdf8',
+                        neon: {
+                            cyan: '#06b6d4',
+                            violet: '#8b5cf6'
+                        },
+                        deep: {
+                            night: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Beroea Admin - Pricing & Tariff Management" />
+    <title>Pricing Management - Beroea Admin</title>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Header -->
+            <div id="header-container"></div>
+
+            <!-- Pricing Management Content -->
+            <main class="p-6 lg:p-8">
+                <!-- Page Header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-heading font-bold mb-2">💰 Pricing & Tariff Management</h1>
+                    <p class="text-white/60">Upload rate lists, set admin margins, and manage global pricing</p>
+                </div>
+
+                <!-- CSV Upload Section -->
+                <div class="mb-8">
+                    <div id="rate-upload-widget"></div>
+                </div>
+
+                <!-- Tariff List -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-heading font-bold mb-4">Existing Tariffs</h2>
+                    <div id="tariff-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Tariff cards will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Rate Table -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-heading font-bold">Current Rates</h2>
+                        <select id="tariff-filter"
+                            class="glass-card px-4 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-neon-cyan">
+                            <option value="">Select tariff to view rates...</option>
+                        </select>
+                    </div>
+                    <div id="rate-table"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="/src/admin-pricing.js"></script>
+</body>
+
+</html>

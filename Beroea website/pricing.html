@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Transparent pricing for enterprise VoIP & SMS solutions. Choose the perfect plan for your business." />
+    <title>Pricing - Beroea VoIP & SMS Solutions</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <div id="header-container"></div>
+
+        <!-- Pricing Hero -->
+        <section class="section-container pt-32">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="inline-block glass-card px-4 py-2 rounded-full mb-6">
+                    <span class="text-sm text-neon-cyan font-medium">💎 Transparent Pricing</span>
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-heading font-bold mb-6">
+                    Choose Your <span class="text-gradient">Perfect Plan</span>
+                </h1>
+                <p class="text-xl text-white/60 max-w-2xl mx-auto mb-8">
+                    Scale from startup to enterprise with flexible pricing that grows with you
+                </p>
+
+                <!-- Billing Toggle -->
+                <div class="flex items-center justify-center space-x-4">
+                    <span class="text-white/60" id="monthly-label">Monthly</span>
+                    <button id="billing-toggle"
+                        class="relative w-16 h-8 glass-card rounded-full transition-all duration-300">
+                        <div id="toggle-slider"
+                            class="absolute left-1 top-1 w-6 h-6 bg-gradient-to-r from-neon-cyan to-neon-violet rounded-full transition-transform duration-300 shadow-neon-cyan">
+                        </div>
+                    </button>
+                    <span class="text-white/60" id="yearly-label">
+                        Yearly <span class="text-neon-cyan text-sm">(Save 20%)</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="glass-card-hover p-8 rounded-2xl scroll-fade-in">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-heading font-bold mb-2">Starter</h3>
+                        <p class="text-white/60">Perfect for small teams</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-heading font-bold text-gradient">$<span
+                                    id="starter-price">49</span></span>
+                            <span class="text-white/40 ml-2">/month</span>
+                        </div>
+                        <p class="text-sm text-white/40 mt-2" id="starter-billing">Billed monthly</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">1,000 minutes/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">5,000 SMS messages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">5 SIP trunks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Basic API access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Email support</span>
+                        </li>
+                    </ul>
+                    <button class="btn-neon-outline w-full">Get Started</button>
+                </div>
+
+                <!-- Pro Plan (Featured) -->
+                <div class="glass-card-hover p-8 rounded-2xl relative border-2 border-neon-cyan scroll-fade-in">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span
+                            class="glass-card px-4 py-1 text-sm text-neon-cyan font-semibold rounded-full shadow-neon-cyan">
+                            Most Popular
+                        </span>
+                    </div>
+                    <div class="mb-6 mt-4">
+                        <h3 class="text-2xl font-heading font-bold mb-2">Professional</h3>
+                        <p class="text-white/60">For growing businesses</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-heading font-bold text-gradient">$<span
+                                    id="pro-price">149</span></span>
+                            <span class="text-white/40 ml-2">/month</span>
+                        </div>
+                        <p class="text-sm text-white/40 mt-2" id="pro-billing">Billed monthly</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">10,000 minutes/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">50,000 SMS messages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">25 SIP trunks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Full API access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Priority support (24/7)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-cyan mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Advanced analytics</span>
+                        </li>
+                    </ul>
+                    <button class="btn-neon w-full">Get Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="glass-card-hover p-8 rounded-2xl scroll-fade-in">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-heading font-bold mb-2">Enterprise</h3>
+                        <p class="text-white/60">Custom solutions at scale</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-heading font-bold text-gradient">Custom</span>
+                        </div>
+                        <p class="text-sm text-white/40 mt-2">Tailored to your needs</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Unlimited minutes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Unlimited SMS</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Unlimited SIP trunks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Dedicated infrastructure</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-neon-violet mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white/70">Custom SLA</span>
+                        </li>
+                    </ul>
+                    <button class="btn-neon-outline w-full">Contact Sales</button>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-24 max-w-4xl mx-auto">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12">
+                    Frequently Asked <span class="text-gradient">Questions</span>
+                </h2>
+                <div class="space-y-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="text-lg font-heading font-semibold mb-2">Can I change plans later?</h3>
+                        <p class="text-white/60">Yes, you can upgrade or downgrade your plan at any time. Changes take
+                            effect immediately.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="text-lg font-heading font-semibold mb-2">What payment methods do you accept?</h3>
+                        <p class="text-white/60">We accept all major credit cards, wire transfers, and ACH payments for
+                            enterprise customers.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="text-lg font-heading font-semibold mb-2">Is there a free trial?</h3>
+                        <p class="text-white/60">Yes! All plans come with a 14-day free trial. No credit card required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div id="footer-container"></div>
+    </div>
+
+    <script type="module" src="/src/pricing.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Beroea User - Usage Statistics & Call History" />
+    <title>Usage Statistics - Beroea</title>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <div id="sidebar-container"></div>
+        <div class="flex-1">
+            <div id="header-container"></div>
+            <main class="p-6 lg:p-8">
+                <div class="mb-6">
+                    <h1 class="text-3xl font-heading font-bold text-gradient mb-2">Usage Statistics</h1>
+                    <p class="text-white/60">View your call and SMS usage</p>
+                </div>
+                <div id="page-content">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex items-center justify-center py-12">
+                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-neon-violet"></div>
+                            <span class="ml-4 text-white/70">Loading usage data...</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script type="module" src="/src/user-usage.js"></script>
+</body>
+
+</html>

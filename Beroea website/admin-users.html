@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Beroea Admin - User & Reseller Management Dashboard" />
+    <title>User Management - Beroea Admin</title>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Header -->
+            <div id="header-container"></div>
+
+            <!-- Page Content -->
+            <main class="p-6 lg:p-8">
+                <div class="mb-6">
+                    <h1 class="text-3xl font-heading font-bold text-gradient mb-2">User & Reseller Management</h1>
+                    <p class="text-white/60">Manage all user accounts and reseller partners</p>
+                </div>
+
+                <!-- Content Container -->
+                <div id="page-content">
+                    <!-- Loading Indicator (replaced by JS) -->
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex items-center justify-center py-12">
+                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-neon-cyan"></div>
+                            <span class="ml-4 text-white/70">Loading users...</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="/src/admin-users.js"></script>
+</body>
+
+</html>

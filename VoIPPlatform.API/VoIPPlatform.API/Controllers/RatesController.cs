@@ -9,7 +9,7 @@ namespace VoIPPlatform.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize]  // Phase 0.5: All authenticated users can access (role restrictions per endpoint)
     public class RatesController : ControllerBase
     {
         private readonly VoIPDbContext _context;
@@ -24,12 +24,14 @@ namespace VoIPPlatform.API.Controllers
         // ==================== Tariffs ====================
 
         [HttpGet("tariffs")]
+        // Phase 0.5: All authenticated users can view tariffs (READ operation)
         public async Task<ActionResult<IEnumerable<Tariff>>> GetTariffs()
         {
             return await _context.Tariffs.ToListAsync();
         }
 
         [HttpPost("tariffs")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (CREATE operation)
         public async Task<ActionResult<Tariff>> CreateTariff([FromBody] Tariff tariff)
         {
             if (string.IsNullOrEmpty(tariff.Name))
@@ -42,6 +44,7 @@ namespace VoIPPlatform.API.Controllers
         }
 
         [HttpDelete("tariffs/{id}")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (DELETE operation)
         public async Task<IActionResult> DeleteTariff(int id)
         {
             var tariff = await _context.Tariffs.FindAsync(id);
@@ -57,6 +60,7 @@ namespace VoIPPlatform.API.Controllers
         // ==================== Rates ====================
 
         [HttpGet("tariffs/{tariffId}/rates")]
+        // Phase 0.5: All authenticated users can view rates (READ operation)
         public async Task<ActionResult<IEnumerable<Rate>>> GetRates(int tariffId)
         {
             return await _context.Rates
@@ -66,6 +70,7 @@ namespace VoIPPlatform.API.Controllers
         }
 
         [HttpPost("rates")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (CREATE operation)
         public async Task<ActionResult<Rate>> AddRate([FromBody] Rate rate)
         {
             var tariff = await _context.Tariffs.FindAsync(rate.TariffId);
@@ -84,6 +89,7 @@ namespace VoIPPlatform.API.Controllers
         }
 
         [HttpPut("rates/{id}")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (UPDATE operation)
         public async Task<IActionResult> UpdateRate(int id, [FromBody] Rate updatedRate)
         {
             if (id != updatedRate.Id)
@@ -102,6 +108,7 @@ namespace VoIPPlatform.API.Controllers
         }
 
         [HttpDelete("rates/{id}")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (DELETE operation)
         public async Task<IActionResult> DeleteRate(int id)
         {
             var rate = await _context.Rates.FindAsync(id);
@@ -113,6 +120,7 @@ namespace VoIPPlatform.API.Controllers
             return NoContent();
         }
         [HttpPost("tariffs/{tariffId}/import")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (file upload operation)
         public async Task<IActionResult> ImportRates(int tariffId, IFormFile file)
         {
             try
@@ -250,6 +258,7 @@ namespace VoIPPlatform.API.Controllers
         }
 
         [HttpDelete("tariffs/{tariffId}/rates")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (DELETE operation)
         public async Task<IActionResult> ClearRates(int tariffId)
         {
             var tariff = await _context.Tariffs.FindAsync(tariffId);
@@ -264,6 +273,7 @@ namespace VoIPPlatform.API.Controllers
 
 
         [HttpPost("tariffs/{tariffId}/import-local")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (file import operation)
         public async Task<IActionResult> ImportLocalRates(int tariffId)
         {
             string filePath = @"C:\Users\mejer\Desktop\VoIPPlatform\RateList.xls";
@@ -604,7 +614,7 @@ namespace VoIPPlatform.API.Controllers
         /// Get all tariff plans (predefined + custom)
         /// </summary>
         [HttpGet("tariff-plans")]
-        [Authorize(Roles = "Admin,Reseller")]
+        // Phase 0.5: All authenticated users can view tariff plans (needed for dropdowns)
         public async Task<ActionResult> GetTariffPlans()
         {
             try

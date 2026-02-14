@@ -12,7 +12,7 @@ namespace VoIPPlatform.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    [Authorize]  // Phase 0.5: All authenticated users can access (role filtering in methods)
     public class UsersController : ControllerBase
     {
         // خدمة قاعدة البيانات
@@ -145,6 +145,7 @@ namespace VoIPPlatform.API.Controllers
         /// Create new user
         /// </summary>
         [HttpPost]
+        [Authorize(Roles = "Admin,Reseller")]  // Phase 0.5: Allow Admin and Reseller to create users
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> CreateUser([FromBody] CreateUserRequest request)
@@ -223,6 +224,7 @@ namespace VoIPPlatform.API.Controllers
         /// Update user
         /// </summary>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Reseller,Company")]  // Phase 0.5: Allow Admin, Reseller, and Company to update users
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> UpdateUser(int id, [FromBody] UpdateUserRequest request)
@@ -281,6 +283,7 @@ namespace VoIPPlatform.API.Controllers
         /// Delete user
         /// </summary>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]  // Phase 0.5: Admin-only (destructive operation)
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> DeleteUser(int id)

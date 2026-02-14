@@ -148,7 +148,7 @@ const LandingPage = () => {
           {/* Network Map */}
           <NetworkMap />
 
-          {/* Server Stats */}
+          {/* Server Stats - TODO: Replace with real infrastructure metrics in Phase 9+ */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="text-center p-6 bg-slate-900/50 border border-slate-800 rounded-xl">
               <div className="text-3xl font-bold text-violet-400 mb-2">5</div>

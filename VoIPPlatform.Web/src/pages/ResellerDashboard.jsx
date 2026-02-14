@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { dashboardAPI } from '../services/api';
 import { Building2, Users, Activity, DollarSign, Wallet, TrendingUp, Gauge } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
 
 const ResellerDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -183,7 +185,10 @@ const ResellerDashboard = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-white">Company Overview</h3>
-            <button className="text-sm text-violet-400 hover:text-violet-300 transition-colors">
+            <button
+              onClick={() => navigate('/dashboard/companies')}
+              className="text-sm text-violet-400 hover:text-violet-300 transition-colors"
+            >
               View All →
             </button>
           </div>

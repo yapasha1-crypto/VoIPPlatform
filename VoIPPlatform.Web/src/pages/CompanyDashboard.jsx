@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { dashboardAPI, callRecordsAPI } from '../services/api';
 import { Users, Activity, DollarSign, Gauge, Phone, TrendingUp, AlertCircle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
 
 const CompanyDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [channelInfo, setChannelInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -275,7 +277,10 @@ const CompanyDashboard = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-white">Sub-User Management</h3>
-            <button className="text-sm text-violet-400 hover:text-violet-300 transition-colors">
+            <button
+              onClick={() => navigate('/dashboard/manage-users')}
+              className="text-sm text-violet-400 hover:text-violet-300 transition-colors"
+            >
               Manage Users →
             </button>
           </div>

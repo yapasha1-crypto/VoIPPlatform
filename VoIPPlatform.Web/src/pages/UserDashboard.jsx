@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { dashboardAPI } from '../services/api';
 import { Users, UserCheck, Phone, DollarSign, TrendingUp, Wallet, Clock } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -115,22 +117,36 @@ const UserDashboard = () => {
       {/* Recent Activity Section */}
       <Card title="Quick Actions" className="mt-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600">
+          <button
+            onClick={() => {
+              toast('📞 Softphone feature coming in Phase 10!', {
+                icon: '🚀',
+                duration: 4000,
+              });
+            }}
+            className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600"
+          >
             <Phone className="w-8 h-8 text-violet-400 mb-2" />
             <h3 className="font-semibold text-white mb-1">Make Call</h3>
             <p className="text-sm text-slate-400">Start a new VoIP call</p>
           </button>
 
-          <button className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600">
+          <button
+            onClick={() => navigate('/dashboard/profile')}
+            className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600"
+          >
             <Users className="w-8 h-8 text-blue-400 mb-2" />
-            <h3 className="font-semibold text-white mb-1">Manage Users</h3>
-            <p className="text-sm text-slate-400">View and edit users</p>
+            <h3 className="font-semibold text-white mb-1">Manage Profile</h3>
+            <p className="text-sm text-slate-400">View and edit your profile</p>
           </button>
 
-          <button className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600">
+          <button
+            onClick={() => navigate('/dashboard/call-history')}
+            className="p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all text-left border border-slate-600"
+          >
             <DollarSign className="w-8 h-8 text-green-400 mb-2" />
             <h3 className="font-semibold text-white mb-1">View Reports</h3>
-            <p className="text-sm text-slate-400">Check financial reports</p>
+            <p className="text-sm text-slate-400">Check call history & costs</p>
           </button>
         </div>
       </Card>

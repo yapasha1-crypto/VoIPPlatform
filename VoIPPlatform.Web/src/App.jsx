@@ -17,6 +17,10 @@ import LandingPage from './pages/LandingPage';
 import RatesConfigure from './pages/RatesConfigure';
 import MyRates from './pages/MyRates';
 import Billing from './pages/Billing';
+// Phase 1: UI Fix - Missing Pages
+import CompanyManagement from './pages/CompanyManagement';
+import UserManagement from './pages/UserManagement';
+import ChannelMonitor from './pages/ChannelMonitor';
 
 function App() {
   return (
@@ -67,6 +71,32 @@ function App() {
 
             {/* Phase 7: Billing & Payments Route */}
             <Route path="billing" element={<Billing />} />
+
+            {/* Phase 1: UI Fix - New Management Pages */}
+            <Route
+              path="companies"
+              element={
+                <ProtectedRoute requiredRole="Reseller">
+                  <CompanyManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="manage-users"
+              element={
+                <ProtectedRoute requiredRole="Company">
+                  <UserManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="channels"
+              element={
+                <ProtectedRoute requiredRole="Company">
+                  <ChannelMonitor />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           {/* Catch all - redirect to home */}

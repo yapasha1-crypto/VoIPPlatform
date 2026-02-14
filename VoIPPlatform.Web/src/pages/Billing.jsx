@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CreditCard, Download, Check, Clock, AlertCircle, DollarSign, MapPin, FileText } from 'lucide-react';
 import api from '../services/api';
+import StripePaymentModal from '../components/StripePaymentModal';
 
 const Billing = () => {
   // State
@@ -19,6 +20,7 @@ const Billing = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // Fetch data on mount
   useEffect(() => {
@@ -92,6 +94,13 @@ const Billing = () => {
       console.error('Error downloading invoice:', err);
       alert('Failed to download invoice. Please try again.');
     }
+  };
+
+  const handlePaymentSuccess = () => {
+    // Refresh billing data after successful payment
+    setSuccessMessage('Payment processed successfully! Your wallet has been updated.');
+    setTimeout(() => setSuccessMessage(null), 5000);
+    fetchBillingData();
   };
 
   const getStatusIcon = (status) => {
@@ -194,7 +203,7 @@ const Billing = () => {
 
             <div className="mt-6 flex gap-3">
               <button
-                onClick={() => alert('Top-up functionality coming soon! Integrate with Stripe/PayPal here.')}
+                onClick={() => setShowPaymentModal(true)}
                 className="bg-white text-blue-700 px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl"
               >
                 Top Up Wallet
@@ -230,8 +239,9 @@ const Billing = () => {
                     value={billingInfo.country || ''}
                     onChange={handleBillingInfoChange}
                     placeholder="e.g., SE, US, DE"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 font-semibold text-gray-900 placeholder:text-gray-400 placeholder:font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     maxLength="2"
+                    required
                   />
                   <p className="text-xs text-gray-500 mt-1">ISO Alpha-2 code (SE for Sweden)</p>
                 </div>
@@ -246,7 +256,7 @@ const Billing = () => {
                     value={billingInfo.taxRegistrationNumber || ''}
                     onChange={handleBillingInfoChange}
                     placeholder="e.g., SE123456789001"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 font-semibold text-gray-900 placeholder:text-gray-400 placeholder:font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                   <p className="text-xs text-gray-500 mt-1">VAT ID for business customers</p>
                 </div>
@@ -261,7 +271,7 @@ const Billing = () => {
                     value={billingInfo.address || ''}
                     onChange={handleBillingInfoChange}
                     placeholder="Street address"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 font-semibold text-gray-900 placeholder:text-gray-400 placeholder:font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
 
@@ -275,7 +285,7 @@ const Billing = () => {
                     value={billingInfo.city || ''}
                     onChange={handleBillingInfoChange}
                     placeholder="City name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 font-semibold text-gray-900 placeholder:text-gray-400 placeholder:font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
 
@@ -289,7 +299,7 @@ const Billing = () => {
                     value={billingInfo.postalCode || ''}
                     onChange={handleBillingInfoChange}
                     placeholder="Postal/ZIP code"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 font-semibold text-gray-900 placeholder:text-gray-400 placeholder:font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
 
@@ -426,6 +436,13 @@ const Billing = () => {
           </div>
         </div>
       </div>
+
+      {/* Stripe Payment Modal */}
+      <StripePaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        onSuccess={handlePaymentSuccess}
+      />
     </div>
   );
 };

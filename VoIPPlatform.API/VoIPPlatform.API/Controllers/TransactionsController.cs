@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoIPPlatform.API.Models;
 
@@ -6,6 +7,7 @@ namespace VoIPPlatform.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TransactionsController : ControllerBase
     {
         private readonly VoIPDbContext _context;

@@ -386,7 +386,9 @@ namespace VoIPPlatform.API.Controllers
         /// </summary>
         /// <summary>
         /// Purge Database and Reset MasterAdmin (Maintenance Mode)
+        /// ⚠️ SECURITY: Only available in DEBUG builds to prevent production database wipes
         /// </summary>
+#if DEBUG
         [HttpPost("purge-and-reset")]
         [AllowAnonymous]
         public async Task<IActionResult> PurgeAndReset()
@@ -459,6 +461,7 @@ namespace VoIPPlatform.API.Controllers
                 return StatusCode(500, new { success = false, message = ex.Message });
             }
         }
+#endif
 
         /// <summary>
         /// Seed fake call records for current user (Development/Testing)

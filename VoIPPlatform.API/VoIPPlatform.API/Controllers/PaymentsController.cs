@@ -293,9 +293,32 @@ namespace VoIPPlatform.API.Controllers
                     TaxType = taxResult.TaxType
                 });
             }
+            catch (InvalidOperationException ex) when (ex.Message.Contains("Stripe is not properly configured"))
+            {
+                // Configuration error - return helpful message
+                _logger.LogError(ex, "Stripe configuration error for user {UserId}", userId);
+                return StatusCode(500, new
+                {
+                    error = "Payment system not configured",
+                    details = "Stripe API key is missing or invalid. Please contact support.",
+                    technicalDetails = ex.Message
+                });
+            }
+            catch (Stripe.StripeException ex)
+            {
+                // Stripe API error - log full details and return user-friendly message
+                _logger.LogError(ex, "Stripe API error for user {UserId}: {ErrorType} - {ErrorMessage}",
+                    userId, ex.StripeError?.Type, ex.StripeError?.Message);
+                return StatusCode(500, new
+                {
+                    error = "Payment processing failed",
+                    details = ex.StripeError?.Message ?? ex.Message,
+                    type = ex.StripeError?.Type
+                });
+            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating Stripe PaymentIntent for user {UserId}", userId);
+                _logger.LogError(ex, "Unexpected error creating Stripe PaymentIntent for user {UserId}", userId);
                 return StatusCode(500, new { error = "Failed to create payment intent", details = ex.Message });
             }
         }

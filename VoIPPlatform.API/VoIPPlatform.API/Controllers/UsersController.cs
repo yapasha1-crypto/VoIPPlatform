@@ -180,8 +180,7 @@ namespace VoIPPlatform.API.Controllers
                     FirstName = request.FirstName,
                     LastName = request.LastName,
                     PhoneNumber = request.PhoneNumber,
-                    // في النسخة الحقيقية، يجب تشفير كلمة المرور
-                    PasswordHash = request.Password, // TODO: Hash the password properly
+                    PasswordHash = HashPassword(request.Password),
                     IsEmailVerified = false,
                     IsActive = true,
                     CreatedAt = DateTime.UtcNow,
@@ -319,6 +318,18 @@ namespace VoIPPlatform.API.Controllers
                     message = "حدث خطأ في الخادم - Internal server error",
                     error = ex.Message
                 });
+            }
+        }
+
+        /// <summary>
+        /// Hash password using SHA256 (matches AuthController implementation)
+        /// </summary>
+        private string HashPassword(string password)
+        {
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
             }
         }
     }

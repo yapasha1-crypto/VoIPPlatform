@@ -31,18 +31,32 @@ namespace VoIPPlatform.API.Services
 
             // Configure Stripe API Key
             var stripeSecretKey = _configuration["Stripe:SecretKey"];
-            if (string.IsNullOrEmpty(stripeSecretKey))
+            if (string.IsNullOrEmpty(stripeSecretKey) ||
+                stripeSecretKey.Contains("YOUR_SECRET_KEY_HERE") ||
+                stripeSecretKey == "REDACTED_STRIPE_KEY_SECRET_KEY_HERE")
             {
-                _logger.LogWarning("Stripe:SecretKey not configured. Stripe payments will not work.");
+                _logger.LogError("Stripe:SecretKey is missing or contains placeholder value. " +
+                    "Please configure a real Stripe test key from https://dashboard.stripe.com/test/apikeys");
             }
             else
             {
                 StripeConfiguration.ApiKey = stripeSecretKey;
+                _logger.LogInformation("Stripe API Key configured successfully");
             }
         }
 
         public async Task<PaymentIntent> CreatePaymentIntentAsync(int userId, decimal baseAmount, string currency = "USD")
         {
+            // Validate Stripe API Key is configured
+            var stripeSecretKey = _configuration["Stripe:SecretKey"];
+            if (string.IsNullOrEmpty(stripeSecretKey) ||
+                stripeSecretKey.Contains("YOUR_SECRET_KEY_HERE"))
+            {
+                throw new InvalidOperationException(
+                    "Stripe is not properly configured. Please add a valid API key to appsettings.json > Stripe:SecretKey. " +
+                    "Get your test key from: https://dashboard.stripe.com/test/apikeys");
+            }
+
             // Validate amount
             if (baseAmount <= 0)
             {

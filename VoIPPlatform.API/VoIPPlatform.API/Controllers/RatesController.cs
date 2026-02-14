@@ -264,7 +264,6 @@ namespace VoIPPlatform.API.Controllers
 
 
         [HttpPost("tariffs/{tariffId}/import-local")]
-        [AllowAnonymous]
         public async Task<IActionResult> ImportLocalRates(int tariffId)
         {
             string filePath = @"C:\Users\mejer\Desktop\VoIPPlatform\RateList.xls";

@@ -1,0 +1,30 @@
+2026-02-16 15:52:30 [INF] 🚀 تطبيق VoIPPlatform قيد الإطلاق...
+2026-02-16 15:52:32 [WRN] No store type was specified for the decimal property 'LocalBalance' on entity type 'CustomerAccount'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-02-16 15:52:42 [INF] Executed DbCommand (77ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-16 15:52:42 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-16 15:52:42 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-16 15:52:42 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-16 15:52:42 [INF] Executed DbCommand (96ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-16 15:52:43 [INF] No migrations were applied. The database is already up to date.
+2026-02-16 15:52:43 [INF] ✅ Database migrated successfully.
+2026-02-16 15:52:44 [INF] ✅ التطبيق جاهز للاستقبال
+2026-02-16 15:52:44 [INF] User profile is available. Using 'C:\Users\mejer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-16 15:52:44 [INF] Now listening on: http://localhost:5004
+2026-02-16 15:52:44 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-16 15:52:44 [INF] Hosting environment: Development
+2026-02-16 15:52:44 [INF] Content root path: C:\Users\mejer\Desktop\VoIPPlatform\VoIPPlatform.API\VoIPPlatform.API
+2026-02-16 15:54:28 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-02-16 15:54:29 [WRN] Failed to determine the https port for redirect.
+2026-02-16 15:54:29 [INF] Request finished HTTP/1.1 GET http://localhost:5004/ - 404 0 null 120.0022ms
+2026-02-16 15:54:29 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/, Response status code: 404
+2026-02-16 15:54:30 [INF] Request starting HTTP/1.1 GET http://localhost:5004/ - null null
+2026-02-16 15:54:30 [INF] Request finished HTTP/1.1 GET http://localhost:5004/ - 404 0 null 5.7936ms
+2026-02-16 15:54:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5004/, Response status code: 404
+2026-02-16 15:55:36 [INF] Application is shutting down...

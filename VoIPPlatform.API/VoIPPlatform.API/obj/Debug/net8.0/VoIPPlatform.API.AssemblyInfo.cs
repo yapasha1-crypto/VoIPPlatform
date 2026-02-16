@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VoIPPlatform.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f14954c7563f8c7dbe3955a9f690e5751bbb0a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac5e0e29bb91b622ac041e374b17dc4b403b8bd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("VoIPPlatform.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VoIPPlatform.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

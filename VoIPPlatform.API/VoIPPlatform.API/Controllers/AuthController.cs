@@ -572,7 +572,8 @@ namespace VoIPPlatform.API.Controllers
                         lastName = user.LastName,
                         phoneNumber = user.PhoneNumber,
                         balance = user.AccountBalance,
-                        role = user.Role
+                        role = user.Role,
+                        tariffPlanId = user.TariffPlanId
                     }
                 });
             }

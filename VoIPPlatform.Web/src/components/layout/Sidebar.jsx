@@ -91,6 +91,12 @@ const Sidebar = () => {
       roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer'],
       badge: 'Phase 7'
     },
+    {
+      name: 'Invoices',
+      href: '/dashboard/invoices',
+      icon: FileText,
+      roles: ['Admin', 'Reseller', 'Company', 'User', 'Customer'],
+    },
 
     // Common for all roles
     {

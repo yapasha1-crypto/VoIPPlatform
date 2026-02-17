@@ -85,4 +85,20 @@ export const ratesAPI = {
   assignTariffPlan: (userId, tariffPlanId) => api.post('/Rates/assign-plan', { userId, tariffPlanId }),
 };
 
+// Invoices API calls
+export const invoicesAPI = {
+  getAll: () => api.get('/invoices'),
+  downloadPdf: (id) =>
+    api.get(`/invoices/${id}/pdf`, { responseType: 'blob' }).then((res) => {
+      const url = window.URL.createObjectURL(new Blob([res.data], { type: 'application/pdf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Invoice_${id}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    }),
+};
+
 export default api;

@@ -17,6 +17,7 @@ import LandingPage from './pages/LandingPage';
 import RatesConfigure from './pages/RatesConfigure';
 import MyRates from './pages/MyRates';
 import Billing from './pages/Billing';
+import Invoices from './pages/Invoices';
 // Phase 1: UI Fix - Missing Pages
 import CompanyManagement from './pages/CompanyManagement';
 import UserManagement from './pages/UserManagement';
@@ -71,6 +72,7 @@ function App() {
 
             {/* Phase 7: Billing & Payments Route */}
             <Route path="billing" element={<Billing />} />
+            <Route path="invoices" element={<Invoices />} />
 
             {/* Phase 1: UI Fix - New Management Pages */}
             <Route

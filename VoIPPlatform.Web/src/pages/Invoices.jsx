@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
-import { FileText, Download, CheckCircle, Clock, AlertCircle, XCircle, DollarSign, Loader2, TrendingUp } from 'lucide-react';
+import {
+  FileText, Download, CheckCircle, Clock, AlertCircle, XCircle,
+  DollarSign, Loader2, TrendingUp, BadgeCheck, Mail, Calendar,
+} from 'lucide-react';
+import toast from 'react-hot-toast';
 import { invoicesAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import Button from '../components/ui/Button';
 
 // ── Status helpers ────────────────────────────────────────────────────────────
 
@@ -31,9 +36,14 @@ const Invoices = () => {
   const [error,         setError]         = useState(null);
   const [downloadingId, setDownloadingId] = useState(null);
 
-  // Admin summary (Phase 8A endpoint)
+  // Admin summary (Phase 8A)
   const [summary,        setSummary]        = useState(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
+
+  // Admin row actions (Phase 8C)
+  const [markingPaidId,  setMarkingPaidId]  = useState(null);
+  const [reminderSentId, setReminderSentId] = useState(null);
+  const [extendModal,    setExtendModal]    = useState({ open: false, invoiceId: null, newDueDate: '' });
 
   useEffect(() => {
     fetchInvoices();
@@ -59,7 +69,7 @@ const Invoices = () => {
       const res = await invoicesAPI.getSummary();
       setSummary(res.data);
     } catch {
-      // Non-fatal — Admin summary section omitted silently on failure
+      // Non-fatal — summary cards omitted silently on failure
     } finally {
       setSummaryLoading(false);
     }
@@ -76,7 +86,48 @@ const Invoices = () => {
     }
   };
 
-  // ── Derived stats for non-Admin (computed from list) ─────────────────────────
+  // ── Admin row action handlers (Phase 8C) ──────────────────────────────────
+
+  const handleMarkAsPaid = async (id) => {
+    // UI placeholder — backend write deferred to Phase 9
+    setMarkingPaidId(id);
+    await new Promise((r) => setTimeout(r, 800));
+    toast.success(`INV-${id} queued for payment confirmation.`);
+    setMarkingPaidId(null);
+  };
+
+  const handleSendReminder = async (id) => {
+    setReminderSentId(id);
+    // UI placeholder — email backend integration deferred to Phase 9
+    await new Promise((r) => setTimeout(r, 800));
+    toast.success(`Reminder queued for INV-${id}.`);
+    setReminderSentId(null);
+  };
+
+  const openExtendModal = (inv) =>
+    setExtendModal({
+      open: true,
+      invoiceId: inv.id,
+      newDueDate: inv.dueDate ? String(inv.dueDate).slice(0, 10) : '',
+    });
+
+  const closeExtendModal = () =>
+    setExtendModal({ open: false, invoiceId: null, newDueDate: '' });
+
+  const handleExtendSave = () => {
+    // UI-only — backend integration deferred to Phase 9
+    setInvoices((prev) =>
+      prev.map((inv) =>
+        inv.id === extendModal.invoiceId
+          ? { ...inv, dueDate: extendModal.newDueDate }
+          : inv
+      )
+    );
+    toast.success(`Due date updated for INV-${extendModal.invoiceId}.`);
+    closeExtendModal();
+  };
+
+  // ── Derived stats for non-Admin ───────────────────────────────────────────
   const localTotalPaid = invoices
     .filter((inv) => inv.status === 2)
     .reduce((sum, inv) => sum + Number(inv.totalAmount), 0);
@@ -124,8 +175,6 @@ const Invoices = () => {
           </div>
         ) : summary ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-            {/* Total Invoiced */}
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-blue-400" />
@@ -135,8 +184,6 @@ const Invoices = () => {
                 <p className="text-2xl font-bold text-white mt-0.5">{fmt(summary.totalInvoiced)}</p>
               </div>
             </div>
-
-            {/* Total Paid */}
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
               <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-emerald-400" />
@@ -146,8 +193,6 @@ const Invoices = () => {
                 <p className="text-2xl font-bold text-white mt-0.5">{fmt(summary.totalPaid)}</p>
               </div>
             </div>
-
-            {/* Total Pending */}
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center">
                 <DollarSign className="w-6 h-6 text-amber-400" />
@@ -157,8 +202,6 @@ const Invoices = () => {
                 <p className="text-2xl font-bold text-white mt-0.5">{fmt(summary.totalPending)}</p>
               </div>
             </div>
-
-            {/* Overdue Invoices */}
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
               <div className="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center">
                 <AlertCircle className="w-6 h-6 text-red-400" />
@@ -168,12 +211,11 @@ const Invoices = () => {
                 <p className="text-2xl font-bold text-white mt-0.5">{summary.overdueCount}</p>
               </div>
             </div>
-
           </div>
         ) : null
       )}
 
-      {/* ── Non-Admin: 2 local-computed cards ─────────────────────────────────── */}
+      {/* ── Non-Admin: 2 local-computed cards (unchanged) ─────────────────────── */}
       {!isAdmin && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
@@ -185,7 +227,6 @@ const Invoices = () => {
               <p className="text-2xl font-bold text-white mt-0.5">{fmt(localTotalPaid)}</p>
             </div>
           </div>
-
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex items-center gap-4">
             <div className="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center">
               <DollarSign className="w-6 h-6 text-amber-400" />
@@ -228,14 +269,18 @@ const Invoices = () => {
                   <th className="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Due Date</th>
                   <th className="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Amount</th>
                   <th className="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Action</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    {isAdmin ? 'Actions' : 'Action'}
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800">
                 {invoices.map((inv) => {
                   const status = getStatus(inv.status);
                   const StatusIcon = status.icon;
-                  const isDownloading = downloadingId === inv.id;
+                  const isDownloading   = downloadingId   === inv.id;
+                  const isMarkingPaid   = markingPaidId   === inv.id;
+                  const isSendingReminder = reminderSentId === inv.id;
 
                   return (
                     <tr key={inv.id} className="hover:bg-slate-800/50 transition-colors">
@@ -260,17 +305,73 @@ const Invoices = () => {
                           {status.label}
                         </span>
                       </td>
+
+                      {/* ── Action cell ─────────────────────────────────────── */}
                       <td className="px-6 py-4">
-                        <button
-                          onClick={() => handleDownload(inv.id)}
-                          disabled={isDownloading}
-                          className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs font-medium rounded-lg transition-colors"
-                        >
-                          {isDownloading
-                            ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            : <Download className="w-3.5 h-3.5" />}
-                          {isDownloading ? 'Generating…' : 'Download PDF'}
-                        </button>
+                        {isAdmin ? (
+                          <div className="flex items-center gap-1.5 flex-wrap">
+
+                            {/* Download PDF */}
+                            <button
+                              onClick={() => handleDownload(inv.id)}
+                              disabled={isDownloading}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs font-medium rounded-lg transition-colors"
+                            >
+                              {isDownloading
+                                ? <Loader2 className="w-3 h-3 animate-spin" />
+                                : <Download className="w-3 h-3" />}
+                              {isDownloading ? 'Generating…' : 'PDF'}
+                            </button>
+
+                            {/* Mark as Paid — hidden if already paid */}
+                            {inv.status !== 2 && (
+                              <button
+                                onClick={() => handleMarkAsPaid(inv.id)}
+                                disabled={isMarkingPaid}
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-700 hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs font-medium rounded-lg transition-colors"
+                              >
+                                {isMarkingPaid
+                                  ? <Loader2 className="w-3 h-3 animate-spin" />
+                                  : <BadgeCheck className="w-3 h-3" />}
+                                {isMarkingPaid ? 'Saving…' : 'Mark Paid'}
+                              </button>
+                            )}
+
+                            {/* Send Reminder (UI placeholder) */}
+                            <button
+                              onClick={() => handleSendReminder(inv.id)}
+                              disabled={isSendingReminder}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-700 hover:bg-slate-600 disabled:opacity-60 disabled:cursor-not-allowed text-slate-200 text-xs font-medium rounded-lg transition-colors"
+                            >
+                              {isSendingReminder
+                                ? <Loader2 className="w-3 h-3 animate-spin" />
+                                : <Mail className="w-3 h-3" />}
+                              {isSendingReminder ? 'Sending…' : 'Remind'}
+                            </button>
+
+                            {/* Extend Due Date */}
+                            <button
+                              onClick={() => openExtendModal(inv)}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium rounded-lg transition-colors"
+                            >
+                              <Calendar className="w-3 h-3" />
+                              Extend
+                            </button>
+
+                          </div>
+                        ) : (
+                          /* Non-Admin: unchanged single button */
+                          <button
+                            onClick={() => handleDownload(inv.id)}
+                            disabled={isDownloading}
+                            className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs font-medium rounded-lg transition-colors"
+                          >
+                            {isDownloading
+                              ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              : <Download className="w-3.5 h-3.5" />}
+                            {isDownloading ? 'Generating…' : 'Download PDF'}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   );
@@ -280,6 +381,60 @@ const Invoices = () => {
           </div>
         )}
       </div>
+
+      {/* ── Extend Due Date Modal (Admin only, Phase 8C) ──────────────────────── */}
+      {extendModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 w-full max-w-sm space-y-4 shadow-xl">
+
+            <div className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-violet-400" />
+              <h3 className="text-base font-semibold text-white">Extend Due Date</h3>
+            </div>
+
+            <p className="text-sm text-slate-400">
+              Invoice <span className="font-mono text-violet-400">INV-{extendModal.invoiceId}</span>
+            </p>
+
+            <div>
+              <label className="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">
+                New Due Date
+              </label>
+              <input
+                type="date"
+                value={extendModal.newDueDate}
+                onChange={(e) =>
+                  setExtendModal((prev) => ({ ...prev, newDueDate: e.target.value }))
+                }
+                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              />
+            </div>
+
+            <p className="text-xs text-slate-500 italic">
+              UI preview — backend write deferred to Phase 9.
+            </p>
+
+            <div className="flex justify-end gap-2 pt-1">
+              <button
+                onClick={closeExtendModal}
+                className="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                Cancel
+              </button>
+              <Button
+                onClick={handleExtendSave}
+                disabled={!extendModal.newDueDate}
+                size="sm"
+              >
+                <Calendar className="w-4 h-4" />
+                Save
+              </Button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

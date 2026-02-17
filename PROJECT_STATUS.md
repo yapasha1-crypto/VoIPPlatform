@@ -1,16 +1,92 @@
 # PROJECT STATUS - VoIPPlatform
 ## Multi-Tenant Hierarchy & RBAC System
 
-**Date:** February 16, 2026
-**Phase:** ✅ Phase 0.6 & 0.7 [COMPLETED] - Critical Infrastructure Repairs
-**Status:** API connection fixed, Auth modals working, Rates persistence implemented, User rates export functional
-**Latest Activity:** Phase 0.6/0.7 - Port correction, Modal authentication, Tariff persistence, MyRates fixes
-**Next Phase:** Phase 5A - Billing & Invoice Management
+**Date:** February 17, 2026
+**Phase:** ✅ Phase 0.8 + Phase 7.1 + Phase 7.2 [COMPLETED]
+**Status:** Critical QA fixes done; Invoice DB schema live; CDR billing engine operational
+**Latest Activity:** Rates display security fix, Invoice models + migration, BillingService (CDR → Invoice)
+**Next Phase:** Phase 7.3 - PDF invoice generation endpoint (`GET /api/invoices/{id}/pdf`)
 **Developer:** Claude Sonnet 4.5 (Senior VoIP Architect & Full-Stack Developer)
 
 ---
 
-## ✅ LATEST UPDATE: Phase 0.6 & 0.7 - Critical Infrastructure Repairs (Feb 16, 2026)
+## ✅ LATEST UPDATE: Phase 0.8 + Phase 7.1 + Phase 7.2 (Feb 17, 2026)
+
+### Phase 0.8 — Critical QA Fixes [COMPLETED] `fbeca35`
+
+**Task 1 — Rates Display (Financial Security Fix)**
+- **Bug:** `RateCalculatorService.GetUserRatesAsync()` fell back to 0% predefined plan when user had no TariffPlan assigned → `SellPrice == BuyPrice` (cost price leaked to end user)
+- **Fix:** `Services/RateCalculatorService.cs` — removed 0% fallback; return empty list when `TariffPlanId == null`
+- **Frontend:** `MyRates.jsx` was already using `rate.sellPrice` correctly — no change needed
+
+**Task 2 — Add User Button (Company Role 403)**
+- **Bug:** `POST /api/Users` was `[Authorize(Roles = "Admin,Reseller")]` but UserManagement page is Company-role-only → every create attempt returned 403
+- **Fix:** `Controllers/UsersController.cs` — added `Company` to `CreateUser` authorization
+
+**Task 3 — Logout Routing**
+- **Bug:** Two redirect paths hardcoded to `/login` (deleted page, now a modal)
+- **Fix 1:** `src/components/guards/ProtectedRoute.jsx:16` — `<Navigate to="/" />`
+- **Fix 2:** `src/services/api.js:33` — `window.location.href = '/'` (401 interceptor)
+
+---
+
+### Phase 7.1 — Invoice & InvoiceLineItem Data Models [COMPLETED] `14265fe`
+
+**Files Created:**
+- `Models/Invoice.cs` — replaced legacy stub; fields: `UserId` (required FK), `AccountId` (nullable legacy), `PeriodStart`, `PeriodEnd`, `TotalAmount decimal(18,5)`, `InvoiceStatus` enum (Draft/Unpaid/Paid/Overdue/Cancelled), `FilePath`, `LineItems` nav collection
+- `Models/InvoiceLineItem.cs` — new; fields: `InvoiceId` FK, `Description`, `Quantity`, `UnitPrice`, `Total` all `decimal(18,5)`
+
+**Files Modified:**
+- `Models/VoIPDbContext.cs` — added `DbSet<InvoiceLineItem>`, replaced Account→Invoice (required) with User→Invoice (Cascade) + Account→Invoice (optional/NoAction); added `Invoice→InvoiceLineItem` (Cascade); added decimal precision + 4 indexes
+- `Controllers/InvoicesController.cs` — upgraded to Phase 7 model (`CreatedAt`, `TotalAmount`, `InvoiceStatus` enum, User-centric queries)
+
+**Migration:** `20260217165445_AddBillingSchema` — applied ✅
+- Idempotent: used `IF OBJECT_ID` SQL guards (Invoices table was missing from DB despite migration history entry)
+- Created `InvoiceLineItems` table; altered `Invoices` to add UserId/TotalAmount/PeriodStart/PeriodEnd/FilePath; Status string→int
+
+---
+
+### Phase 7.2 — CDR Billing Engine [COMPLETED] `fb5ef22`
+
+**Files Created:**
+- `Services/IBillingService.cs` — interface: `GenerateInvoiceForUserAsync(userId, startDate, endDate)`, `CountUnbilledCallsAsync`
+- `Services/BillingService.cs` — implementation:
+  1. Fetches `CallRecords` where `IsBilled == false AND Status == "Answered"` in date range
+  2. Loads BaseRates; resolves destination name via longest-prefix match on `CalleeId` digits
+  3. Groups by destination → creates `InvoiceLineItem` per group (Quantity=minutes, Total=sum(Cost), UnitPrice=Total/Quantity)
+  4. Creates `Invoice` with status `Unpaid`, DueDate = now+30d
+  5. Bulk-marks CallRecords `IsBilled = true` via `ExecuteUpdateAsync`
+
+**Files Modified:**
+- `Models/CallRecord.cs` — added `IsBilled bool = false`
+- `Program.cs` — registered `IBillingService → BillingService` (Phase 7.2 section)
+- `Controllers/InvoicesController.cs` — injected `IBillingService`; added `POST /api/invoices/generate` (Admin only)
+
+**Migration:** `20260217170317_AddIsBilledToCallRecords` — `bit NOT NULL DEFAULT 0` on `CallRecords` — applied ✅
+
+**Verification:**
+- `dotnet build` → succeeded (0 errors)
+- `dotnet ef migrations list` → all migrations applied, none pending
+- Both migrations applied cleanly via `dotnet ef database update`
+
+**New Endpoint:**
+```
+POST /api/invoices/generate   [Admin]
+Body: { "userId": int, "startDate": "ISO", "endDate": "ISO" }
+Response 201: { invoiceId, totalAmount, lineItems, billedCalls, periodStart, periodEnd, dueDate }
+Response 200: { success: false, message: "No unbilled calls..." }  ← if no data
+```
+
+---
+
+### Known Issues / Assumptions
+- `CallRecord.Cost` stores per-call charges but has only `decimal(18,2)` precision — adequate for billing totals but lower precision than base rates. No schema change made (acceptable for Phase 7).
+- `BillingService` requires at least one seeded `BaseRate` for meaningful destination names; otherwise falls back to `International (+XXXX...)` label.
+- No duplicate-invoice guard yet (same user + overlapping period can produce two invoices if called twice). Add unique index on `(UserId, PeriodStart, PeriodEnd)` in Phase 7.3.
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 0.6 & 0.7 - Critical Infrastructure Repairs (Feb 16, 2026)
 
 ### Phase 0.6 - Part A: API Port Mismatch Fix [COMPLETED]
 **Issue Identified:** Frontend calling `https://localhost:7296` instead of `http://localhost:5004`, causing ERR_CONNECTION_REFUSED for all API calls (rates showing 0.00, Add User failing).

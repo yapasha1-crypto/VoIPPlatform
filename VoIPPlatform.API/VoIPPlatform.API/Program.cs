@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QuestPDF.Infrastructure;
 using Serilog;
 using Serilog.Events;
 using System.Security.Claims;
@@ -9,6 +10,9 @@ using VoIPPlatform.API.Middleware;
 using VoIPPlatform.API.Models;
 using VoIPPlatform.API.Services;
 using VoIPPlatform.API.Services.Auth;
+
+// ── QuestPDF Community License ───────────────────────────────────────────────
+QuestPDF.Settings.License = LicenseType.Community;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +71,9 @@ try
 
     // ✅ Phase 7.2: CDR Billing Engine (CallRecords → Invoices)
     builder.Services.AddScoped<IBillingService, BillingService>();
+
+    // ✅ Phase 7.3: Invoice PDF Generation
+    builder.Services.AddScoped<InvoicePdfService>();
 
     // ✅ Phase 8: Stripe Payment Integration
     builder.Services.AddScoped<IStripePaymentService, StripePaymentService>();

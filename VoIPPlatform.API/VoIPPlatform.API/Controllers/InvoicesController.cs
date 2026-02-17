@@ -14,15 +14,18 @@ namespace VoIPPlatform.API.Controllers
         private readonly VoIPDbContext _context;
         private readonly IEmailService _emailService;
         private readonly IBillingService _billing;
+        private readonly InvoicePdfService _pdfService;
 
         public InvoicesController(
             VoIPDbContext context,
             IEmailService emailService,
-            IBillingService billing)
+            IBillingService billing,
+            InvoicePdfService pdfService)
         {
             _context = context;
             _emailService = emailService;
             _billing = billing;
+            _pdfService = pdfService;
         }
 
         // GET: api/Invoices
@@ -217,6 +220,38 @@ namespace VoIPPlatform.API.Controllers
 
             var bytes = System.Text.Encoding.UTF8.GetBytes(csv.ToString());
             return File(bytes, "text/csv", $"invoices_{DateTime.UtcNow:yyyyMMddHHmmss}.csv");
+        }
+
+        // GET: api/Invoices/{id}/pdf
+        /// <summary>
+        /// Phase 7.3: Download a generated PDF for the given invoice.
+        /// Users can only download their own invoices; Admins can download any.
+        /// </summary>
+        [HttpGet("{id:int}/pdf")]
+        public async Task<IActionResult> DownloadPdf(int id)
+        {
+            var invoice = await _context.Invoices
+                .Include(i => i.User)
+                .Include(i => i.LineItems)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (invoice == null) return NotFound();
+
+            var userId = int.Parse(User.FindFirst("id")?.Value ?? "0");
+            var userRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+
+            if (userRole != "Admin" && invoice.UserId != userId)
+                return Forbid();
+
+            try
+            {
+                var pdfBytes = _pdfService.GeneratePdf(invoice);
+                return File(pdfBytes, "application/pdf", $"Invoice_{id}.pdf");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"PDF generation failed: {ex.Message}" });
+            }
         }
 
         // POST: api/Invoices/generate  (Admin only)

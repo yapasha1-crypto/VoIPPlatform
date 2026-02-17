@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: 'http://localhost:5004/api',
+  baseURL: `${import.meta.env.VITE_API_URL || 'http://localhost:5004'}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -27,10 +27,10 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid - redirect to login
+      // Token expired or invalid - redirect to landing page (login is now a modal)
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }
@@ -78,6 +78,11 @@ export const smsAPI = {
   sendSMS: (data) => api.post('/SMS', data),
   getMyMessages: () => api.get('/SMS/my-messages'),
   getSMSStats: () => api.get('/SMS/stats/summary'),
+};
+
+// Rates API calls
+export const ratesAPI = {
+  assignTariffPlan: (userId, tariffPlanId) => api.post('/Rates/assign-plan', { userId, tariffPlanId }),
 };
 
 export default api;

@@ -1,12 +1,151 @@
 # PROJECT STATUS - VoIPPlatform
 ## Multi-Tenant Hierarchy & RBAC System
 
-**Date:** February 14, 2026
-**Phase:** ✅ Phase 0.5 [COMPLETED] - RBAC Fixes + Modal Implementation
-**Status:** 403 lockouts resolved, Add Company/User modals functional, navigation traps fixed
-**Latest Activity:** Phase 0.5 RBAC Security Corrections + Modal CRUD Implementation
-**Next Phase:** Phase 9 - Email Notifications
+**Date:** February 16, 2026
+**Phase:** ✅ Phase 0.6 & 0.7 [COMPLETED] - Critical Infrastructure Repairs
+**Status:** API connection fixed, Auth modals working, Rates persistence implemented, User rates export functional
+**Latest Activity:** Phase 0.6/0.7 - Port correction, Modal authentication, Tariff persistence, MyRates fixes
+**Next Phase:** Phase 5A - Billing & Invoice Management
 **Developer:** Claude Sonnet 4.5 (Senior VoIP Architect & Full-Stack Developer)
+
+---
+
+## ✅ LATEST UPDATE: Phase 0.6 & 0.7 - Critical Infrastructure Repairs (Feb 16, 2026)
+
+### Phase 0.6 - Part A: API Port Mismatch Fix [COMPLETED]
+**Issue Identified:** Frontend calling `https://localhost:7296` instead of `http://localhost:5004`, causing ERR_CONNECTION_REFUSED for all API calls (rates showing 0.00, Add User failing).
+
+**Files Modified (3):**
+- `src/services/api.js` (Line 5) - Changed from hardcoded URL to `import.meta.env.VITE_API_URL`
+- `src/pages/MyRates.jsx` (Line 7) - Fixed from `https://localhost:7296` → `http://localhost:5004`
+- `src/pages/RatesConfigure.jsx` (Line 7) - Changed to use env variable
+
+**Environment Config:**
+- `.env` already had correct `VITE_API_URL=http://localhost:5004`
+- Code was ignoring env variable, using hardcoded fallbacks
+
+---
+
+### Phase 0.6 - Part B: Auth Modal Conversion [COMPLETED]
+**Issue Identified:** "Login" and "Register" buttons in navbar navigated to separate pages, breaking landing page continuity. User requirement: Stay on landing page with modal popups.
+
+**Files Created (2):**
+- `src/components/modals/LoginModal.jsx` (120 lines) - Modal with backdrop blur, close button (X), switch to Register
+- `src/components/modals/RegisterModal.jsx` (285 lines) - Modal with password validation, switch to Login
+
+**Files Modified (2):**
+- `src/components/layout/PublicLayout.jsx` (Lines 1-7, 44-56, 87-104, 148-156, 187-210)
+  - Imported modals, added state management
+  - Desktop/mobile navbar buttons → open modals (not navigate)
+  - Footer login/register links → buttons with modal triggers
+- `src/pages/LandingPage.jsx` (Lines 1-7, 74-79, 184-188, 191-210)
+  - Hero "Get Started" + CTA buttons → open modals
+
+**UX Flow:**
+- Click "Login" (navbar/footer) → LoginModal opens → User stays on landing page ✅
+- Click "Create one here" in modal → Seamless switch to RegisterModal ✅
+- Click X or backdrop → Returns to landing page ✅
+
+---
+
+### Phase 0.6 - Part C: Rates Persistence (Admin) [COMPLETED]
+**Issue Identified:** Admin selects tariff plan in RatesConfigure, but selection doesn't persist across page refresh. No "Save" functionality existed.
+
+**Backend Modified (1):**
+- `Controllers/AuthController.cs` (Line 575) - Added `tariffPlanId = user.TariffPlanId` to `/me` endpoint response
+
+**Frontend Modified (2):**
+- `src/services/api.js` - Added `ratesAPI.assignTariffPlan(userId, tariffPlanId)` → `POST /api/rates/assign-plan`
+- `src/pages/RatesConfigure.jsx` (Lines 1-18, 30-89, 265-302)
+  - Added `currentUser` state, fetched via `authAPI.getMe()`
+  - Auto-select user's saved `tariffPlanId` on page load
+  - Added "Save as My Plan" button (green, with loading state)
+  - Button disabled if plan already saved (shows "✓ (Current)" in dropdown)
+  - Calls `assignTariffPlan` API on button click
+
+**Persistence Flow:**
+1. Admin loads page → Fetches current user → Auto-selects saved plan ✅
+2. Admin changes dropdown → Button becomes active ✅
+3. Click "Save as My Plan" → API call → Success toast → Plan persists ✅
+4. Refresh page → Previously selected plan still selected ✅
+
+---
+
+### Phase 0.7: MyRates Page Fix (User/Agent) [COMPLETED]
+**Issue Identified:** Standard users saw empty table or errors on "My Rates" page. Export button did nothing.
+
+**Files Modified (1):**
+- `src/pages/MyRates.jsx` (Lines 1, 19-48, 135-143, 235-260)
+  - Enhanced `fetchMyRates()` error handling:
+    - Handle both direct array (`response.data`) and wrapped (`response.data.data`)
+    - Specific error handling: 404 (no tariff), 401 (auth), 500 (server)
+    - Info toast when user has no tariff plan assigned
+  - Improved empty state UI:
+    - **No tariff plan:** AlertCircle icon + "Contact administrator" message + Support badge
+    - **Search no results:** Search icon + "Try different search" message
+    - **General empty:** Fallback message
+  - Export button enhancement:
+    - Added tooltip: "No rates to export" (disabled) / "Export rates as CSV" (enabled)
+    - Added `disabled:cursor-not-allowed` styling
+
+**Backend Validation (Already Correct):**
+- `RatesController.GetMyRates()` (Line 406-429) - Returns user-specific rates via `RateCalculatorService.GetUserRatesAsync(userId)`
+- `RateCalculatorService.GetUserRatesAsync()` (Line 107-133):
+  - Filters by `user.TariffPlanId`
+  - Returns empty array if no plan assigned (handled gracefully by frontend)
+  - Calculates SellPrice = BuyPrice + Profit (based on tariff plan rules)
+
+**CSV Export:**
+- Already functional (lines 41-66)
+- Format: `Destination,Code,Rate per Minute`
+- Filename: `my_rates_YYYY-MM-DD.csv`
+
+---
+
+### Verification Steps
+
+**Git Operations:**
+```bash
+git add .
+git commit -m "fix: Critical Repairs - Correct API Port, Auth Modals, Rates Persistence, and User Rates Export"
+# Result: [main bb72c14] 17 files changed, +4564/-1623
+```
+
+**Testing Checklist:**
+- ✅ API connection: All endpoints now resolve to `http://localhost:5004`
+- ✅ Navbar "Login" button: Opens modal instead of navigating
+- ✅ Landing page "Get Started": Opens Register modal
+- ✅ Modal switching: Login ↔ Register seamless
+- ✅ Rates persistence: Admin's selected plan saves and auto-loads
+- ✅ MyRates (user with plan): Displays rates, statistics, export works
+- ✅ MyRates (user without plan): Shows helpful empty state + disabled export
+- ✅ CSV export: Downloads proper format with 5 decimal precision
+
+---
+
+### Summary of Changes
+
+**Phase 0.6 & 0.7 Combined Impact:**
+- 🔧 API Port: Fixed connection refused errors (rates now load) ✅
+- 🎨 Auth UX: Modal-based login/register (landing page continuity) ✅
+- 💾 Persistence: Admin can save default tariff plan ✅
+- 📊 MyRates: User-friendly empty states + working CSV export ✅
+
+**Commit:** `bb72c14` - "fix: Critical Repairs - Correct API Port, Auth Modals, Rates Persistence, and User Rates Export"
+
+**Files Changed:** 17 files (+4,564 / -1,623 lines)
+- Backend: 1 file (`AuthController.cs`)
+- Frontend: 8 files (2 new modals, 6 modified)
+
+**Known Issues (Fixed in this phase):**
+- ~~Frontend connects to wrong port (7296 vs 5004)~~ ✅ FIXED
+- ~~Rates showing 0.00 for all users~~ ✅ FIXED
+- ~~Login/Register navigates away from landing page~~ ✅ FIXED
+- ~~Rate plan selection doesn't persist~~ ✅ FIXED
+- ~~MyRates shows broken table for users without plan~~ ✅ FIXED
+- ~~Export Rates button inactive~~ ✅ FIXED
+
+**Next Phase:** Phase 5A - Billing & Invoice Management (Invoice entity, monthly billing, PDF generation)
 
 ---
 

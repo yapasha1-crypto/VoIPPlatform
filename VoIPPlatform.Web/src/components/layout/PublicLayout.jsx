@@ -1,10 +1,13 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import LoginModal from '../modals/LoginModal';
+import RegisterModal from '../modals/RegisterModal';
 
 const PublicLayout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -42,13 +45,13 @@ const PublicLayout = () => {
               {/* Auth Buttons */}
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => navigate('/login')}
+                  onClick={() => setShowLoginModal(true)}
                   className="px-5 py-2 text-slate-300 hover:text-white font-medium transition-colors"
                 >
                   Login
                 </button>
                 <button
-                  onClick={() => navigate('/register')}
+                  onClick={() => setShowRegisterModal(true)}
                   className="px-6 py-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-violet-500/50 transition-all"
                 >
                   Get Started
@@ -86,7 +89,7 @@ const PublicLayout = () => {
               ))}
               <button
                 onClick={() => {
-                  navigate('/login');
+                  setShowLoginModal(true);
                   setMobileMenuOpen(false);
                 }}
                 className="w-full px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-lg font-medium transition-all"
@@ -95,7 +98,7 @@ const PublicLayout = () => {
               </button>
               <button
                 onClick={() => {
-                  navigate('/register');
+                  setShowRegisterModal(true);
                   setMobileMenuOpen(false);
                 }}
                 className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-violet-500/50 transition-all"
@@ -145,14 +148,20 @@ const PublicLayout = () => {
                   </a>
                 </li>
                 <li>
-                  <Link to="/login" className="text-slate-400 hover:text-violet-400 transition-colors text-sm">
+                  <button
+                    onClick={() => setShowLoginModal(true)}
+                    className="text-slate-400 hover:text-violet-400 transition-colors text-sm"
+                  >
                     Login
-                  </Link>
+                  </button>
                 </li>
                 <li>
-                  <Link to="/register" className="text-slate-400 hover:text-violet-400 transition-colors text-sm">
+                  <button
+                    onClick={() => setShowRegisterModal(true)}
+                    className="text-slate-400 hover:text-violet-400 transition-colors text-sm"
+                  >
                     Register
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -186,6 +195,27 @@ const PublicLayout = () => {
           </div>
         </div>
       </footer>
+
+      {/* Auth Modals */}
+      {showLoginModal && (
+        <LoginModal
+          onClose={() => setShowLoginModal(false)}
+          onSwitchToRegister={() => {
+            setShowLoginModal(false);
+            setShowRegisterModal(true);
+          }}
+        />
+      )}
+
+      {showRegisterModal && (
+        <RegisterModal
+          onClose={() => setShowRegisterModal(false)}
+          onSwitchToLogin={() => {
+            setShowRegisterModal(false);
+            setShowLoginModal(true);
+          }}
+        />
+      )}
     </div>
   );
 };

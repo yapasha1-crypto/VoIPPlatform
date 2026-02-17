@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Plus, Download, Upload, Calculator, DollarSign, TrendingUp, Info } from 'lucide-react';
+import { Plus, Download, Upload, Calculator, DollarSign, TrendingUp, Info, Save } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { authAPI, ratesAPI } from '../services/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5004';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5004';
 
 const RatesConfigure = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [tariffPlans, setTariffPlans] = useState([]);
   const [selectedPlanId, setSelectedPlanId] = useState(null);
   const [configuredRates, setConfiguredRates] = useState([]);
@@ -14,6 +16,7 @@ const RatesConfigure = () => {
   const [loadingRates, setLoadingRates] = useState(false);
   const [showNewPlanModal, setShowNewPlanModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [savingPlan, setSavingPlan] = useState(false);
 
   // New Plan Form
   const [newPlan, setNewPlan] = useState({
@@ -28,6 +31,7 @@ const RatesConfigure = () => {
   });
 
   useEffect(() => {
+    fetchCurrentUser();
     fetchTariffPlans();
   }, []);
 
@@ -37,6 +41,23 @@ const RatesConfigure = () => {
     }
   }, [selectedPlanId]);
 
+  // Auto-select user's saved plan when both user and plans are loaded
+  useEffect(() => {
+    if (currentUser && tariffPlans.length > 0 && !selectedPlanId) {
+      const defaultPlanId = currentUser.tariffPlanId || tariffPlans[0].id;
+      setSelectedPlanId(defaultPlanId);
+    }
+  }, [currentUser, tariffPlans, selectedPlanId]);
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await authAPI.getMe();
+      setCurrentUser(response.data.data);
+    } catch (error) {
+      console.error('Failed to fetch current user:', error);
+    }
+  };
+
   const fetchTariffPlans = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -44,17 +65,32 @@ const RatesConfigure = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTariffPlans(response.data);
-
-      // Auto-select first plan
-      if (response.data.length > 0 && !selectedPlanId) {
-        setSelectedPlanId(response.data[0].id);
-      }
-
       setLoading(false);
     } catch (error) {
       console.error('Failed to fetch tariff plans:', error);
       toast.error('Failed to load tariff plans');
       setLoading(false);
+    }
+  };
+
+  const handleSaveMyPlan = async () => {
+    if (!currentUser || !selectedPlanId) {
+      toast.error('Please select a plan first');
+      return;
+    }
+
+    setSavingPlan(true);
+    try {
+      await ratesAPI.assignTariffPlan(currentUser.id, selectedPlanId);
+      toast.success('Tariff plan saved as your default!');
+
+      // Update current user state
+      setCurrentUser({ ...currentUser, tariffPlanId: selectedPlanId });
+    } catch (error) {
+      console.error('Failed to save tariff plan:', error);
+      toast.error(error.response?.data?.error || 'Failed to save tariff plan');
+    } finally {
+      setSavingPlan(false);
     }
   };
 
@@ -227,21 +263,42 @@ const RatesConfigure = () => {
             <label className="block text-sm font-medium text-slate-300">
               Choose Rate List
             </label>
-            <select
-              value={selectedPlanId || ''}
-              onChange={(e) => setSelectedPlanId(Number(e.target.value))}
-              className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-600"
-            >
-              <option value="" disabled>Select a tariff plan...</option>
-              {tariffPlans.map((plan) => (
-                <option key={plan.id} value={plan.id}>
-                  {plan.name}
-                  {plan.type === 0 && ` (${plan.profitPercent}% Profit)`}
-                  {plan.type === 1 && ` (Fixed $${plan.fixedProfit})`}
-                  {plan.type === 2 && ' (Free)'}
-                </option>
-              ))}
-            </select>
+            <div className="flex gap-3">
+              <select
+                value={selectedPlanId || ''}
+                onChange={(e) => setSelectedPlanId(Number(e.target.value))}
+                className="flex-1 px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-600"
+              >
+                <option value="" disabled>Select a tariff plan...</option>
+                {tariffPlans.map((plan) => (
+                  <option key={plan.id} value={plan.id}>
+                    {plan.name}
+                    {plan.type === 0 && ` (${plan.profitPercent}% Profit)`}
+                    {plan.type === 1 && ` (Fixed $${plan.fixedProfit})`}
+                    {plan.type === 2 && ' (Free)'}
+                    {currentUser?.tariffPlanId === plan.id && ' ✓ (Current)'}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={handleSaveMyPlan}
+                disabled={savingPlan || !selectedPlanId || currentUser?.tariffPlanId === selectedPlanId}
+                className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 disabled:from-slate-700 disabled:to-slate-800 disabled:cursor-not-allowed text-white rounded-lg transition-all whitespace-nowrap"
+                title={currentUser?.tariffPlanId === selectedPlanId ? 'This is already your default plan' : 'Save this plan as your default'}
+              >
+                {savingPlan ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Saving...</span>
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    <span>Save as My Plan</span>
+                  </>
+                )}
+              </button>
+            </div>
 
             {selectedPlan && (
               <div className="mt-4 p-4 bg-slate-900/50 rounded-lg border border-slate-800">

@@ -117,16 +117,9 @@ namespace VoIPPlatform.API.Services
 
             if (user.TariffPlanId == null)
             {
-                // User has no tariff plan assigned, return base rates with 0% markup
-                var defaultPlan = await _context.TariffPlans
-                    .FirstOrDefaultAsync(tp => tp.IsPredefined && tp.ProfitPercent == 0);
-
-                if (defaultPlan == null)
-                {
-                    return new List<ConfiguredRateDto>();
-                }
-
-                return await GetConfiguredRatesAsync(defaultPlan.Id);
+                // No tariff plan assigned — return empty list.
+                // Never fall back to 0% plan: that would expose BuyPrice as SellPrice (cost leak).
+                return new List<ConfiguredRateDto>();
             }
 
             return await GetConfiguredRatesAsync(user.TariffPlanId.Value);

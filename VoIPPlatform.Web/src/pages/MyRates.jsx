@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Download, Search, DollarSign, Globe, Phone } from 'lucide-react';
+import { Download, Search, DollarSign, Globe, Phone, AlertCircle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://localhost:7296';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5004';
 
 const MyRates = () => {
   const [rates, setRates] = useState([]);
@@ -22,11 +22,29 @@ const MyRates = () => {
       const response = await axios.get(`${API_BASE_URL}/api/rates/my-rates`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setRates(response.data);
+
+      // Handle response data (can be direct array or wrapped)
+      const ratesData = Array.isArray(response.data) ? response.data : (response.data?.data || []);
+      setRates(ratesData);
+
+      if (ratesData.length === 0) {
+        toast.info('No tariff plan assigned. Contact your administrator to get rates.', { duration: 4000 });
+      }
+
       setLoading(false);
     } catch (error) {
       console.error('Failed to fetch rates:', error);
-      toast.error('Failed to load your rates');
+
+      // Handle specific error cases
+      if (error.response?.status === 404) {
+        toast.error('No tariff plan assigned to your account');
+      } else if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again');
+      } else {
+        toast.error('Failed to load your rates. Please try again.');
+      }
+
+      setRates([]);
       setLoading(false);
     }
   };
@@ -117,7 +135,8 @@ const MyRates = () => {
         <button
           onClick={handleExport}
           disabled={rates.length === 0}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 disabled:from-slate-700 disabled:to-slate-800 text-white rounded-lg transition-all"
+          title={rates.length === 0 ? 'No rates to export' : 'Export rates as CSV'}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 disabled:from-slate-700 disabled:to-slate-800 disabled:cursor-not-allowed text-white rounded-lg transition-all"
         >
           <Download className="w-4 h-4" />
           Export Rates
@@ -215,11 +234,33 @@ const MyRates = () => {
 
           {/* Table */}
           {filteredRates.length === 0 ? (
-            <div className="text-center py-12 text-slate-500">
-              <Search className="w-12 h-12 mx-auto mb-2 opacity-50" />
-              <p className="text-sm">
-                {searchQuery ? 'No rates match your search' : 'No rates available'}
-              </p>
+            <div className="text-center py-16 text-slate-500">
+              {searchQuery ? (
+                <>
+                  <Search className="w-16 h-16 mx-auto mb-4 text-slate-600" />
+                  <p className="text-lg font-medium text-slate-400 mb-2">No matching rates found</p>
+                  <p className="text-sm text-slate-500">Try a different search term</p>
+                </>
+              ) : rates.length === 0 ? (
+                <>
+                  <AlertCircle className="w-16 h-16 mx-auto mb-4 text-amber-500/50" />
+                  <p className="text-lg font-medium text-slate-400 mb-2">No Tariff Plan Assigned</p>
+                  <p className="text-sm text-slate-500 mb-4">
+                    You don't have a rate plan assigned yet.
+                    <br />
+                    Please contact your administrator to get started.
+                  </p>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-600/10 border border-violet-500/20 rounded-lg text-violet-400 text-sm">
+                    <Phone className="w-4 h-4" />
+                    <span>Contact Support</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Search className="w-16 h-16 mx-auto mb-4 text-slate-600" />
+                  <p className="text-sm">No rates available</p>
+                </>
+              )}
             </div>
           ) : (
             <div className="overflow-x-auto">

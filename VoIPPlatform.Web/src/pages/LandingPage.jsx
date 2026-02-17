@@ -1,9 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Phone, Globe, Shield, Zap, Users, TrendingUp, MapPin } from 'lucide-react';
 import NetworkMap from '../components/ui/NetworkMap';
+import LoginModal from '../components/modals/LoginModal';
+import RegisterModal from '../components/modals/RegisterModal';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const features = [
     {
@@ -72,7 +75,7 @@ const LandingPage = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => navigate('/login')}
+                onClick={() => setShowLoginModal(true)}
                 className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-semibold rounded-lg hover:shadow-2xl hover:shadow-violet-500/50 transition-all transform hover:scale-105"
               >
                 Get Started
@@ -181,7 +184,7 @@ const LandingPage = () => {
               Join thousands of businesses already using our platform to power their communications.
             </p>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => setShowLoginModal(true)}
               className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-semibold rounded-lg hover:shadow-2xl hover:shadow-violet-500/50 transition-all transform hover:scale-105"
             >
               Access Dashboard
@@ -189,6 +192,27 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Auth Modals */}
+      {showLoginModal && (
+        <LoginModal
+          onClose={() => setShowLoginModal(false)}
+          onSwitchToRegister={() => {
+            setShowLoginModal(false);
+            setShowRegisterModal(true);
+          }}
+        />
+      )}
+
+      {showRegisterModal && (
+        <RegisterModal
+          onClose={() => setShowRegisterModal(false)}
+          onSwitchToLogin={() => {
+            setShowRegisterModal(false);
+            setShowLoginModal(true);
+          }}
+        />
+      )}
     </div>
   );
 };

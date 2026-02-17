@@ -145,7 +145,7 @@ namespace VoIPPlatform.API.Controllers
         /// Create new user
         /// </summary>
         [HttpPost]
-        [Authorize(Roles = "Admin,Reseller")]  // Phase 0.5: Allow Admin and Reseller to create users
+        [Authorize(Roles = "Admin,Reseller,Company")]  // Phase 0.8: Company users manage their own sub-users
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> CreateUser([FromBody] CreateUserRequest request)

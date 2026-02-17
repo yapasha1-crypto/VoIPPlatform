@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Download, Upload, Calculator, DollarSign, TrendingUp, Info, Save } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import { authAPI, ratesAPI } from '../services/api';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5004';
 
 const RatesConfigure = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -60,10 +57,7 @@ const RatesConfigure = () => {
 
   const fetchTariffPlans = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/api/rates/tariff-plans`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await ratesAPI.getTariffPlans();
       setTariffPlans(response.data);
       setLoading(false);
     } catch (error) {
@@ -97,10 +91,7 @@ const RatesConfigure = () => {
   const fetchConfiguredRates = async (planId) => {
     setLoadingRates(true);
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/api/rates/configure?planId=${planId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await ratesAPI.getConfigure(planId);
       setConfiguredRates(response.data);
       setLoadingRates(false);
     } catch (error) {
@@ -113,10 +104,7 @@ const RatesConfigure = () => {
   const handleCreatePlan = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await axios.post(`${API_BASE_URL}/api/rates/tariff-plans`, newPlan, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await ratesAPI.createTariffPlan(newPlan);
 
       toast.success('Tariff plan created successfully!');
       setShowNewPlanModal(false);
@@ -176,13 +164,7 @@ const RatesConfigure = () => {
 
     const loadingToast = toast.loading('Uploading base rates...');
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(`${API_BASE_URL}/api/rates/upload-base-rates`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const response = await ratesAPI.uploadBaseRates(formData);
 
       toast.success(`Successfully imported ${response.data.imported} base rates!`, { id: loadingToast });
 

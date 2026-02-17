@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { Download, Search, DollarSign, Globe, Phone, AlertCircle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import toast from 'react-hot-toast';
-import axios from 'axios';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5004';
+import { ratesAPI } from '../services/api';
 
 const MyRates = () => {
   const [rates, setRates] = useState([]);
@@ -18,10 +16,7 @@ const MyRates = () => {
 
   const fetchMyRates = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/api/rates/my-rates`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await ratesAPI.getMyRates();
 
       // Handle response data (can be direct array or wrapped)
       const ratesData = Array.isArray(response.data) ? response.data : (response.data?.data || []);
@@ -35,11 +30,8 @@ const MyRates = () => {
     } catch (error) {
       console.error('Failed to fetch rates:', error);
 
-      // Handle specific error cases
       if (error.response?.status === 404) {
         toast.error('No tariff plan assigned to your account');
-      } else if (error.response?.status === 401) {
-        toast.error('Session expired. Please login again');
       } else {
         toast.error('Failed to load your rates. Please try again.');
       }

@@ -13,11 +13,16 @@ namespace VoIPPlatform.API.Controllers
     {
         private readonly VoIPDbContext _context;
         private readonly IEmailService _emailService;
+        private readonly IBillingService _billing;
 
-        public InvoicesController(VoIPDbContext context, IEmailService emailService)
+        public InvoicesController(
+            VoIPDbContext context,
+            IEmailService emailService,
+            IBillingService billing)
         {
             _context = context;
             _emailService = emailService;
+            _billing = billing;
         }
 
         // GET: api/Invoices
@@ -213,5 +218,63 @@ namespace VoIPPlatform.API.Controllers
             var bytes = System.Text.Encoding.UTF8.GetBytes(csv.ToString());
             return File(bytes, "text/csv", $"invoices_{DateTime.UtcNow:yyyyMMddHHmmss}.csv");
         }
+
+        // POST: api/Invoices/generate  (Admin only)
+        /// <summary>
+        /// Phase 7.2: Manually trigger invoice generation from unbilled CallRecords.
+        /// Idempotent: if no billable calls exist the response explains this clearly.
+        /// </summary>
+        [HttpPost("generate")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> GenerateInvoice([FromBody] GenerateInvoiceRequest request)
+        {
+            if (request.EndDate <= request.StartDate)
+                return BadRequest(new { error = "EndDate must be after StartDate." });
+
+            try
+            {
+                // Preview: how many calls are in scope?
+                var count = await _billing.CountUnbilledCallsAsync(
+                    request.UserId, request.StartDate, request.EndDate);
+
+                if (count == 0)
+                {
+                    return Ok(new
+                    {
+                        success = false,
+                        message = $"No unbilled answered calls found for user {request.UserId} " +
+                                  $"between {request.StartDate:yyyy-MM-dd} and {request.EndDate:yyyy-MM-dd}.",
+                        invoiceId = (int?)null
+                    });
+                }
+
+                var invoice = await _billing.GenerateInvoiceForUserAsync(
+                    request.UserId, request.StartDate, request.EndDate);
+
+                return CreatedAtAction(nameof(GetInvoice), new { id = invoice!.Id }, new
+                {
+                    success    = true,
+                    message    = $"Invoice INV-{invoice.Id} generated successfully.",
+                    invoiceId  = invoice.Id,
+                    totalAmount = invoice.TotalAmount,
+                    lineItems  = invoice.LineItems.Count,
+                    billedCalls = count,
+                    periodStart = invoice.PeriodStart,
+                    periodEnd   = invoice.PeriodEnd,
+                    dueDate     = invoice.DueDate
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Invoice generation failed: {ex.Message}" });
+            }
+        }
     }
+
+    /// <summary>Request DTO for POST /api/invoices/generate</summary>
+    public record GenerateInvoiceRequest(int UserId, DateTime StartDate, DateTime EndDate);
 }

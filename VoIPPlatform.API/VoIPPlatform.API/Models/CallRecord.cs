@@ -42,6 +42,10 @@ namespace VoIPPlatform.API.Models
         [StringLength(50)]
         public required string Status { get; set; }  // Answered, Busy, Failed, NoAnswer
 
+        // ── Billing (Phase 7) ────────────────────────────────────────────────────
+        /// <summary>True once this record has been included in a generated invoice.</summary>
+        public bool IsBilled { get; set; } = false;
+
         // Navigation Property
         [ForeignKey("UserId")]
         public virtual User? User { get; set; }

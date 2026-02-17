@@ -65,6 +65,9 @@ try
     builder.Services.AddScoped<IWalletService, WalletService>();
     builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
+    // ✅ Phase 7.2: CDR Billing Engine (CallRecords → Invoices)
+    builder.Services.AddScoped<IBillingService, BillingService>();
+
     // ✅ Phase 8: Stripe Payment Integration
     builder.Services.AddScoped<IStripePaymentService, StripePaymentService>();
 

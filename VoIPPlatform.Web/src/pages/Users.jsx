@@ -4,11 +4,13 @@ import { UserPlus, Mail, Phone, Calendar, CheckCircle, XCircle } from 'lucide-re
 import Card from '../components/ui/Card';
 import Table from '../components/ui/Table';
 import Button from '../components/ui/Button';
+import AddUserModal from '../components/modals/AddUserModal';
 import toast from 'react-hot-toast';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [addUserOpen, setAddUserOpen] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -132,7 +134,7 @@ const Users = () => {
             Manage all users in your VoIP platform
           </p>
         </div>
-        <Button variant="primary">
+        <Button variant="primary" onClick={() => setAddUserOpen(true)}>
           <UserPlus className="w-5 h-5" />
           Add User
         </Button>
@@ -185,6 +187,12 @@ const Users = () => {
       <Card title="All Users" subtitle={`${users.length} users found`}>
         <Table columns={columns} data={users} loading={loading} />
       </Card>
+
+      <AddUserModal
+        isOpen={addUserOpen}
+        onClose={() => setAddUserOpen(false)}
+        onSuccess={fetchUsers}
+      />
     </div>
   );
 };

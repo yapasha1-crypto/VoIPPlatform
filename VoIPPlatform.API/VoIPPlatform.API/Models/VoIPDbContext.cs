@@ -29,6 +29,7 @@ namespace VoIPPlatform.API.Models
         public DbSet<TariffPlan> TariffPlans { get; set; }
 
         // ==================== Phase 7: Billing, Wallets & Payments ====================
+        public DbSet<InvoiceLineItem> InvoiceLineItems { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
@@ -138,11 +139,26 @@ namespace VoIPPlatform.API.Models
                 .HasForeignKey(r => r.AccountId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            // Account -> Invoices (One to Many)
+            // User -> Invoices (One to Many) - Phase 7 primary billing relationship
+            modelBuilder.Entity<Invoice>()
+                .HasOne(i => i.User)
+                .WithMany()
+                .HasForeignKey(i => i.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Account -> Invoices (One to Many, optional) - legacy relationship kept nullable
             modelBuilder.Entity<Invoice>()
                 .HasOne(i => i.Account)
                 .WithMany()
                 .HasForeignKey(i => i.AccountId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Invoice -> InvoiceLineItems (One to Many) - Phase 7
+            modelBuilder.Entity<InvoiceLineItem>()
+                .HasOne(li => li.Invoice)
+                .WithMany(i => i.LineItems)
+                .HasForeignKey(li => li.InvoiceId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // AuditLog -> User (One to Many, Optional)
@@ -296,6 +312,40 @@ namespace VoIPPlatform.API.Models
             // User TariffPlanId Index (Phase 6)
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.TariffPlanId);
+
+            // ==================== Phase 7: Invoice & LineItem Configuration ====================
+
+            // Invoice Decimal Precision
+            modelBuilder.Entity<Invoice>()
+                .Property(i => i.TotalAmount)
+                .HasPrecision(18, 5);
+
+            // InvoiceLineItem Decimal Precision
+            modelBuilder.Entity<InvoiceLineItem>()
+                .Property(li => li.Quantity)
+                .HasPrecision(18, 5);
+
+            modelBuilder.Entity<InvoiceLineItem>()
+                .Property(li => li.UnitPrice)
+                .HasPrecision(18, 5);
+
+            modelBuilder.Entity<InvoiceLineItem>()
+                .Property(li => li.Total)
+                .HasPrecision(18, 5);
+
+            // Invoice Indexes for common query patterns
+            modelBuilder.Entity<Invoice>()
+                .HasIndex(i => i.UserId);
+
+            modelBuilder.Entity<Invoice>()
+                .HasIndex(i => i.Status);
+
+            modelBuilder.Entity<Invoice>()
+                .HasIndex(i => new { i.UserId, i.PeriodStart, i.PeriodEnd });
+
+            // InvoiceLineItem Index
+            modelBuilder.Entity<InvoiceLineItem>()
+                .HasIndex(li => li.InvoiceId);
 
             // ==================== Phase 7: Wallet & Payment Configuration ====================
 

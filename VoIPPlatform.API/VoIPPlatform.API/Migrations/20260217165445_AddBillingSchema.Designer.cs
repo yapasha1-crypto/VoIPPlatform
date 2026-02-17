@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VoIPPlatform.API.Models;
 
@@ -11,9 +12,11 @@ using VoIPPlatform.API.Models;
 namespace VoIPPlatform.API.Migrations
 {
     [DbContext(typeof(VoIPDbContext))]
-    partial class VoIPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260217165445_AddBillingSchema")]
+    partial class AddBillingSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -88,6 +88,7 @@ export const ratesAPI = {
 // Invoices API calls
 export const invoicesAPI = {
   getAll: () => api.get('/invoices'),
+  getSummary: () => api.get('/invoices/admin/summary'),
   downloadPdf: (id) =>
     api.get(`/invoices/${id}/pdf`, { responseType: 'blob' }).then((res) => {
       const url = window.URL.createObjectURL(new Blob([res.data], { type: 'application/pdf' }));

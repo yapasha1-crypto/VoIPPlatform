@@ -254,6 +254,34 @@ namespace VoIPPlatform.API.Controllers
             }
         }
 
+        // GET: api/Invoices/admin/summary  (Admin only)
+        /// <summary>
+        /// Phase 8A: Aggregate financial summary for the Admin invoice dashboard.
+        /// Returns totals across all invoices and an overdue count.
+        /// </summary>
+        [HttpGet("admin/summary")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<AdminInvoiceSummaryDto>> GetAdminSummary()
+        {
+            var now = DateTime.UtcNow;
+
+            var totalInvoiced = await _context.Invoices
+                .SumAsync(i => (decimal?)i.TotalAmount) ?? 0m;
+
+            var totalPaid = await _context.Invoices
+                .Where(i => i.Status == InvoiceStatus.Paid)
+                .SumAsync(i => (decimal?)i.TotalAmount) ?? 0m;
+
+            var totalPending = await _context.Invoices
+                .Where(i => i.Status == InvoiceStatus.Unpaid)
+                .SumAsync(i => (decimal?)i.TotalAmount) ?? 0m;
+
+            var overdueCount = await _context.Invoices
+                .CountAsync(i => i.Status != InvoiceStatus.Paid && i.DueDate < now);
+
+            return Ok(new AdminInvoiceSummaryDto(totalInvoiced, totalPaid, totalPending, overdueCount));
+        }
+
         // POST: api/Invoices/generate  (Admin only)
         /// <summary>
         /// Phase 7.2: Manually trigger invoice generation from unbilled CallRecords.
@@ -312,4 +340,12 @@ namespace VoIPPlatform.API.Controllers
 
     /// <summary>Request DTO for POST /api/invoices/generate</summary>
     public record GenerateInvoiceRequest(int UserId, DateTime StartDate, DateTime EndDate);
+
+    /// <summary>Response DTO for GET /api/invoices/admin/summary (Phase 8A)</summary>
+    public record AdminInvoiceSummaryDto(
+        decimal TotalInvoiced,
+        decimal TotalPaid,
+        decimal TotalPending,
+        int OverdueCount
+    );
 }

@@ -400,8 +400,10 @@ namespace VoIPPlatform.API.Controllers
         }
 
         /// <summary>
-        /// Get rates for the currently logged-in user based on their assigned tariff plan
-        /// User endpoint - read-only view of their pricing
+        /// Get rates for the currently logged-in user based on their assigned tariff plan.
+        /// Non-Admin: returns SELL prices only (BuyPrice never exposed).
+        /// Admin: returns full ConfiguredRateDto including buy/profit data.
+        /// Server resolves the plan from the authenticated user's TariffPlanId — client cannot override it.
         /// </summary>
         [HttpGet("my-rates")]
         [Authorize(Roles = "User,Company,Reseller,Admin")]
@@ -415,7 +417,21 @@ namespace VoIPPlatform.API.Controllers
                     return Unauthorized(new { error = "Invalid user token" });
                 }
 
+                var role = User.FindFirst(ClaimTypes.Role)?.Value;
                 var configuredRates = await _rateCalculator.GetUserRatesAsync(userId);
+
+                // Non-admin: project to sell-only — never expose BuyPrice to non-admin roles
+                if (role != "Admin")
+                {
+                    var sellOnly = configuredRates.Select(r => new
+                    {
+                        destinationName = r.DestinationName,
+                        code = r.Code,
+                        sellPrice = r.SellPrice
+                    });
+                    return Ok(sellOnly);
+                }
+
                 return Ok(configuredRates);
             }
             catch (InvalidOperationException ex)
@@ -621,6 +637,47 @@ namespace VoIPPlatform.API.Controllers
             {
                 var plans = await _rateCalculator.GetAllActivePlansAsync();
                 return Ok(plans);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
+        }
+
+        /// <summary>
+        /// Get assignable tariff plans filtered by the current creator's role.
+        /// Admin/Reseller: all active plans.
+        /// Company: only their own assigned plan (they cannot assign a different one to sub-users).
+        /// Returns SELL plan metadata only — no buy-price data.
+        /// </summary>
+        [HttpGet("tariff-plans/assignable")]
+        [Authorize(Roles = "Admin,Reseller,Company")]
+        public async Task<ActionResult> GetAssignablePlans()
+        {
+            try
+            {
+                var creatorRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+                if (creatorRole == "Admin" || creatorRole == "Reseller")
+                {
+                    var allPlans = await _rateCalculator.GetAllActivePlansAsync();
+                    return Ok(allPlans.Select(p => new { p.Id, p.Name, p.Type, p.IsActive }));
+                }
+
+                // Company: return only their own plan
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (!int.TryParse(userIdClaim, out int userId))
+                    return Unauthorized(new { error = "Invalid token" });
+
+                var companyUser = await _context.Users
+                    .Include(u => u.TariffPlan)
+                    .FirstOrDefaultAsync(u => u.Id == userId);
+
+                if (companyUser?.TariffPlan == null)
+                    return Ok(Array.Empty<object>());
+
+                var plan = companyUser.TariffPlan;
+                return Ok(new[] { new { plan.Id, plan.Name, plan.Type, plan.IsActive } });
             }
             catch (Exception ex)
             {

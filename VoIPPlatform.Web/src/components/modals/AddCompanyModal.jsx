@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { X, Building2, Mail, Phone, MapPin, Globe, DollarSign, Gauge } from 'lucide-react';
-import { usersAPI } from '../../services/api';
+import { useState, useEffect } from 'react';
+import { X, Building2, Mail, Phone, MapPin, Globe, DollarSign, Gauge, Tag } from 'lucide-react';
+import { usersAPI, ratesAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
 const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
@@ -15,8 +15,16 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
     country: '',
     maxConcurrentCalls: 10,
     channelRate: 50.00,
+    tariffPlanId: '',
   });
   const [loading, setLoading] = useState(false);
+  const [tariffPlans, setTariffPlans] = useState([]);
+
+  useEffect(() => {
+    ratesAPI.getAssignablePlans()
+      .then(res => setTariffPlans(res.data || []))
+      .catch(() => {}); // Non-fatal — dropdown will be empty if fetch fails
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +37,12 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (!formData.tariffPlanId) {
+      toast.error('Please select a tariff plan for the company.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const payload = {
@@ -44,6 +58,7 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
         maxConcurrentCalls: parseInt(formData.maxConcurrentCalls),
         channelRate: parseFloat(formData.channelRate),
         billingType: 'Monthly',
+        tariffPlanId: parseInt(formData.tariffPlanId),
       };
 
       await usersAPI.create(payload);
@@ -228,6 +243,29 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
               <DollarSign className="w-5 h-5 text-violet-400" />
               Billing Configuration
             </h3>
+
+            {/* Tariff Plan (required) */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
+                <Tag className="w-4 h-4 text-violet-400" />
+                Rate List (Tariff Plan) <span className="text-red-400">*</span>
+              </label>
+              <select
+                name="tariffPlanId"
+                value={formData.tariffPlanId}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+              >
+                <option value="">— Select a tariff plan —</option>
+                {tariffPlans.map(plan => (
+                  <option key={plan.id} value={plan.id}>{plan.name}</option>
+                ))}
+              </select>
+              {tariffPlans.length === 0 && (
+                <p className="text-xs text-amber-400 mt-1">No tariff plans available. Create one in Rates Configure first.</p>
+              )}
+            </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>

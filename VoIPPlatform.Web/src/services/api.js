@@ -84,6 +84,7 @@ export const smsAPI = {
 export const ratesAPI = {
   assignTariffPlan: (userId, tariffPlanId) => api.post('/Rates/assign-plan', { userId, tariffPlanId }),
   getTariffPlans: () => api.get('/rates/tariff-plans'),
+  getAssignablePlans: () => api.get('/rates/tariff-plans/assignable'),
   getConfigure: (planId) => api.get(`/rates/configure?planId=${planId}`),
   createTariffPlan: (payload) => api.post('/rates/tariff-plans', payload),
   uploadBaseRates: (formData) => api.post('/rates/upload-base-rates', formData),

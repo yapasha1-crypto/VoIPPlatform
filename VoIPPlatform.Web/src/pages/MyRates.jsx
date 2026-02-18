@@ -23,7 +23,7 @@ const MyRates = () => {
       setRates(ratesData);
 
       if (ratesData.length === 0) {
-        toast.info('No tariff plan assigned. Contact your administrator to get rates.', { duration: 4000 });
+        toast('No tariff plan assigned. Contact your administrator to get rates.', { icon: 'ℹ️', duration: 4000 });
       }
 
       setLoading(false);

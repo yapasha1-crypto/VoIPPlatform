@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using VoIPPlatform.API.Models;
 
 namespace VoIPPlatform.API.Controllers
@@ -163,6 +164,29 @@ namespace VoIPPlatform.API.Controllers
                     });
                 }
 
+                // Determine creator identity for TariffPlan inheritance
+                var creatorIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var newUserRole = string.IsNullOrWhiteSpace(request.Role) ? "User" : request.Role;
+                int? resolvedTariffPlanId = request.TariffPlanId;
+
+                if (resolvedTariffPlanId == null)
+                {
+                    if (newUserRole == "Reseller" || newUserRole == "Company")
+                    {
+                        return BadRequest(new
+                        {
+                            success = false,
+                            message = "A tariff plan (tariffPlanId) is required when creating a Reseller or Company account."
+                        });
+                    }
+                    // Agent / User: auto-inherit TariffPlanId from the creator (Company)
+                    if (int.TryParse(creatorIdClaim, out int creatorId))
+                    {
+                        var creator = await _context.Users.FindAsync(creatorId);
+                        resolvedTariffPlanId = creator?.TariffPlanId;
+                    }
+                }
+
                 // تحقق من وجود البريد الإلكتروني
                 if (await _context.Users.AnyAsync(u => u.Email == request.Email))
                 {
@@ -182,6 +206,10 @@ namespace VoIPPlatform.API.Controllers
                     LastName = request.LastName,
                     PhoneNumber = request.PhoneNumber,
                     PasswordHash = HashPassword(request.Password),
+                    Role = newUserRole,
+                    ParentUserId = request.ParentUserId,
+                    MaxConcurrentCalls = request.MaxConcurrentCalls ?? 1,
+                    TariffPlanId = resolvedTariffPlanId,
                     IsEmailVerified = false,
                     IsActive = true,
                     CreatedAt = DateTime.UtcNow,
@@ -361,6 +389,21 @@ namespace VoIPPlatform.API.Controllers
         public required string LastName { get; set; }
 
         public string? PhoneNumber { get; set; }
+
+        /// <summary>Role to assign (User, Agent, Company, Reseller). Defaults to User.</summary>
+        public string? Role { get; set; }
+
+        /// <summary>Parent user ID — set automatically by Company when creating sub-users.</summary>
+        public int? ParentUserId { get; set; }
+
+        /// <summary>Max concurrent calls channel limit.</summary>
+        public int? MaxConcurrentCalls { get; set; }
+
+        /// <summary>
+        /// Required for Reseller/Company accounts.
+        /// Auto-inherited from the creator's plan for Agent/User accounts.
+        /// </summary>
+        public int? TariffPlanId { get; set; }
     }
 
     /// <summary>

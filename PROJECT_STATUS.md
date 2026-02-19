@@ -826,7 +826,7 @@ sqlcmd -S "(localdb)\MSSQLLocalDB" -d VoIPPlatformDb \
    - `VITE_API_URL=http://localhost:5004`
 
 **Configuration Updates:**
-- **Backend** (`appsettings.json` line 59): `"SecretKey": "REDACTED_STRIPE_KEY"`
+- **Backend** (`appsettings.json` line 59): `"SecretKey": "REDACTED"` *(key rotated — do not commit real keys)*
 - **Frontend** (`.env` line 3): `VITE_STRIPE_PUBLISHABLE_KEY=pk_test_51T0SQ2J1lJebwHjz5boILCKeIpeZGUK0DZEYD3UlHQ29VTOZPhLbt80xUnbOMncHvEMGN7N4my5h5HIqVoN1QdXd00mJu6dcbk`
 
 **Build Verification:**

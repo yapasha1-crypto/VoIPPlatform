@@ -10,7 +10,47 @@
 
 ---
 
-## ✅ LATEST UPDATE: Phase 8C Continuation (Feb 18, 2026)
+## ✅ LATEST UPDATE: Phase 8D + Security Remediation (Feb 19, 2026)
+
+### Phase 8D — Admin Creation Flow + Reseller Plan Isolation [COMPLETED] `560fee4`
+
+**Problem:** Admin could not create Reseller/Company (no tariff plan selection in modal); Reseller's assignable plan endpoint returned ALL plans (profit leakage); Agent/User created by Admin with no plan → silently got null TariffPlanId.
+
+**Files Modified:**
+- `VoIPPlatform.API/Controllers/UsersController.cs`
+  - Added null check after plan inheritance: if `resolvedTariffPlanId` still null after creator lookup → 400 `"tariffPlanId is required when the creator has no assigned tariff plan."`
+- `VoIPPlatform.API/Controllers/RatesController.cs` — `GET /api/rates/tariff-plans/assignable`
+  - Admin → all active plans (unchanged)
+  - Reseller → own assigned plan ONLY (was: all plans — same as Admin — profit leakage fixed)
+  - Company → own assigned plan (unchanged)
+- `VoIPPlatform.Web/src/components/modals/AddUserModal.jsx`
+  - Added `isAdmin` flag from `useAuth`; role dropdown now shows `[Reseller, Company, Agent, User]` for Admin, `[User, Agent]` for Company
+  - Added tariff plan dropdown (Admin only) — fetches `getAssignablePlans()` on open; required with `toast.error` guard
+  - Payload: `parentUserId` suppressed for Admin; `tariffPlanId` included for Admin
+- `VoIPPlatform.Web/src/components/modals/AddCompanyModal.jsx`
+  - Added `useAuth` + `isReseller` flag
+  - Empty plan list: shows Reseller-specific toast + inline message; Admin message unchanged
+
+**Verification:** `dotnet build` → 0 errors | `npm run build` → 0 errors ✅
+
+### Security — Stripe Secret Key Scrub [COMPLETED] `13ae27d`
+
+**Problem:** Real Stripe secret key `sk_test_51T0SQ2J...` committed in `appsettings.json` (line 59) and `PROJECT_STATUS.md` (line 829) — GitHub Push Protection blocked push.
+
+**Actions taken:**
+- Key replaced with `REDACTED` in `appsettings.json`, `bin/Debug/appsettings.json`, `PROJECT_STATUS.md`
+- `replacements.txt` created: `regex:sk_(test|live)_[0-9A-Za-z]+==>REDACTED_STRIPE_KEY`
+- `git filter-repo --force --replace-text replacements.txt` — rewrote all 26 commits
+- `git grep -n "sk_test_51"` → empty ✅
+- Force pushed rewritten history to `origin main`
+
+**⚠ ACTION REQUIRED:** Rotate the exposed key in Stripe dashboard immediately. Also rotate `whsec_fc2716fba...` (webhook secret still in appsettings.json history).
+
+**Known issues / next step:** Phase 9 — backend endpoints for Mark Paid (`POST /api/invoices/{id}/mark-paid`), Extend Due Date (`PATCH /api/invoices/{id}/due-date`), email reminder (`POST /api/invoices/{id}/remind`)
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 8C Continuation (Feb 18, 2026)
 
 ### Phase 8C — Tariff Plan Enforcement + MyRates SELL-only Stabilization [COMPLETED] `e0d13e3`
 

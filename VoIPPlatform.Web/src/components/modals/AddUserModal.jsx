@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { X, UserPlus, Mail, Phone, Key, Copy, Check } from 'lucide-react';
-import { usersAPI } from '../../services/api';
+import { useState, useEffect } from 'react';
+import { X, UserPlus, Mail, Phone, Key, Copy, Tag } from 'lucide-react';
+import { usersAPI, ratesAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 
 const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
   const { user } = useAuth();
+  const isAdmin = user?.role === 'Admin';
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,10 +16,20 @@ const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
     password: '',
     role: 'User',
     maxConcurrentCalls: 5,
+    tariffPlanId: '',
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [generatedPassword, setGeneratedPassword] = useState('');
+  const [tariffPlans, setTariffPlans] = useState([]);
+
+  useEffect(() => {
+    if (isOpen && isAdmin) {
+      ratesAPI.getAssignablePlans()
+        .then(res => setTariffPlans(res.data || []))
+        .catch(() => {});
+    }
+  }, [isOpen, isAdmin]);
 
   const generatePassword = () => {
     const length = 12;
@@ -47,6 +59,12 @@ const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isAdmin && !formData.tariffPlanId) {
+      toast.error('Please select a tariff plan.');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -57,8 +75,9 @@ const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
         lastName: formData.lastName,
         phoneNumber: formData.phoneNumber,
         role: formData.role,
-        parentUserId: user?.id, // Link to current company
+        parentUserId: isAdmin ? undefined : user?.id,
         maxConcurrentCalls: parseInt(formData.maxConcurrentCalls),
+        ...(isAdmin && { tariffPlanId: parseInt(formData.tariffPlanId) }),
       };
 
       await usersAPI.create(payload);
@@ -244,8 +263,19 @@ const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
                   onChange={handleChange}
                   className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
                 >
-                  <option value="User">User</option>
-                  <option value="Agent">Agent</option>
+                  {isAdmin ? (
+                    <>
+                      <option value="Reseller">Reseller</option>
+                      <option value="Company">Company</option>
+                      <option value="Agent">Agent</option>
+                      <option value="User">User</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="User">User</option>
+                      <option value="Agent">Agent</option>
+                    </>
+                  )}
                 </select>
               </div>
 
@@ -265,6 +295,35 @@ const AddUserModal = ({ isOpen, onClose, onSuccess }) => {
               </div>
             </div>
           </div>
+
+          {/* Tariff Plan — required when Admin is creating any non-admin account */}
+          {isAdmin && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Tag className="w-5 h-5 text-violet-400" />
+                Rate List (Tariff Plan)
+              </h3>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Tariff Plan <span className="text-red-400">*</span>
+                </label>
+                <select
+                  name="tariffPlanId"
+                  value={formData.tariffPlanId}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
+                  <option value="">— Select a tariff plan —</option>
+                  {tariffPlans.map(plan => (
+                    <option key={plan.id} value={plan.id}>{plan.name}</option>
+                  ))}
+                </select>
+                {tariffPlans.length === 0 && (
+                  <p className="text-xs text-amber-400 mt-1">No tariff plans available. Create one in Rates Configure first.</p>
+                )}
+              </div>
+            </div>
+          )}
         </form>
 
         {/* Footer */}

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { X, Building2, Mail, Phone, MapPin, Globe, DollarSign, Gauge, Tag } from 'lucide-react';
 import { usersAPI, ratesAPI } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 
 const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
+  const { user } = useAuth();
+  const isReseller = user?.role === 'Reseller';
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -22,9 +26,15 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
 
   useEffect(() => {
     ratesAPI.getAssignablePlans()
-      .then(res => setTariffPlans(res.data || []))
+      .then(res => {
+        const plans = res.data || [];
+        setTariffPlans(plans);
+        if (plans.length === 0 && isReseller) {
+          toast('No tariff plans available. Admin must create/assign a reseller plan first.', { icon: 'ℹ️', duration: 6000 });
+        }
+      })
       .catch(() => {}); // Non-fatal — dropdown will be empty if fetch fails
-  }, []);
+  }, [isReseller]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -263,7 +273,11 @@ const AddCompanyModal = ({ isOpen, onClose, onSuccess }) => {
                 ))}
               </select>
               {tariffPlans.length === 0 && (
-                <p className="text-xs text-amber-400 mt-1">No tariff plans available. Create one in Rates Configure first.</p>
+                <p className="text-xs text-amber-400 mt-1">
+                  {isReseller
+                    ? 'No tariff plans available. Admin must create/assign a reseller plan first.'
+                    : 'No tariff plans available. Create one in Rates Configure first.'}
+                </p>
               )}
             </div>
 

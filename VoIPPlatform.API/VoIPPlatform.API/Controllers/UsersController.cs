@@ -187,6 +187,16 @@ namespace VoIPPlatform.API.Controllers
                     }
                 }
 
+                // If still null after inheritance attempt → 400
+                if (resolvedTariffPlanId == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = "tariffPlanId is required when the creator has no assigned tariff plan."
+                    });
+                }
+
                 // تحقق من وجود البريد الإلكتروني
                 if (await _context.Users.AnyAsync(u => u.Email == request.Email))
                 {

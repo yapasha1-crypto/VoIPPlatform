@@ -658,25 +658,26 @@ namespace VoIPPlatform.API.Controllers
             {
                 var creatorRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-                if (creatorRole == "Admin" || creatorRole == "Reseller")
+                if (creatorRole == "Admin")
                 {
                     var allPlans = await _rateCalculator.GetAllActivePlansAsync();
                     return Ok(allPlans.Select(p => new { p.Id, p.Name, p.Type, p.IsActive }));
                 }
 
-                // Company: return only their own plan
+                // Reseller and Company: return only their own assigned plan
+                // Resellers must not see Admin global/predefined plans — they can only propagate their own plan.
                 var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (!int.TryParse(userIdClaim, out int userId))
                     return Unauthorized(new { error = "Invalid token" });
 
-                var companyUser = await _context.Users
+                var currentUser = await _context.Users
                     .Include(u => u.TariffPlan)
                     .FirstOrDefaultAsync(u => u.Id == userId);
 
-                if (companyUser?.TariffPlan == null)
+                if (currentUser?.TariffPlan == null)
                     return Ok(Array.Empty<object>());
 
-                var plan = companyUser.TariffPlan;
+                var plan = currentUser.TariffPlan;
                 return Ok(new[] { new { plan.Id, plan.Name, plan.Type, plan.IsActive } });
             }
             catch (Exception ex)

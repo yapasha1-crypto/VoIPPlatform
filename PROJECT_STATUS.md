@@ -1,16 +1,213 @@
 # PROJECT STATUS - VoIPPlatform
 ## Multi-Tenant Hierarchy & RBAC System
 
-**Date:** February 17, 2026
-**Phase:** ✅ Phase 0.8 + Phase 7.1 + Phase 7.2 [COMPLETED]
-**Status:** Critical QA fixes done; Invoice DB schema live; CDR billing engine operational
-**Latest Activity:** Rates display security fix, Invoice models + migration, BillingService (CDR → Invoice)
-**Next Phase:** Phase 7.3 - PDF invoice generation endpoint (`GET /api/invoices/{id}/pdf`)
-**Developer:** Claude Sonnet 4.5 (Senior VoIP Architect & Full-Stack Developer)
+**Date:** February 19, 2026
+**Phase:** ✅ Phase 8D — TariffPlan assignment + Admin creation flow + Reseller plan isolation [COMPLETED]
+**Status:** Admin can create all roles with required tariff plan; Reseller isolated to own plan only; Agent/User null-plan 400 enforced
+**Latest Activity:** UsersController + RatesController + AddUserModal + AddCompanyModal — surgical fixes
+**Next Phase:** Phase 9 — Wire Mark Paid + Extend Due Date to backend; email reminder endpoint
+**Developer:** Claude Sonnet 4.6 (Senior VoIP Architect & Full-Stack Developer)
 
 ---
 
-## ✅ LATEST UPDATE: Phase 0.8 + Phase 7.1 + Phase 7.2 (Feb 17, 2026)
+## ✅ LATEST UPDATE: Phase 8C Continuation (Feb 18, 2026)
+
+### Phase 8C — Tariff Plan Enforcement + MyRates SELL-only Stabilization [COMPLETED] `e0d13e3`
+
+**Problem:** Non-admin accounts could be created without a TariffPlan assigned; `/api/rates/my-rates` exposed `BuyPrice` to all roles; `MyRates.jsx` crashed on `toast.info` (not supported by react-hot-toast); `AddCompanyModal` had no rate list selection.
+
+**Files Modified:**
+- `VoIPPlatform.API/Controllers/UsersController.cs`
+  - `CreateUserRequest` DTO: added `Role?`, `ParentUserId?`, `MaxConcurrentCalls?`, `TariffPlanId?`
+  - `CreateUser` action: reads creator identity from JWT; requires `tariffPlanId` for Reseller/Company (→ 400 if missing); auto-inherits creator's `TariffPlanId` for Agent/User; now correctly sets `Role`, `ParentUserId`, `MaxConcurrentCalls` on new user (previously ignored)
+- `VoIPPlatform.API/Controllers/RatesController.cs`
+  - New `GET /api/rates/tariff-plans/assignable` endpoint (`[Authorize(Roles="Admin,Reseller,Company")]`): Admin/Reseller → all active plans; Company → own plan only; no BUY data in response
+  - `GET /api/rates/my-rates`: non-Admin projection now returns `{ destinationName, code, sellPrice }` only — `BuyPrice`, `Profit`, `ProfitMarginPercent` never sent to non-admin roles; Admin still receives full `ConfiguredRateDto`
+- `VoIPPlatform.Web/src/services/api.js`
+  - Added `getAssignablePlans: () => api.get('/rates/tariff-plans/assignable')` to `ratesAPI`
+- `VoIPPlatform.Web/src/components/modals/AddCompanyModal.jsx`
+  - Added `useEffect` + `ratesAPI.getAssignablePlans()` fetch on mount
+  - Added required **Rate List (Tariff Plan)** dropdown; client-side guard toasts error if submitted without selection
+  - `tariffPlanId` included in creation payload
+- `VoIPPlatform.Web/src/pages/MyRates.jsx`
+  - Fixed runtime crash: `toast.info(...)` → `toast('...', { icon: 'ℹ️', duration: 4000 })` (react-hot-toast has no `.info` method)
+
+**Acceptance checks passed:**
+- Creating Reseller/Company without `tariffPlanId` → **400** with clear message ✅
+- Company-created Agent/User automatically inherits Company's `TariffPlanId` ✅
+- Non-admin `my-rates` returns SELL only — no BuyPrice in response ✅
+- Admin `my-rates` still returns full rate data ✅
+- `AddCompanyModal` blocks submission without tariff plan selected ✅
+- `MyRates.jsx` loads without runtime crash ✅
+
+**No schema changes. No migrations. No Program.cs changes.**
+
+**Verification:** `dotnet build` → 0 errors | `npm run build` → 0 errors (chunk-size warning pre-existing) ✅
+
+**Known issues / next step:** Phase 9 — backend endpoints for Mark Paid, Extend Due Date, email reminder
+
+---
+
+## ✅ PREVIOUS UPDATE: Fix R-1 (Feb 17, 2026)
+
+### Fix R-1 — Migrate Rates pages to shared api instance [COMPLETED] `5282279`
+
+**Problem:** `RatesConfigure.jsx` and `MyRates.jsx` used raw `axios` with manual `Authorization` header injection, bypassing the shared `api` instance interceptors (401 auto-logout/redirect never fired on these pages).
+
+**Files Modified:**
+- `VoIPPlatform.Web/src/services/api.js`
+  - Added 5 methods to `ratesAPI`: `getTariffPlans`, `getConfigure(planId)`, `createTariffPlan(payload)`, `uploadBaseRates(formData)`, `getMyRates`
+- `VoIPPlatform.Web/src/pages/RatesConfigure.jsx`
+  - Removed `import axios from 'axios'` and `const API_BASE_URL`
+  - Replaced 4 raw axios calls: `fetchTariffPlans`, `fetchConfiguredRates`, `handleCreatePlan`, `handleUploadBaseRates`
+  - FormData upload: axios auto-sets `multipart/form-data` boundary (manual header removed)
+- `VoIPPlatform.Web/src/pages/MyRates.jsx`
+  - Removed `import axios from 'axios'` and `const API_BASE_URL`
+  - Added `import { ratesAPI } from '../services/api'`
+  - Replaced 1 raw axios call in `fetchMyRates`
+  - Removed dead 401 handler (global interceptor handles it)
+
+**No backend changes. No routing changes.**
+
+**Verification:** `npm run build` → ✅ 0 errors, 3 files changed, 11 insertions(+), 32 deletions(-)
+
+**Known issues / next step:** Phase 9 — backend endpoints for Mark Paid, Extend Due Date, email reminder
+
+---
+
+## ✅ PREVIOUS UPDATE: Fix 8D (Feb 17, 2026)
+
+### Fix 8D — Wire Add User Button in Users.jsx [COMPLETED] `b9692bd`
+
+**Root cause:** `Users.jsx` (`/dashboard/users`, Admin-only route) had an unwired `<Button>` — no `onClick`, no state, no modal rendered. `UserManagement.jsx` (Company route) was already correctly wired and unaffected.
+
+**Files Modified:**
+- `VoIPPlatform.Web/src/pages/Users.jsx`
+  - Added `import AddUserModal from '../components/modals/AddUserModal'`
+  - Added `const [addUserOpen, setAddUserOpen] = useState(false)`
+  - Added `onClick={() => setAddUserOpen(true)}` to the Add User button
+  - Rendered `<AddUserModal isOpen={addUserOpen} onClose={() => setAddUserOpen(false)} onSuccess={fetchUsers} />`
+
+**No backend changes. No routing changes.**
+
+**Verification:** `npm run build` → ✅ 0 errors (chunk-size warning pre-existing)
+
+---
+
+## ✅ LATEST UPDATE: Phase 8C (Feb 17, 2026)
+
+### Phase 8C — Admin Row Actions UI [COMPLETED] `9c2c6ef`
+
+**Files Modified:**
+- `VoIPPlatform.Web/src/pages/Invoices.jsx` — Admin action cell expanded to 4 buttons per row; Extend Due Date modal added
+
+**New Admin buttons per invoice row (visible to Admin only):**
+- `PDF` — Download PDF (existing, unchanged)
+- `Mark Paid` — 800ms loading simulation → `toast.success`; no API call, no local state mutation
+- `Remind` — 800ms loading simulation → `toast.success`; UI placeholder (email backend deferred Phase 9)
+- `Extend` — opens inline date-picker modal; Save updates local display only; no API call
+
+**Extend Due Date modal:**
+- Fixed overlay (`z-50`, `bg-black/60 backdrop-blur-sm`)
+- `<input type="date">` pre-populated with current `dueDate`
+- Save: local `dueDate` display update + toast; Cancel: dismiss
+- Note label: "UI preview — backend write deferred to Phase 9"
+- Uses existing `Button` component (`primary`, `size="sm"`)
+
+**Compliance note:** `markAsPaid` was added to `api.js` during implementation then reverted in fix — `api.js` final state = Phase 8B baseline (no `markAsPaid`). No backend endpoints called from Phase 8C.
+
+**Non-Admin UI:** unchanged (single Download PDF button per row).
+
+**Verification:** `npm run build` → ✅ 0 errors (chunk-size warning pre-existing)
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 8B (Feb 17, 2026)
+
+### Phase 8B — Admin Invoice Dashboard UI [COMPLETED] `5e6da14`
+
+**Files Modified:**
+- `VoIPPlatform.Web/src/services/api.js` — added `getSummary: () => api.get('/invoices/admin/summary')` to `invoicesAPI`
+- `VoIPPlatform.Web/src/pages/Invoices.jsx` — role-aware layout: Admin sees 4 API-driven summary cards; non-Admin keeps existing 2 local-computed cards
+
+**UI changes (Admin view):**
+- 4-card grid (responsive: 1→2→4 cols): Total Invoiced (blue), Total Paid (green), Total Pending (amber), Overdue Invoices (red)
+- Summary fetch is non-fatal — failure silently omits cards, does not block invoice table
+- Header: "Invoice Dashboard" (Admin) / "My Invoices" (other roles)
+- Table heading: "All Invoices" (Admin) / "Invoice History" (other roles)
+
+**No new routes. No App.jsx changes. No backend changes.**
+
+**Verification:** `npm run build` → ✅ 0 errors (chunk-size warning pre-existing)
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 8A (Feb 17, 2026)
+
+### Phase 8A — Admin Invoice Summary Endpoint [COMPLETED] `4f281e5`
+
+**Files Modified:**
+- `Controllers/InvoicesController.cs` — added `GET /api/invoices/admin/summary` action + `AdminInvoiceSummaryDto` record
+
+**Endpoint:**
+```
+GET /api/invoices/admin/summary
+[Authorize(Roles = "Admin")]
+```
+
+**Response fields:**
+- `totalInvoiced` — SUM of TotalAmount across all invoices
+- `totalPaid` — SUM of TotalAmount where Status == Paid (2)
+- `totalPending` — SUM of TotalAmount where Status == Unpaid (1)
+- `overdueCount` — COUNT where Status != Paid AND DueDate < UtcNow
+
+**Constraints respected:**
+- No schema changes, no migrations
+- Program.cs not touched
+- Stripe/webhooks not touched
+- DTO record co-located with GenerateInvoiceRequest at bottom of controller file
+
+**Verification:** `dotnet build` → 0 errors, 13 pre-existing warnings ✅
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 7.3 + Phase 7.4 (Feb 17, 2026)
+
+### Phase 7.3 — Invoice PDF Generation [COMPLETED] `15b1e7f`
+
+**Files Created:**
+- `Services/InvoicePdfService.cs` — QuestPDF Community; `GeneratePdf(Invoice)` returns `byte[]`
+  - Layout: Header (brand + INVOICE title), Bill-To + meta block, line-items table (Destination / Minutes / Rate/Min / Total), total row, footer ("Thank you for your business")
+  - Alternating row backgrounds, blue accent `#1a73e8`, Arial font
+
+**Files Modified:**
+- `Program.cs` — added `using QuestPDF.Infrastructure`; set `QuestPDF.Settings.License = LicenseType.Community` (before builder); registered `AddScoped<InvoicePdfService>()`
+- `Controllers/InvoicesController.cs` — injected `InvoicePdfService`; added `GET /api/invoices/{id}/pdf` — fetches invoice with User + LineItems, checks ownership (non-Admin blocked if not owner), calls `GeneratePdf`, returns `File(bytes, "application/pdf", "Invoice_X.pdf")`
+
+**Verification:** `dotnet build` — 0 errors, 13 pre-existing warnings ✅
+
+---
+
+### Phase 7.4 — Invoices Frontend UI [COMPLETED] `db8a552`
+
+**Files Created:**
+- `VoIPPlatform.Web/src/pages/Invoices.jsx`
+  - Stats cards: Total Paid (green), Pending Amount (amber)
+  - Table: Invoice # (violet mono) | Date | Period | Due Date | Amount | Status badge | Download PDF button
+  - Status badges colour-coded by enum int (0=Draft, 1=Unpaid, 2=Paid, 3=Overdue, 4=Cancelled)
+  - Download: spinner + "Generating…" while in-flight; `window.URL.createObjectURL` triggers browser save of `Invoice_X.pdf`
+  - Empty state, loading state, dismissible error banner
+
+**Files Modified:**
+- `src/services/api.js` — added `invoicesAPI`: `getAll()` → `GET /api/invoices`; `downloadPdf(id)` → `GET /api/invoices/{id}/pdf` with `responseType: 'blob'` + auto-download logic
+- `src/components/layout/Sidebar.jsx` — added `Invoices` nav item (FileText icon, all roles, path `/dashboard/invoices`)
+- `src/App.jsx` — imported `Invoices`; registered `<Route path="invoices" element={<Invoices />} />` under protected dashboard layout
+
+**Verification:** `npm run build` — ✅ 0 errors (chunk-size warning is pre-existing)
+
+---
+
+## ✅ PREVIOUS UPDATE: Phase 0.8 + Phase 7.1 + Phase 7.2 (Feb 17, 2026)
 
 ### Phase 0.8 — Critical QA Fixes [COMPLETED] `fbeca35`
 
